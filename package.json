@@ -13,5 +13,8 @@
     "express": "3.0.0beta7",
     "ejs": "*"
    ,"nodemon": "*"
+   ,"restler": "*"
+   ,"express-helpers": "*"
+   ,"async": "*"
   }
 }

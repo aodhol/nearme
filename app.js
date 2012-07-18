@@ -1,13 +1,17 @@
-
 /**
  * Module dependencies.
  */
 
-var express = require('express')
-  , routes = require('./routes')
-  , http = require('http');
+var express = require('express');
+var http = require('http');
+
+var routes = require('./routes')
+
+routes.articles  = require('./routes/articles');
 
 var app = express();
+
+
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -28,6 +32,10 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
+
+app.get('/articles/postcode/:postcode',routes.articles.find_by_postcode);
+
+app.get('/articles/coordinates/:lat,:lon',routes.articles.find_by_coordinates);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
