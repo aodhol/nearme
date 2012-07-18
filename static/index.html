@@ -1,0 +1,74 @@
+<!doctype html> 
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>BBC News - Near Me</title>
+
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<link rel="stylesheet" type="text/css" href="css/reset.css">
+		<link rel="stylesheet" type="text/css" href="css/default.css">
+
+		<script src="js/jquery-1.7.2.min.js"></script>
+	</head>
+
+	<body>
+		<header>
+			<div id="global-header">
+				<a href="http://www.bbc.co.uk">
+					<img src="image/bbc_blocks.png" width="84" height="24" alt="British Broadcasting Corporation" />
+				</a>
+			</div>
+			<div id="local-header">
+				<h1>
+					<a href="http://www.bbc.co.uk/news">News</a>
+					<span class="location">England</span>
+				</h1>
+			</div>
+		</header>
+
+		<section id="set-location">
+			<h2>Set your location</h2>
+			<a id="get-location" href="#">Get current location</a>
+			<form action="/" method="get">
+				<input name="loc" type="text" placeholder="Enter a UK town, county or postcode" />
+			</form>
+		</section>
+
+		<section>
+			<article>
+				<img src="image/story/soldier_304_171.jpg" width="304" height="171" alt="" />
+				<h2>G4S boss regrets Olympic contract</h2>
+				<p>G4S chief executive Nick Buckles tells MPs he regrets taking on the Olympics security contract, agreeing it has been a "humiliating shambles".</p>
+			</article>
+			<article>
+				<img src="image/story/pendleton_144_81.jpg" width="144" height="81" alt="" />
+				<h2>Pendleton is 'trapped' by success</h2>
+				<p>Victoria Pendleton tells a BBC One documentary to be aired on Wednesday she struggles with the huge expectation on her.</p>
+			</article>
+			<article>
+				<img src="image/story/torch_144_81.jpg" width="144" height="81" alt="" />
+				<h2>18 June: Day 61 - Hastings to Dover</h2>
+				<p>70 days, 8,000 miles - follow the flame and find out when it will be near you.</p>
+			</article>
+		</section>
+
+		<footer>
+			<div id="footer-content">
+				<p>BBC &copy; 2012</p>
+			</div>
+		</footer>
+
+		<script>
+			$(document).ready(function() {
+				$('#get-location').on('click', function() {
+					navigator.geolocation.getCurrentPosition(function(pos){
+						alert('latitude = ' + pos.coords.latitude + ', longitude = ' + pos.coords.longitude);
+					});
+				});
+			});
+		</script>
+	</body>
+</html> 

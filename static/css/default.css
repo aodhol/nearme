@@ -1,0 +1,131 @@
+body {
+	font: 100%/1.2 Helvetica, Arial, sans-serif;
+	color: #000;
+}
+
+a, a:hover {
+	text-decoration: none;
+}
+
+p {
+	margin-bottom: 1em;
+}
+
+section, #global-header, #local-header, #footer-content {
+	width: 80%;
+	margin: 0 auto;
+}
+
+@media screen and (max-width: 480px) {
+	body {
+		font-size: 75%;
+	}
+	article img {
+		width: 50%;
+		height: 50%;
+	}
+}
+
+/* Page header */
+
+header {
+	background-color: #cd0102;
+}
+
+#global-header {
+	padding: 0.5em;
+	background-color: #520000;
+}
+
+#global-header img {
+	display: block;
+}
+
+#local-header {
+	color: #fff;
+	font-family: "Gill Sans";
+	text-transform: uppercase;
+}
+
+#local-header a {
+	color: #fff;
+	font-size: 4em;
+}
+
+#local-header .location {
+	font-size: 2em;
+	margin-left: 0.5em;
+}
+
+/* Location search */
+
+#set-location {
+	padding: 0.5em;
+	background-color: #ce7229;
+}
+
+#set-location h2 {
+	color: #fff;
+	font-size: 2em;
+	margin-bottom: 0.5em;
+}
+
+#get-location {
+	float: left;
+	padding: 4px 40px 4px 8px;
+	margin-right: 1em;
+	color: #000;
+	background: #fbaf41 url(../image/target-icon.png) no-repeat 100% 50%;
+}
+
+#set-location input[name="loc"] {
+	float: left;
+	border: none;
+	padding: 4px 40px 4px 8px;
+	margin: 0;
+	width: 19em;
+	font-size: 1em;
+	color: #000;
+	background: #fff url(../image/search-icon.png) no-repeat 100% 50%;
+}
+
+/* News stories */
+
+section {
+	overflow: hidden;
+}
+
+article {
+	overflow: hidden;
+	padding: 1em 0;
+}
+
+article img {
+	float: left;
+	margin: 0 1em 1em 0;
+}
+
+article p {
+	overflow: hidden;
+}
+
+article h2 {
+	color: #1f4f82;
+	font-size: 1.25em;
+	margin-bottom: 1em;
+}
+
+/* Footer */
+
+footer {
+	color: #fff;
+	background-color: #666;
+}
+
+#footer-content {
+	padding: 1em 0;
+}
+
+#footer-content p {
+	margin: 0;
+}
