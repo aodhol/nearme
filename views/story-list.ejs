@@ -1,0 +1,20 @@
+
+   	<%for(var i = 0; i < sections.length; i++){%>
+
+   		<% var section = sections[i]; %>
+   		<% var sectionArticles = articles[section]; %>
+
+   		<% if (sectionArticles != undefined) {%>
+	   		<h1><%=section%></h1>
+	   		<ul>
+	   			<%for(var j = 0; j < sectionArticles.length; j++){%>
+	   				<% var article = sectionArticles[j]; %>
+	   				<li><a href='<%=article.url%>'><%=article.full_data.title%></a></li>
+	   			<%}%>	
+	   		</ul>
+   		<% } %>
+        
+    <% }; %>
+</ul>
+
+
