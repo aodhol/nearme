@@ -2,6 +2,8 @@ var restler = require('restler');
 
 var async = require('async');
 
+var xml2js = require('xml2js');
+
 //require('express-helpers').all
 
 exports.find_by_coordinates = function(req, res){
@@ -17,17 +19,20 @@ exports.find_by_coordinates = function(req, res){
      var distance = parseInt(req.params.distance) || 30;
      var limit = parseInt(req.params.limit) || 10;
      var orderby = req.params.orderby || 'distance';
+     var site = req.params.site || 'news';
 
      var lat = req.params.lat;
      var lon = req.params.lon;
 
      var allSections = ["Africa","Also in the News","Asia","Asia Business","Asia-Pacific","Athletics","Basketball","BBC Mundo","BBC Parliament","Beds, Herts &amp; Bucks","Berkshire","Birmingham &amp; Black Country","Black country","Boxing","Bradford","Bristol","Business","Business of Sport","Cambridgeshire","China","Click","Cornwall","Country profiles","Coventry &amp; Warwickshire","Cricket","Cumbria","Cycling","Dachaigh","Darts","Derby","Devon","Disability sport","Dorset","Edinburgh, Fife &amp; East Scotland","Education &amp; Family","England","Entertainment","Entertainment &amp; Arts","Essex","Euro 2012","Europe","Features","Football","Formula 1","Foyle &amp; West","Glasgow &amp; West Scotland","Gloucestershire","Golf","Guernsey","Gwleidyddiaeth","Hafan","Hampshire &amp; Isle of Wight","HARDtalk","Have Your Say","Health","Help","Hereford &amp; Worcester","Highlands &amp; Islands","Home","Horse Racing","House of Commons","Humberside","India","In Pictures","Institution guides","Isle Of Man / Ellan Vannin","Isle of Man Video &amp; Audio","Jersey","Kent","Lancashire","Latin America &amp; Caribbean","Leeds &amp; West Yorkshire","Leicester","Lincolnshire","Liverpool","London","Magazine","Manchester","Middle East","Mid Wales","MotoGP","Music","NE Scotland, Orkney &amp; Shetland","News","N. Ireland Politics","Norfolk","Northampton","North East Wales","Northern Ireland","North West Wales","North Yorkshire","Nottingham","Olympics","Oxford","Rugby League","Rugby Union","Science &amp; Environment","Scotland","Scotland business","Scotland politics","Sheffield &amp; South Yorkshire","Shropshire","Snooker","Somerset","South Asia","South East Wales","South Scotland","South West Wales","Stoke &amp; Staffordshire","Suffolk","Surrey","Sussex","Tayside and Central Scotland","Technology","Tees","Tennis","Today","Tyne and Wear","Tyne &amp; Wear","UK","UK Politics","UK troops in Afghanistan","US and Canada","US &amp; Canada","Video","Video &amp; Audio","Wales","Wales politics","Wear","Wiltshire","Winter Sports","World","World Radio and TV","York &amp; North Yorkshire","Your Money"];
 
-     var sportSections = [];
+     var newsSections = ["Africa","Also in the News","Asia","Asia Business","Asia-Pacific","BBC Mundo","BBC Parliament","Beds, Herts &amp; Bucks","Berkshire","Birmingham &amp; Black Country","Black country","Bradford","Bristol","Business","Business of Sport","Cambridgeshire","China","Click","Cornwall","Country profiles","Coventry &amp; Warwickshire","Cumbria","Dachaigh","Derby","Devon","Dorset","Edinburgh, Fife &amp; East Scotland","Education &amp; Family","England","Entertainment","Entertainment &amp; Arts","Essex","Europe","Features","Foyle &amp; West","Glasgow &amp; West Scotland","Gloucestershire","Guernsey","Gwleidyddiaeth","Hafan","Hampshire &amp; Isle of Wight","HARDtalk","Have Your Say","Health","Help","Hereford &amp; Worcester","Highlands &amp; Islands","Home","House of Commons","Humberside","India","In Pictures","Institution guides","Isle Of Man / Ellan Vannin","Isle of Man Video &amp; Audio","Jersey","Kent","Lancashire","Latin America &amp; Caribbean","Leeds &amp; West Yorkshire","Leicester","Lincolnshire","Liverpool","London","Magazine","Manchester","Middle East","Mid Wales","Music","NE Scotland, Orkney &amp; Shetland","News","N. Ireland Politics","Norfolk","Northampton","North East Wales","Northern Ireland","North West Wales","North Yorkshire","Nottingham","Oxford","Science &amp; Environment","Scotland","Scotland business","Scotland politics","Sheffield &amp; South Yorkshire","Shropshire","Somerset","South Asia","South East Wales","South Scotland","South West Wales","Stoke &amp; Staffordshire","Suffolk","Surrey","Sussex","Tayside and Central Scotland","Technology","Tees","Today","Tyne and Wear","Tyne &amp; Wear","UK","UK Politics","UK troops in Afghanistan","US and Canada","US &amp; Canada","Video","Video &amp; Audio","Wales","Wales politics","Wear","Wiltshire","World","World Radio and TV","York &amp; North Yorkshire","Your Money"];
+
+     var sportSections = ["Athletics","Basketball","Boxing","Cricket","Cycling","Darts","Disability sport","Euro 2012","Football","Formula 1","Golf","Horse Racing","MotoGP","Olympics","Rugby Union","Snooker","Tennis","Winter Sports"];
 
      var userSections = ["UK Politics","Africa","Also in the News","Asia","Asia Business","Asia-Pacific", "Health"];
 
-     var sections = ((req.params.sections !== undefined) ? [req.params.sections] : allSections);
+     var sections = ((req.params.sections !== undefined) ? [req.params.sections] : (site == "news" ? newsSections : sportSections));
 
      //var request = restler.get('http://juicer.responsivenews.co.uk/articles.json?limit=' + limit + '&distance=' + distance + '&location=' + lat + ',' + lon + '&orderby=' + orderby);
 
@@ -51,7 +56,7 @@ exports.find_by_coordinates = function(req, res){
 
 
 
-                console.log('Satus code:' + response.statusCode);
+                console.log('Status code:' + response.statusCode);
 
                 callback(null,null);
             }else{
@@ -102,21 +107,21 @@ exports.find_by_coordinates = function(req, res){
 
 
         //Closure to capture current scope.
-        (function(section,lat,lon,distance){
+        (function(section,lat,lon,distance,site){
 
 
 
         console.log("Query:" + 'http://juicer.responsivenews.co.uk/api/articles.json?binding=url&limit=50',
                 {'data':
-                '?thing omgeo:nearby("' + lat + '" "' + lon + '" "' + distance + 'mi") . ?url <http://data.press.net/ontology/tag/about> ?thing . ?url <http://purl.org/dc/terms/subject> "'+ section +'"@en . ?url <http://purl.org/dc/terms/publisher> <http://www.bbc.co.uk/news/> .'
+                '?thing omgeo:nearby("' + lat + '" "' + lon + '" "' + distance + 'mi") . ?url <http://data.press.net/ontology/tag/about> ?thing . ?url <http://purl.org/dc/terms/subject> "'+ section +'"@en . ?url <http://purl.org/dc/terms/publisher> <http://www.bbc.co.uk/' + site + '/> .'
                 });
 
             invocations.push(function(callback){callRestService('http://juicer.responsivenews.co.uk/api/articles.json?binding=url&limit=50',
                 {'data':
-                '?thing omgeo:nearby("' + lat + '" "' + lon + '" "' + distance + 'mi") . ?url <http://data.press.net/ontology/tag/about> ?thing . ?url <http://purl.org/dc/terms/subject> "'+ section +'"@en . ?url <http://purl.org/dc/terms/publisher> <http://www.bbc.co.uk/news/> .'
+                '?thing omgeo:nearby("' + lat + '" "' + lon + '" "' + distance + 'mi") . ?url <http://data.press.net/ontology/tag/about> ?thing . ?url <http://purl.org/dc/terms/subject> "'+ section +'"@en . ?url <http://purl.org/dc/terms/publisher> <http://www.bbc.co.uk/' + site + '/> .'
                 },section,callback
             )});
-        })(section,lat,lon,distance);
+        })(section,lat,lon,distance,site);
 
     }
 
@@ -132,10 +137,44 @@ exports.find_by_coordinates = function(req, res){
 };
 
 exports.find_by_postcode = function(req, res){
- /*
- 1. Translate postcode to lat lon.
- 2. Use lat lon in sparql query.
- 3. Display news stories.
- */
+     /*
+     1. Translate postcode to lat lon.
+     2. Use lat lon in sparql query.
+     3. Display news stories.
+     */
+
+     var country = req.params.country || 'GB';
+     var maxRows = parseInt(req.params.maxRows) || 1;
+     var username = parseInt(req.params.username) || 'mdgardiner';
+
+     var postcode = req.params.postcode;
+
+     // Call the GeoNames API to get the lat and long...
+
+    console.log('GEONAMES REQUEST: http://api.geonames.org/postalCodeSearch?postalcode=' + escape(postcode) + '&country='+ country +'&maxRows=' + maxRows + '&username='+ username);
+
+    var request = restler.get('http://api.geonames.org/postalCodeSearch?postalcode=' + escape(postcode) + '&country='+ country +'&maxRows=' + maxRows + '&username='+ username);
+
+     request.on('complete', function(result) {
+          if (result instanceof Error) {
+            console.log('Error: ' + result.message);
+          } else {
+            
+            console.log(result);
+
+            var parser = new xml2js.Parser();
+            parser.parseString(result, function (err, parseResult) {
+                
+                var xmlLat = parseResult.code.lat;
+                var xmlLng = parseResult.code.lng;
+
+                console.log('Done: ' + xmlLat + ' ' + xmlLng);
+
+                res.redirect('/articles/coordinates/' + xmlLat +',' + xmlLng);
+            });
+
+          }
+      });
+
 };
 

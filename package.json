@@ -16,5 +16,6 @@
    ,"restler": "*"
    ,"express-helpers": "*"
    ,"async": "*"
+   ,"xml2js": "*"
   }
 }
