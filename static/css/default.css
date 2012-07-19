@@ -104,11 +104,20 @@ h2 {
 }
 
 #get-location {
+	display: none;
 	float: right;
 	padding: 4px 40px 4px 8px;
 	margin-top: 0.4em;
 	color: #000;
 	background: #fbaf41 url(../image/target-icon.png) no-repeat 100% 50%;
+}
+
+#draw-location {
+	float: right;
+	margin: 0.4em 1em 0 0;
+	padding: 4px 8px;
+	color: #000;
+	background-color: #fbaf41;
 }
 
 /* Local Info */

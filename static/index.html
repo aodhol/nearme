@@ -37,6 +37,7 @@
 				<form action="/" method="get">
 					<input name="loc" type="text" placeholder="Enter a UK town, county or postcode" />
 				</form>
+				<a id="draw-location" href="#">Draw Location</a>
 			</section>
 
 			<section id="local">
@@ -120,10 +121,7 @@
 
 		<script>
 			$(document).ready(function() {
-				$('#get-location').on('click', function() {
-					// navigator.geolocation.getCurrentPosition(function(pos){
-					// 	alert('latitude = ' + pos.coords.latitude + ', longitude = ' + pos.coords.longitude);
-					// });
+				$('#draw-location').on('click', function() {
 					$('#local').animate({opacity: 'toggle', height: 'toggle'});
 				});
 			});
