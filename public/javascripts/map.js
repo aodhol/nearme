@@ -57,7 +57,7 @@ var mapLoaded = false;
 		
 				showArticles(path,function(err,data){
 					if(err == null){
-						console.log(data.articles.length + " articles found",data);
+						//console.log(data.articles.length + " articles found",data);
 
 					}else{
 						console.log("Error:" + err.toString());
@@ -90,7 +90,7 @@ var mapLoaded = false;
 	
 		showArticles(path,function(err,data){
 			if(err == null){
-				console.log(data.articles.length + " articles found",data);
+				//console.log(data.articles.length + " articles found",data);
 
 			}else{
 				console.log("Error:" + err.toString());
@@ -111,24 +111,22 @@ var mapLoaded = false;
 		console.log("Saving path");
 		savePolygon(path);
 
-		showArticles(path,function(err,data){
-			if(err == null){
-				console.log(data);
-			}
-		});
+//IMPROVE THIS.
+showArticles(null,function(err,data){
+	$('section[role="main"]').html(data);
+});
+		
 	});
 
 	google.maps.event.addListener(path, "insert_at", function(){
 		console.log("Saving path");
 		savePolygon(path);
 
-		showArticles(path,function(err,data){
-			if(err == null){
-				console.log(data);
-			}else{
-				console.log("Error:" + err.toString());
-			}
-		});
+//IMPROVE THIS.
+	showArticles(null,function(err,data){
+		$('section[role="main"]').html(data);
+	});
+		
 
 	});	
 }
@@ -187,6 +185,12 @@ function getArticlesWithinCoordinates(coordinates,callback){
 }
 
 function showArticles(path,callback){
+
+	if(path == null){
+		path = retrievePolygon();
+	}
+
 	var coordStr = pathToCoordinateString(path);
+
 	getArticlesWithinCoordinates(coordStr,callback);
 }

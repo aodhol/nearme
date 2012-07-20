@@ -62,7 +62,7 @@ exports.find_by_polygon_points = function(req,res){
                 //callback(null,results.articles);
                 //res.json(JSON.parse(data));
 
-                res.render('story-list',data.articles);
+                res.render('story-list',{'articles':JSON.parse(data).articles});
 
             }
 

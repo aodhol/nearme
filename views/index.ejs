@@ -141,8 +141,28 @@
 							mapLoaded = true;
 						}
 					});
+
+
+showArticles(null,function(err,data){
+
+console.log(data);
+
+	$('section[role="main"]').html(data);
+})
 				
-					$('section[role="main"]').load('/articles/coordinates/points/51.73333,0.48333');
+/*
+var jqxhr = $.ajax( "/articles/coordinates/points/51.73333,0.48333" )
+    .done(function() { console.log("e.toString()") })
+    .fail(function() {console.log("e.toString()"); })
+    .always(function() {console.log("e.toString()") });
+*/
+
+
+					//$('section[role="main"]').html("<div>THIS IS ATEST</div>");
+
+					//load('/articles/coordinates/points/51.73333,0.48333');
+
+
 				});
 			});
 		</script>
