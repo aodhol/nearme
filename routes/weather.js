@@ -14,6 +14,7 @@ exports.find_by_postcode = function(req, res){
     var postcode = req.params.postcode;
     var xmlLat = 0.0;
     var xmllng = 0.0;
+    var geonameId = 0;
 
     console.log('GEONAMES REQUEST: http://api.geonames.org/postalCodeSearch?postalcode=' + escape(postcode) + '&country='+ country +'&maxRows=' + maxRows + '&username='+ username);
 
@@ -39,6 +40,41 @@ exports.find_by_postcode = function(req, res){
             console.log('GEONAMES REQUEST DONE: la=' + xmlLat + ' lo=' + xmlLng);
 
         }
+
+        console.log('LOCATION API REQUEST: JSON http://open.live.bbc.co.uk/locator/locations?la=' + xmlLat + '&lo=' + xmlLng);
+
+        var locatorRequest = restler.get('http://open.live.bbc.co.uk/locator/locations?la=' + xmlLat + '&lo=' + xmlLng + '&format=json');
+        //var locatorRequest = restler.get('http://open.live.bbc.co.uk/locator/locations?la=51.36047&lo=-0.25317&format=json');
+
+        locatorRequest.on('complete', function(locatorResult, response){
+
+            console.log('Status Code: ' + response.statusCode);
+
+            if (locatorResult instanceof Error) {
+
+                console.log('Error: ' + locatorResult.message);
+
+            } else {
+
+                console.log('result: ' + JSON.stringify(locatorResult));
+
+                /*var locParser = new xml2js.Parser();
+
+                locParser.parseString(geonameResult, function(err, parseResult){
+                    geonameId = parseResult.;
+                });*/
+
+                var resultJSON = JSON.parse(locatorResult);
+
+                for( var name in resultJSON ){
+                    console.log(name);
+                }
+                
+                console.log('LOCATION REQUEST DONE: id=' + geonameId);
+
+            }
+
+        });
 
     });
 
