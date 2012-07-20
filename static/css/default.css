@@ -82,12 +82,12 @@ h2 {
 
 #set-location {
 	padding: 0.5em;
-	background-color: #ce7229;
+	background-color: #ccc;
 }
 
 #set-location h2 {
 	float: left;
-	color: #fff;
+	color: #000;
 	font-size: 2em;
 	margin: 0;
 }
@@ -100,7 +100,7 @@ h2 {
 	width: 19em;
 	font-size: 1em;
 	color: #000;
-	background: #fff url(../image/search-icon.png) no-repeat 100% 50%;
+	background: #fff url(/static/image/search-icon.png) no-repeat 100% 50%;
 }
 
 #get-location {
@@ -108,16 +108,16 @@ h2 {
 	float: right;
 	padding: 4px 40px 4px 8px;
 	margin-top: 0.4em;
-	color: #000;
-	background: #fbaf41 url(../image/target-icon.png) no-repeat 100% 50%;
+	color: #fff;
+	background: #4d4d4d url(/static/image/target-icon.png) no-repeat 100% 50%;
 }
 
 #draw-location {
 	float: right;
 	margin: 0.4em 1em 0 0;
-	padding: 4px 8px;
-	color: #000;
-	background-color: #fbaf41;
+	padding: 4px 8px 4px 32px;
+	color: #fff;
+	background: #4d4d4d url(/static/image/draw-icon.png) no-repeat 8px 4px;
 }
 
 /* Local Info */

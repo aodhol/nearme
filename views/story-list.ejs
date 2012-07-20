@@ -6,10 +6,10 @@
 		<h2><%=section%></h2>
 		<%for(var j = 0; j < sectionArticles.length; j++){%>
 			<% var article = sectionArticles[j]; %>
-			<article>
+			<article class="<%= (i == 0 && j == 0 ? 'lead-item' : '') %>">
 				<a href="<%= article.url %>">
 					<div class="image">
-						<img src="http://www.bbc.co.uk<%= article.full_data.image.src %>" alt="" />
+						<img src="<%= article.full_data.image.origin %>" alt="" />
 					</div>
 					<h3><%= article.full_data.title %></h3>
 				</a>

@@ -25,6 +25,7 @@ app.configure(function(){
   app.use(express.session());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
+  app.use("/static", express.static(__dirname + '/static'));
 });
 
 app.configure('development', function(){
