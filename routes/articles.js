@@ -61,19 +61,12 @@ exports.find_by_polygon_points = function(req,res){
 
 exports.find_by_coordinates = function(req, res){
 
-
-     /*
-     1. Translate postcode to lat lon.
-     2. Use lat lon in sparql query.
-     3. Display news stories.
-     */
-
-
      var distance = parseInt(req.param('distance',30));
 
      var limit = parseInt(req.param('limit',10));
      var orderby = req.param('orderby','distance');
      var site = req.param('site','news');
+
 
      var lat = req.params.lat;
      var lon = req.params.lon;
@@ -197,6 +190,7 @@ exports.find_by_postcode = function(req, res){
      3. Display news stories.
      */
 
+
      var country = req.param('country','GB');
 
      var maxRows = parseInt(req.param('maxrows',1));
@@ -204,6 +198,8 @@ exports.find_by_postcode = function(req, res){
      var username = parseInt(req.param('username','mdgardiner'));
 
      var postcode = req.param('postcode');
+
+
 
      // Call the GeoNames API to get the lat and long...
 
