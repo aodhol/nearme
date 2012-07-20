@@ -15,7 +15,7 @@
 	</head>
 
 	<body>
-		<header>
+		<header role="banner">
 			<div id="global-header">
 				<a href="http://www.bbc.co.uk">
 					<img src="image/bbc_blocks.png" width="84" height="24" alt="British Broadcasting Corporation" />
@@ -29,31 +29,89 @@
 			</div>
 		</header>
 
-		<section id="set-location">
-			<h2>Set your location</h2>
-			<a id="get-location" href="#">Get current location</a>
-			<form action="/" method="get">
-				<input name="loc" type="text" placeholder="Enter a UK town, county or postcode" />
-			</form>
-		</section>
+		<div id="container">
 
-		<section>
-			<article>
-				<img src="image/story/soldier_304_171.jpg" width="304" height="171" alt="" />
-				<h2>G4S boss regrets Olympic contract</h2>
-				<p>G4S chief executive Nick Buckles tells MPs he regrets taking on the Olympics security contract, agreeing it has been a "humiliating shambles".</p>
-			</article>
-			<article>
-				<img src="image/story/pendleton_144_81.jpg" width="144" height="81" alt="" />
-				<h2>Pendleton is 'trapped' by success</h2>
-				<p>Victoria Pendleton tells a BBC One documentary to be aired on Wednesday she struggles with the huge expectation on her.</p>
-			</article>
-			<article>
-				<img src="image/story/torch_144_81.jpg" width="144" height="81" alt="" />
-				<h2>18 June: Day 61 - Hastings to Dover</h2>
-				<p>70 days, 8,000 miles - follow the flame and find out when it will be near you.</p>
-			</article>
-		</section>
+			<section id="set-location">
+				<h2>Local to me</h2>
+				<a id="get-location" href="#">Get current location</a>
+				<form action="/" method="get">
+					<input name="loc" type="text" placeholder="Enter a UK town, county or postcode" />
+				</form>
+				<a id="draw-location" href="#">Draw Location</a>
+			</section>
+
+			<section id="local">
+				<div class="local-map">
+					<img src="image/map-static.png" alt="" />
+				</div>
+				<div class="local-weather">
+					<h3>Local Weather</h3>
+					<img src="image/weather-static.png" alt="" />
+				</div>
+				<div class="local-travel">
+					<h3>Local Travel News</h3>
+					<p>No reported incidents</p>
+				</div>
+			</section>
+
+			<section role="main">
+
+				<h2>Local News</h2>
+				
+				<article class="lead-item">
+					<a href="#">
+						<div class="image">
+							<img src="image/story/soldier_304_171.jpg" alt="" />
+						</div>
+						<h3>G4S boss regrets Olympic contract</h2>
+					</a>
+					<p>G4S chief executive Nick Buckles tells MPs he regrets taking on the Olympics security contract, agreeing it has been a "humiliating shambles".</p>
+				</article>
+
+				<article>
+					<a href="#">
+						<div class="image">
+							<img src="image/story/pendleton_144_81.jpg" alt="" />
+						</div>
+						<h3>Pendleton is 'trapped' by success</h2>
+					</a>
+					<p>Victoria Pendleton tells a BBC One documentary to be aired on Wednesday she struggles with the huge expectation on her.</p>
+				</article>
+
+				<article>
+					<a href="#">
+						<div class="image">
+							<img src="image/story/torch_144_81.jpg" width="144" alt="" />
+						</div>
+						<h3>18 June: Day 61 - Hastings to Dover</h2>
+					</a>
+					<p>70 days, 8,000 miles - follow the flame and find out when it will be near you.</p>
+				</article>
+			
+			</section>
+
+			<section role="complementary">
+				<section id="local-radio">
+					<h2>BBC Essex</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</section>
+				<section id="things-to-do">
+					<h2>Things To Do</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</section>
+			</section>
+
+		</div>
 
 		<footer>
 			<div id="footer-content">
@@ -63,10 +121,8 @@
 
 		<script>
 			$(document).ready(function() {
-				$('#get-location').on('click', function() {
-					navigator.geolocation.getCurrentPosition(function(pos){
-						alert('latitude = ' + pos.coords.latitude + ', longitude = ' + pos.coords.longitude);
-					});
+				$('#draw-location').on('click', function() {
+					$('#local').animate({opacity: 'toggle', height: 'toggle'});
 				});
 			});
 		</script>

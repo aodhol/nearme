@@ -1,20 +1,20 @@
-
-   	<%for(var i = 0; i < sections.length; i++){%>
-
-   		<% var section = sections[i]; %>
-   		<% var sectionArticles = articles[section]; %>
-
-   		<% if (sectionArticles != undefined) {%>
-	   		<h1><%=section%></h1>
-	   		<ul>
-	   			<%for(var j = 0; j < sectionArticles.length; j++){%>
-	   				<% var article = sectionArticles[j]; %>
-	   				<li><a href='<%=article.url%>'><%=article.full_data.title%></a></li>
-	   			<%}%>	
-	   		</ul>
-   		<% } %>
-        
-    <% }; %>
-</ul>
-
-
+<%for(var i = 0; i < sections.length; i++){%>
+	<% var section = sections[i]; %>
+	<% var sectionArticles = articles[section]; %>
+	
+	<% if (sectionArticles != undefined) {%>
+		<h2><%=section%></h2>
+		<%for(var j = 0; j < sectionArticles.length; j++){%>
+			<% var article = sectionArticles[j]; %>
+			<article>
+				<a href="<%= article.url %>">
+					<div class="image">
+						<img src="http://www.bbc.co.uk<%= article.full_data.image.src %>" alt="" />
+					</div>
+					<h3><%= article.full_data.title %></h3>
+				</a>
+				<p><%= article.full_data.intro %></p>
+			</article>
+		<%}%>
+	<% } %>
+<% }; %>
