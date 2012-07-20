@@ -31,7 +31,7 @@ exports.find_by_postcode = function(req, res){
             console.log('Error: ' + result.message);
           } else {
             
-            console.log(result);
+            console.log('result: ' + result);
 
             var parser = new xml2js.Parser();
             parser.parseString(result, function (err, parseResult) {
@@ -43,6 +43,8 @@ exports.find_by_postcode = function(req, res){
 
                 //res.redirect('/articles/coordinates/' + xmlLat +',' + xmlLng);
 
+                console.log('LOCATION API REQUEST: http://open.live.bbc.co.uk/locator/locations?la='+ xmlLat +'&lo='+ xmlLng);
+
                 var reverseGeoCodeRequest = restler.get('http://open.live.bbc.co.uk/locator/locations?la='+ xmlLat +'&lo='+ xmlLng);
 
                 reverseGeoCodeRequest.on('complete', function(revResult) {
@@ -52,17 +54,17 @@ exports.find_by_postcode = function(req, res){
 
                         console.log('revResult: ' + revResult);
 
-                        var revParser = new xml2js.Parser();
+                        /*var revParser = new xml2js.Parser();
                         revParser.parseString(revResult, function (revErr, revParseResult) {
                             
-                            console.log('revParseResult:' + revParseResult.toString());
+                            console.log('revParseResult: ' + revParseResult);
 
                             var id = revParseResult.results.location.id;
 
                             console.log('REQUESTING WEATHER: http://open.live.bbc.co.uk/weather/feeds/en/'+ id +'/3dayforecast.json');
 
                             res.redirect('http://open.live.bbc.co.uk/weather/feeds/en/'+ id +'/3dayforecast.json');
-                        })
+                        })*/
 
 
                     }
