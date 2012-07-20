@@ -128,22 +128,17 @@ h2 {
 	background-color: #0f5474;
 }
 
-#local > h3 {
+#local h3 {
 	margin: 0.5em 0;
 	font-size: 1.25em;
 }
 
-#local > div {
+#local .module {
 	float: left;
 	overflow: hidden;
 	height: 220px;
 	width: 31.9672131147541%; /* 312 / 976 */
 	margin-right: 2.0491803278689%; /* 20 / 976 */
-}
-
-#map-canvas{
-	width:220px;
-	height:220px;
 }
 
 #local .local-travel {
