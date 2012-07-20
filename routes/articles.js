@@ -97,6 +97,7 @@ exports.find_by_coordinates = function(req, res){
 
             console.log('Request on complete');
 
+         
             if(response.statusCode !== 200){
                 //Deal with errors
                 //res.json({});
@@ -111,6 +112,7 @@ exports.find_by_coordinates = function(req, res){
                 populateArticlesForSection(section,results.articles);
                 callback(null,results.articles);
             }
+
 
         });
 
@@ -194,7 +196,7 @@ exports.find_by_postcode = function(req, res){
 
      var maxRows = parseInt(req.param('maxrows',1));
 
-     var username = parseInt(req.param('username','mdgardiner'));
+     var username = req.param('username','mdgardiner');
 
      var postcode = req.param('postcode');
 
