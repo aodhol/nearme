@@ -100,7 +100,7 @@ h2 {
 	width: 19em;
 	font-size: 1em;
 	color: #000;
-	background: #fff url(/static/image/search-icon.png) no-repeat 100% 50%;
+	background: #fff url(/images/search-icon.png) no-repeat 100% 50%;
 }
 
 #get-location {
@@ -109,7 +109,7 @@ h2 {
 	padding: 4px 40px 4px 8px;
 	margin-top: 0.4em;
 	color: #fff;
-	background: #4d4d4d url(/static/image/target-icon.png) no-repeat 100% 50%;
+	background: #4d4d4d url(/images/target-icon.png) no-repeat 100% 50%;
 }
 
 #draw-location {
@@ -117,7 +117,7 @@ h2 {
 	margin: 0.4em 1em 0 0;
 	padding: 4px 8px 4px 32px;
 	color: #fff;
-	background: #4d4d4d url(/static/image/draw-icon.png) no-repeat 8px 4px;
+	background: #4d4d4d url(/images/draw-icon.png) no-repeat 8px 4px;
 }
 
 /* Local Info */
@@ -128,17 +128,22 @@ h2 {
 	background-color: #0f5474;
 }
 
-#local h3 {
+#local > h3 {
 	margin: 0.5em 0;
 	font-size: 1.25em;
 }
 
-#local div {
+#local > div {
 	float: left;
 	overflow: hidden;
 	height: 220px;
 	width: 31.9672131147541%; /* 312 / 976 */
 	margin-right: 2.0491803278689%; /* 20 / 976 */
+}
+
+#map-canvas{
+	width:220px;
+	height:220px;
 }
 
 #local .local-travel {
@@ -170,7 +175,7 @@ article h3 {
 
 /* Fluid images */
 
-.image {
+article .image {
 	width: 22.360248447205%;
 }
 

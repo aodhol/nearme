@@ -1,15 +1,16 @@
-
+var mapLoaded = false;
 
     	var map;
 
       	function initialize() {
+
         var mapOptions = {
           center: new google.maps.LatLng(51.500152,-0.126236),
           zoom: 8,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
-         map = new google.maps.Map(document.getElementById('map_canvas'),
+         map = new google.maps.Map(document.getElementById('map-canvas'),
           mapOptions);
 
         var drawingManager = new google.maps.drawing.DrawingManager({
@@ -100,7 +101,7 @@
 
       }//Init.
 
-      google.maps.event.addDomListener(window, 'load', initialize);
+     // google.maps.event.addDomListener(window, 'load', initialize);
 
 	function addListenersToPolygon(path){
 

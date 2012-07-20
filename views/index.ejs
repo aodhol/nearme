@@ -8,12 +8,11 @@
 	<meta name="author" content="">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/default.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/reset.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/default.css">
 
-	<script src="/static/js/jquery-1.7.2.min.js"></script>
+	<script src="/javascripts/jquery-1.7.2.min.js"></script>
 
-	<link rel='stylesheet' href='/stylesheets/style.css' />
 	<link href="http://developers.google.com/maps/documentation/javascript/examples/default.css" rel="stylesheet"/>
 
 	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=drawing,geometry"></script>
@@ -21,13 +20,13 @@
 </head>
 
 	<body>
-		<div id="map_canvas"></div>
+
 		<div id='results'></div>
 
 		<header role="banner">
 			<div id="global-header">
 				<a href="http://www.bbc.co.uk">
-					<img src="/static/image/bbc_blocks.png" width="84" height="24" alt="British Broadcasting Corporation" />
+					<img src="/images/bbc_blocks.png" width="84" height="24" alt="British Broadcasting Corporation" />
 				</a>
 			</div>
 			<div id="local-header">
@@ -50,17 +49,20 @@
 			</section>
 
 			<section id="local">
-				<div class="local-map">
-					<img src="static/image/map-static.png" alt="" />
+
+				<div id="map-canvas"></div>
+
+				<!-- <div class="local-map">
+					<img src="/images/map-static.png" alt="" />
 				</div>
 				<div class="local-weather">
 					<h3>Local Weather</h3>
-					<img src="static/image/weather-static.png" alt="" />
+					<img src="/images/weather-static.png" alt="" />
 				</div>
 				<div class="local-travel">
 					<h3>Local Travel News</h3>
 					<p>No reported incidents</p>
-				</div>
+				</div> -->
 			</section>
 
 			<section role="main">
@@ -70,7 +72,7 @@
 				<article class="lead-item">
 					<a href="#">
 						<div class="image">
-							<img src="/static/image/story/soldier_304_171.jpg" alt="" />
+							<img src="//images/story/soldier_304_171.jpg" alt="" />
 						</div>
 						<h3>G4S boss regrets Olympic contract</h2>
 					</a>
@@ -80,7 +82,7 @@
 				<article>
 					<a href="#">
 						<div class="image">
-							<img src="/static/image/story/pendleton_144_81.jpg" alt="" />
+							<img src="//images/story/pendleton_144_81.jpg" alt="" />
 						</div>
 						<h3>Pendleton is 'trapped' by success</h2>
 					</a>
@@ -90,7 +92,7 @@
 				<article>
 					<a href="#">
 						<div class="image">
-							<img src="/static/image/story/torch_144_81.jpg" width="144" alt="" />
+							<img src="//images/story/torch_144_81.jpg" width="144" alt="" />
 						</div>
 						<h3>18 June: Day 61 - Hastings to Dover</h2>
 					</a>
@@ -133,9 +135,14 @@
 				$('#draw-location').on('click', function(e) {
 
 					e.preventDefault();
-					$('#local').animate({opacity: 'toggle', height: 'toggle'});
+					$('#local').animate({opacity: 'toggle', height: 'toggle'},function(){
+						if(mapLoaded == false){
+							initialize();
+							mapLoaded = true;
+						}
+					});
 				
-					$('section[role="main"]').load('/articles/coordinates/51.73333,0.48333');
+					$('section[role="main"]').load('/articles/coordinates/points/51.73333,0.48333');
 				});
 			});
 		</script>

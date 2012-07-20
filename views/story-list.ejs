@@ -1,20 +1,13 @@
-<%for(var i = 0; i < sections.length; i++){%>
-	<% var section = sections[i]; %>
-	<% var sectionArticles = articles[section]; %>
-	
-	<% if (sectionArticles != undefined) {%>
-		<h2><%=section%></h2>
-		<%for(var j = 0; j < sectionArticles.length; j++){%>
-			<% var article = sectionArticles[j]; %>
-			<article class="<%= (i == 0 && j == 0 ? 'lead-item' : '') %>">
-				<a href="<%= article.url %>">
-					<div class="image">
-						<img src="<%= article.full_data.image.origin %>" alt="" />
-					</div>
-					<h3><%= article.full_data.title %></h3>
-				</a>
-				<p><%= article.full_data.intro %></p>
-			</article>
-		<%}%>
-	<% } %>
-<% }; %>
+<h2>Local news</h2>
+<%for(var j = 0; j < articles.length; j++){%>
+	<% var article = articles[j]; %>
+	<article class="<%= (i == 0 && j == 0 ? 'lead-item' : '') %>">
+		<a href="<%= article.url %>">
+			<div class="image">
+				<img src="<%= article.full_data.image.origin %>" alt="" />
+			</div>
+			<h3><%= article.full_data.title %></h3>
+		</a>
+		<p><%= article.full_data.intro %></p>
+	</article>
+<%}%>
