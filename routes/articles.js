@@ -190,7 +190,6 @@ exports.find_by_postcode = function(req, res){
      3. Display news stories.
      */
 
-
      var country = req.param('country','GB');
 
      var maxRows = parseInt(req.param('maxrows',1));
@@ -203,9 +202,9 @@ exports.find_by_postcode = function(req, res){
 
      // Call the GeoNames API to get the lat and long...
 
-    console.log('GEONAMES REQUEST: http://api.geonames.org/postalCodeSearch?postalcode=' + escape(postcode) + '&country='+ country +'&maxRows=' + maxRows + '&username='+ username);
+     console.log('GEONAMES REQUEST: http://api.geonames.org/postalCodeSearch?postalcode=' + escape(postcode) + '&country='+ country +'&maxRows=' + maxRows + '&username='+ username);
 
-    var request = restler.get('http://api.geonames.org/postalCodeSearch?postalcode=' + escape(postcode) + '&country='+ country +'&maxRows=' + maxRows + '&username='+ username);
+     var request = restler.get('http://api.geonames.org/postalCodeSearch?postalcode=' + escape(postcode) + '&country='+ country +'&maxRows=' + maxRows + '&username='+ username);
 
      request.on('complete', function(result) {
           if (result instanceof Error) {
