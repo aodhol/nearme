@@ -12,6 +12,22 @@ routes.articles  = require('./routes/articles');
 var app = express();
 
 
+function print(obj, maxDepth, prefix){
+   var result = '';
+   if (!prefix) prefix='';
+   for(var key in obj){
+       if (typeof obj[key] == 'object'){
+           if (maxDepth !== undefined && maxDepth <= 1){
+               result += (prefix + key + '=object [max depth reached]\n');
+           } else {
+               result += print(obj[key], (maxDepth) ? maxDepth - 1: maxDepth, prefix + key + '.');
+           }
+       } else {
+           result += (prefix + key + '=' + obj[key] + '\n');
+       }
+   }
+   return result;
+}
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -36,8 +52,17 @@ app.get('/', routes.index);
 
 app.get('/articles/postcode/:postcode',routes.articles.find_by_postcode);
 
-app.get('/articles/coordinates/:lat,:lon',routes.articles.find_by_coordinates);
+//app.get('/articles/coordinates/:lat,:lon',routes.articles.find_by_coordinates);
+
+//app.get('/articles/coordinates/^\/points?(?:\/(\d+)(?:\.\.(\d+))?)?/',routes.articles.find_by_coordinates);
+
+/*app.get('/articles/coordinates/points/', function(req, res){
+    res.send(print(req.params));
+});*/
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
+
+app.get('/articles/coordinates/points/:points',routes.articles.find_by_polygon_points);
+
