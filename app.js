@@ -8,6 +8,7 @@ var http = require('http');
 var routes = require('./routes')
 
 routes.articles  = require('./routes/articles');
+routes.weather = require('./routes/weather');
 
 var app = express();
 
@@ -59,6 +60,8 @@ app.get('/articles/postcode/:postcode',routes.articles.find_by_postcode);
 /*app.get('/articles/coordinates/points/', function(req, res){
     res.send(print(req.params));
 });*/
+
+app.get('/weather/postcode/:postcode',routes.weather.find_by_postcode);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
