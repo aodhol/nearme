@@ -4,6 +4,59 @@ var async = require('async');
 
 //require('express-helpers').all
 
+
+function swapPairs(array){
+
+    for(var i = 0; i < array.length; i+=2){
+         var tmp = array[i];
+         array[i] = array[i+1]
+         array[i+1] = tmp;
+    }
+
+    return array;
+}
+
+exports.find_by_polygon_points = function(req,res){
+    
+    var points = req.params.points;
+
+    points = points.split(/\s|,/);
+
+    //Swap lat / lon pairs if necessary as API may differ to Google ordering?
+    //points = swapPairs(points);
+
+    points = points.join(' ');
+
+    console.log({
+        'data':
+        '?thing omgeo:within(' + points + ') . ?url <http://data.press.net/ontology/tag/about> ?thing . ?url <http://purl.org/dc/terms/publisher> <http://www.bbc.co.uk/news/> .'
+    });
+
+    var request = restler.post('http://juicer.responsivenews.co.uk/api/articles.json?binding=url&limit=50',{'data':
+        '?thing omgeo:within(' + points + ') . ?url <http://data.press.net/ontology/tag/about> ?thing . ?url <http://purl.org/dc/terms/publisher> <http://www.bbc.co.uk/news/> .'
+    });
+
+    request.on('complete', function(data,response) {
+
+            console.log('Request on complete');
+
+            if(response.statusCode !== 200){
+                console.log("Non 200 response: " + response.statusCode);
+            }else{
+                //var results = JSON.parse(data); 
+               // populateArticlesForSection(section,results.articles);
+                //callback(null,results.articles);
+                res.json(JSON.parse(data));
+            }
+
+        });
+
+        request.on('error',function(err){
+            console.log("ERROR" + err.toString());
+        });
+
+}
+
 exports.find_by_coordinates = function(req, res){
 
 

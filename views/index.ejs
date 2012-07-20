@@ -2,12 +2,49 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<script type="text/javascript">                                         
+    $(document).ready(function() {
+   		$("a").click(function() {
+     		alert("Hello world!");
+   		});
+ 	});                                  
+ </script>  
+
+ <link rel='stylesheet' href='/stylesheets/style.css' />
+ <link href="http://developers.google.com/maps/documentation/javascript/examples/default.css" rel="stylesheet"/>
+
+ <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=drawing,geometry" type="text/javascript"></script>
+
+ <script type="text/javascript" src="/javascripts/map.js"></script>
+
+<style>
+#results{
+	border:1px solid red;
+	width:200px;
+	height:100px;
+}
+</style>
+           
+
+
+    <script>
+
+
+
+    </script>
+
+
   </head>
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+  
+  <div id="map_canvas"></div>
 
+  <div id='results'></div>
 
   </body>
 </html>
