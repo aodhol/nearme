@@ -47,10 +47,8 @@ exports.find_by_postcode = function(req, res){
 
         console.log('LOCATION API REQUEST: JSON http://open.live.bbc.co.uk/locator/locations?la=' + xmlLat + '&lo=' + xmlLng);
 
-        //var locatorRequest = restler.get('http://open.live.bbc.co.uk/locator/locations?la=' + xmlLat + '&lo=' + xmlLng);
         var locatorRequest = restler.get('http://open.live.bbc.co.uk/locator/locations?la=' + xmlLat + '&lo=' + xmlLng + '&format=json');
-        //var locatorRequest = restler.get('http://open.live.bbc.co.uk/locator/locations?la=51.36047&lo=-0.25317&format=json');
-
+        
         locatorRequest.on('complete', function(locatorResult, response){
 
             console.log('Status Code: ' + response.statusCode);
