@@ -19,14 +19,14 @@ var mapLoaded = false;
           drawingControlOptions: {
             position: google.maps.ControlPosition.TOP_CENTER,
             drawingModes: [
-              google.maps.drawing.OverlayType.MARKER,
-              google.maps.drawing.OverlayType.CIRCLE,
+              /*google.maps.drawing.OverlayType.MARKER,
+              google.maps.drawing.OverlayType.CIRCLE,*/
               google.maps.drawing.OverlayType.POLYGON
             ]
           },
           markerOptions: {
             icon: 'images/beachflag.png'
-          },
+          },	
           polygonOptions: {
             fillColor: '#ff0000',
             fillOpacity: 0.5,
@@ -40,6 +40,14 @@ var mapLoaded = false;
 
         drawingManager.setMap(map);
 
+        function addMarker(location) {
+  marker = new google.maps.Marker({
+    position: location,
+    map: map
+  });
+ // markersArray.push(marker);
+}
+
 		google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
 			
 			//This doesn't do anything at present.
@@ -50,28 +58,29 @@ var mapLoaded = false;
 			if (event.type == google.maps.drawing.OverlayType.POLYGON) {
 
 				var path = event.overlay.getPath();
+
+				var centroid = getCentroid(path);
+ 
+				var centroidLatLng = new google.maps.LatLng(centroid.y,centroid.x)
+
+				addMarker(centroidLatLng);
 				
 				savePolygon(path);
 				
 				addListenersToPolygon(path);	
 		
 				showArticles(path,function(err,data){
-					if(err == null){
-						//console.log(data.articles.length + " articles found",data);
-
+					if(err !== null){
+						$('section[role="main"]').html(data);
 					}else{
 						console.log("Error:" + err.toString());
 					}
 				});
-
-
 			}
 	
 		});
 
 		var path = retrievePolygon();
-
-
 
 		var location = new google.maps.Polygon({
 			path:path,
@@ -84,18 +93,17 @@ var mapLoaded = false;
 			zIndex: 1
 		});
 
-		location.getPath().getAt(0);
-
 		addListenersToPolygon(location.getPath());
-	
-		showArticles(path,function(err,data){
-			if(err == null){
-				//console.log(data.articles.length + " articles found",data);
-
-			}else{
-				console.log("Error:" + err.toString());
-			}
-		});
+		
+		if(path !== "undefined"){
+			showArticles(path,function(err,data){
+				if(err !== null){
+					$('section[role="main"]').html(data);
+				}else{
+					console.log("Error:" + err.toString());
+				}
+			});
+		}
 
 		location.setMap(map);
 
@@ -105,38 +113,26 @@ var mapLoaded = false;
 
 	function addListenersToPolygon(path){
 
-	console.dir("ADJUSTED:",path);
+		google.maps.event.addListener(path, "set_at", function(){
+			savePolygon(path);
+			showArticles(path,function(err,data){
+				$('section[role="main"]').html(data);
+			});
+			
+		});
 
-	google.maps.event.addListener(path, "set_at", function(){
-		console.log("Saving path");
-		savePolygon(path);
-
-//IMPROVE THIS.
-showArticles(null,function(err,data){
-	$('section[role="main"]').html(data);
-});
-		
-	});
-
-	google.maps.event.addListener(path, "insert_at", function(){
-		console.log("Saving path");
-		savePolygon(path);
-
-//IMPROVE THIS.
-	showArticles(null,function(err,data){
-		$('section[role="main"]').html(data);
-	});
-		
-
-	});	
-}
+		google.maps.event.addListener(path, "insert_at", function(){
+			console.log("Saving path");
+			savePolygon(path);
+			showArticles(path,function(err,data){
+				$('section[role="main"]').html(data);
+			});
+		});	
+	}
 
 function savePolygon(path){
 	if(typeof(Storage) !== "undefined"){
-		console.log("Setting poly in localstorage");
-
 		var encodedPath = google.maps.geometry.encoding.encodePath(path);
-
 		localStorage.polygon = encodedPath;
 	}
 }
@@ -144,13 +140,8 @@ function savePolygon(path){
 function retrievePolygon(){
 
 	if(typeof(Storage) !== "undefined"){
-
-		console.log("Getting poly from localstorage");
-
 		var encodedPath = localStorage.polygon;
-
 		var decodedPath = google.maps.geometry.encoding.decodePath(encodedPath);
-
 		return new google.maps.MVCArray(decodedPath);
 	}
 }
