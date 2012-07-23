@@ -231,3 +231,32 @@ exports.find_by_postcode = function(req, res){
 
 };
 
+exports.find_by_subject = function(req, res){
+
+    var subject = req.param('subject');
+
+    console.log({
+        'data':
+        '?url <http://data.press.net/ontology/tag/about> <http://dbpedia.org/resource/'+ subject + '> . ?url <http://purl.org/dc/terms/publisher> <http://www.bbc.co.uk/news/> .'
+    });
+
+    var request = restler.post('http://juicer.responsivenews.co.uk/api/articles.json?binding=url&limit=50', {'data': 
+       '?url <http://data.press.net/ontology/tag/about> <http://dbpedia.org/resource/'+ subject + '> . ?url <http://purl.org/dc/terms/publisher> <http://www.bbc.co.uk/news/> .'     
+    })
+
+    request.on('complete', function(data, response){
+        console.log('Request on complete');
+
+        if(response.statusCode !== 200){
+            console.log("Non 200 response: " + response.statusCode);
+        } else {
+            res.json(JSON.parse(data));
+        }
+    });
+
+    request.on('error', function(err){
+        console.log("ERROR" + err.toString());
+    });
+
+}
+
