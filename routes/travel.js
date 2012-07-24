@@ -106,7 +106,7 @@ exports.find_by_coordinates = function(req, res){
             
             var target = lookupData[countyName];
 
-            if ( target != '' ) {
+            if ( target != '' && target != undefined ) {
                 console.log('TRAVEL API REQUEST:  http://www.bbc.co.uk' + target + '.json');
                 //res.redirect('http://www.bbc.co.uk' + target + '.json');
 
