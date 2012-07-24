@@ -10,6 +10,7 @@
 
 	<link rel="stylesheet" type="text/css" href="/stylesheets/reset.css">
 	<link rel="stylesheet" type="text/css" href="/stylesheets/default.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/weather.css">
 
 	<script src="/javascripts/jquery-1.7.2.min.js"></script>
 
@@ -19,7 +20,7 @@
 	
 	<script src="/javascripts/util.js"></script>
 	<script src="/javascripts/map.js"></script>
-	
+
 </head>
 
 	<body>
@@ -96,6 +97,7 @@
 
 		<script>
 			$(document).ready(function() {
+
 				$('#draw-location').on('click', function(e) {
 
 					e.preventDefault();
@@ -104,30 +106,31 @@
 							initialize();
 							mapLoaded = true;
 						}
+					
+						getWeatherForCoordinates(centroid.y,centroid.x,function(err,data){
+							if(err === null){
+								console.log("Setting data");
+								$('.local-weather').append(data);
+							}else{
+								console.log("ERROR loading weather data:" + err.toString());
+							}
+
+						});
+					
+
+
+
+
 					});
 
+					showArticles(null,function(err,data){
+						if(err !== null){
+							$('section[role="main"]').html(data);
+						}
+					});
 
-
-showArticles(null,function(err,data){
-
-console.log(data);
-
-	$('section[role="main"]').html(data);
-})
+			
 				
-/*
-var jqxhr = $.ajax( "/articles/coordinates/points/51.73333,0.48333" )
-    .done(function() { console.log("e.toString()") })
-    .fail(function() {console.log("e.toString()"); })
-    .always(function() {console.log("e.toString()") });
-*/
-
-
-					//$('section[role="main"]').html("<div>THIS IS ATEST</div>");
-
-					//load('/articles/coordinates/points/51.73333,0.48333');
-
-
 				});
 			});
 		</script>

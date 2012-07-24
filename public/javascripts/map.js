@@ -1,5 +1,7 @@
 var mapLoaded = false;
 
+var centroid = null;
+
     	var map;
 
       	function initialize() {
@@ -59,11 +61,12 @@ var mapLoaded = false;
 
 				var path = event.overlay.getPath();
 
-				var centroid = getCentroid(path);
- 
-				var centroidLatLng = new google.maps.LatLng(centroid.y,centroid.x)
+				centroid = getCentroid(path);
+ 			
 
-				addMarker(centroidLatLng);
+				//var centroidLatLng = new google.maps.LatLng(centroid.y,centroid.x)
+
+				//addMarker(centroidLatLng);
 				
 				savePolygon(path);
 				
@@ -94,13 +97,18 @@ var mapLoaded = false;
 		});
 
 		addListenersToPolygon(location.getPath());
+
+		if(centroid == null){
+			console.log("Setting centroid");
+			centroid = getCentroid(path);
+		}
 		
 		if(path !== "undefined"){
 			showArticles(path,function(err,data){
 				if(err !== null){
 					$('section[role="main"]').html(data);
 				}else{
-					console.log("Error:" + err.toString());
+					console.log("Error:" + err);
 				}
 			});
 		}
@@ -115,6 +123,7 @@ var mapLoaded = false;
 
 		google.maps.event.addListener(path, "set_at", function(){
 			savePolygon(path);
+			centroid = getCentroid(path);
 			showArticles(path,function(err,data){
 				$('section[role="main"]').html(data);
 			});
@@ -124,6 +133,7 @@ var mapLoaded = false;
 		google.maps.event.addListener(path, "insert_at", function(){
 			console.log("Saving path");
 			savePolygon(path);
+			centroid = getCentroid(path);
 			showArticles(path,function(err,data){
 				$('section[role="main"]').html(data);
 			});
@@ -175,6 +185,26 @@ function getArticlesWithinCoordinates(coordinates,callback){
     jqxhr.always(function() { console.log("complete"); });
 }
 
+
+function getWeatherForCoordinates(lat,lon,callback){
+	var jqxhr = $.ajax( "/weather/coordinates/" + lat + "," + lon);
+
+    jqxhr.done(function(data) { 
+    	//$('#results').text(JSON.stringify(data));
+
+
+    	callback(null,data);
+    });
+
+    jqxhr.error(function(e){'ERRRR' + e.toString();});
+
+    jqxhr.fail(function(e) { 
+    	console.log("WEATHER error:" + e.statusCode(),e); 
+    	callback(e,null)
+	});
+    jqxhr.always(function() { console.log("WEATHER complete"); });
+}
+
 function showArticles(path,callback){
 
 	if(path == null){
@@ -185,3 +215,27 @@ function showArticles(path,callback){
 
 	getArticlesWithinCoordinates(coordStr,callback);
 }
+
+/*function getWeather(lat,lon,callback){
+
+	if(centroid != null){
+
+		console.log("centroid not null:" + centroid.x + "," + centroid.y);
+
+		getWeatherForCoordinates(centroid.y,centroid.x,function(err,data){
+
+	console.log("DAT:",data);
+
+			if(err != null){
+				console.log(data);
+			}else{
+				console.log("Weather Error: " + err);
+			}
+			//$('section[role="main"]').html(data);
+		});
+
+	}else{
+		console.log("centroid is null");
+	}
+
+}*/

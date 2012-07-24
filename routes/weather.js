@@ -159,8 +159,21 @@ exports.find_by_coordinates = function(req, res){
                 break;
             }
             
-            console.log('REDIRECTING TO WEATHER (feed=' + feed + '):  http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId +'/' + feedname + '.json');
-            res.redirect('http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId + '/' + feedname + '.json');
+            var locatorSecondaryRequest = restler.get('http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId + '/' + feedname + '.json');
+
+            locatorSecondaryRequest.on('complete', function(data, response){
+
+                console.log('Request on complete');
+
+                if(response.statusCode !== 200){
+                    console.log("Non 200 response: " + response.statusCode);
+                } else {
+                    //res.json(data);
+console.log(data);
+                   res.render('weather',data);
+                }
+            });
+
         }
 
     });
