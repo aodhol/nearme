@@ -107,8 +107,29 @@ exports.find_by_coordinates = function(req, res){
             var target = lookupData[countyName];
 
             if ( target != '' ) {
-                console.log('REDIRECTING TO TRAVEL:  http://www.bbc.co.uk' + target + '.json');
-                res.redirect('http://www.bbc.co.uk' + target + '.json');
+                console.log('TRAVEL API REQUEST:  http://www.bbc.co.uk' + target + '.json');
+                //res.redirect('http://www.bbc.co.uk' + target + '.json');
+
+                var travelRequest = restler.get('http://www.bbc.co.uk' + target + '.json');
+
+                travelRequest.on('complete', function(travelResult, response){
+
+                    console.log('Status Code: ' + response.statusCode);
+
+                    if (travelResult instanceof Error) {
+
+                        console.log('Error: ' + travelResult.message);
+
+                    } else {
+
+                        console.log('result: ' + geonameResult);
+
+                        res.json(travelResult);
+
+                    }
+
+                });
+
             } else {
                 console.log('County (' + countyName + ') not mapped');
                 res.send(404);
