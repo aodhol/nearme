@@ -93,8 +93,26 @@ exports.find_by_postcode = function(req, res){
                     break;
                 }
                 
-                console.log('REDIRECTING TO WEATHER (feed=' + feed + '):  http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId +'/' + feedname + '.json');
-                res.redirect('http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId + '/' + feedname + '.json');
+                console.log('WEATHER API REQUEST (feed=' + feed + '):  http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId +'/' + feedname + '.json');
+                //res.redirect('http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId + '/' + feedname + '.json');
+
+                var weatherRequest = restler.get('http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId + '/' + feedname + '.json');
+
+                weatherRequest.on('complete', function(weatherResult, response){
+
+                    console.log('Status Code: ' + response.StatusCode);
+
+                    if ( weatherResult instanceof Error) {
+
+                        console.log('Error: ' + weatherResult.message);
+
+                    } else {
+
+                        res.json(weatherResult);
+
+                    }
+
+                });
             }
 
         });
@@ -159,8 +177,26 @@ exports.find_by_coordinates = function(req, res){
                 break;
             }
             
-            console.log('REDIRECTING TO WEATHER (feed=' + feed + '):  http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId +'/' + feedname + '.json');
-            res.redirect('http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId + '/' + feedname + '.json');
+            console.log('WEATHER API REQUEST (feed=' + feed + '):  http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId +'/' + feedname + '.json');
+            //res.redirect('http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId + '/' + feedname + '.json');
+
+            var weatherRequest = restler.get('http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId + '/' + feedname + '.json');
+
+            weatherRequest.on('complete', function(weatherResult, response){
+
+                console.log('Status Code: ' + response.StatusCode);
+
+                if ( weatherResult instanceof Error) {
+
+                    console.log('Error: ' + weatherResult.message);
+
+                } else {
+
+                    res.json(weatherResult);
+
+                }
+
+            });
         }
 
     });
