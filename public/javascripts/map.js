@@ -61,11 +61,11 @@ function initialiseMap(mapCanvas) {
 			savePolygon(path);
 			addListenersToPolygon(path);
 
-			showArticles(path);
+			//showArticles(path);
 		}
 	});
 
-	var path = retrievePolygon('1');
+	var path = retrievePolygon();
 
 	var location = new google.maps.Polygon({
 		path:path,
@@ -79,11 +79,6 @@ function initialiseMap(mapCanvas) {
 	});
 
 	addListenersToPolygon(location.getPath());
-
-	if(path !== "undefined"){
-		showArticles(path);
-	}
-
 	location.setMap(map);
 } // initialiseMap()
 
@@ -109,7 +104,7 @@ function savePolygon(path) {
 	}
 }
 
-function retrievePolygon(area) {
+function retrievePolygon() {
 	if(typeof(Storage) !== "undefined") {
 		var encodedPath = localStorage[AREA_KEY + '1'];
 		var decodedPath = google.maps.geometry.encoding.decodePath(encodedPath);

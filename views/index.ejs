@@ -53,16 +53,19 @@
 			</section>
 
 			<section id="local">
-				<div id="local-map" class="local-map module"></div>
+				<div class="local-map">
+					<div id="local-map"></div>
+					<a id="add-area" href="#">Go to area</a>
+				</div>
 
-				<div class="local-weather module">
+<!-- 				<div class="local-weather module">
 					<h3>Local Weather</h3>
 				</div>
 				
 				<div class="local-travel module">
 					<h3>Local Travel News</h3>
 					<p>No reported incidents</p>
-				</div>
+				</div> -->
 			</section>
 
 			<section role="main">
@@ -87,6 +90,17 @@
 						initialiseMap('local-map');
 						mapLoaded = true;
 					}
+
+					$('#add-area').on('click', function() {
+						var path = retrievePolygon(),
+							centroid = getCentroid(path);
+						
+						showArticles(path);
+						$(this).remove();
+						$('#local-map').css('width', '30%').css('height', '160px');
+						map.setZoom(6);
+						map.setCenter(new google.maps.LatLng(centroid.y, centroid.x));
+					});
 				});
 
 				// getWeatherForCoordinates(centroid.y, centroid.x, function(err, data) {
@@ -97,12 +111,6 @@
 				// 		console.log("ERROR loading weather data:" + err.toString());
 				// 	}
 				// });
-
-				showArticles(null, function(err, data) {
-					if (err !== null) {
-					$('#story-list').html(data);
-					}
-				})
 			}
 
 			$(document).ready(function() {
@@ -112,9 +120,9 @@
 					showLocalPanel();
 				});
 
-				if (localStorage.polygon) {
-					showLocalPanel();
-				}
+				// if (localStorage.polygon) {
+				// 	showLocalPanel();
+				// }
 			});
 		</script>
 	</body>

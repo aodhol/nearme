@@ -135,9 +135,25 @@ h2 {
 
 #local {
 	display: none;
+	overflow: hidden;
 	color: #000;
 	background-color: #ccc;
 	border-top: 1px solid #fff;
+}
+
+#local-map {
+	float: left;
+	width: 90%;
+	height: 240px;
+}
+
+#add-area {
+	float: left;
+	margin: 1em 0 0 1em;
+	padding: 4px 8px;
+	font-size: 0.8125em;
+	color: #fff;
+	background-color: #4d4d4d;
 }
 
 #local h3 {
