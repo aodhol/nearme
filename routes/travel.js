@@ -78,9 +78,11 @@ exports.find_by_coordinates = function(req, res){
             'Worcestershire': '',
     };
 
-    console.log('GEONAMES REQUEST: http://api.geonames.org/countrySubdivision?lat=' + lat + '&lng=' + lng + '&level=4&username=mdgardiner');
+    var geonameUrl = 'http://api.geonames.org/countrySubdivision?lat=' + lat + '&lng=' + lng + '&level=4&username=mdgardiner';
 
-    var geonamesRequest = restler.get('http://api.geonames.org/countrySubdivision?lat=' + lat + '&lng=' + lng + '&level=4&username=mdgardiner');
+    console.log('GEONAMES REQUEST: ' + geonameUrl);
+
+    var geonamesRequest = restler.get(geonameUrl);
     
     geonamesRequest.on('complete', function(geonameResult, response){
 
@@ -107,10 +109,12 @@ exports.find_by_coordinates = function(req, res){
             var target = lookupData[countyName];
 
             if ( target != '' && target != undefined ) {
-                console.log('TRAVEL API REQUEST:  http://www.bbc.co.uk' + target + '.json');
-                //res.redirect('http://www.bbc.co.uk' + target + '.json');
 
-                var travelRequest = restler.get('http://www.bbc.co.uk' + target + '.json');
+                var travelUrl = 'http://www.bbc.co.uk' + target + '.json';
+
+                console.log('TRAVEL API REQUEST: ' + travelUrl);
+
+                var travelRequest = restler.get(travelUrl);
 
                 travelRequest.on('complete', function(travelResult, response){
 
@@ -140,99 +144,34 @@ exports.find_by_coordinates = function(req, res){
 
 };
 
-
-/*
-
-Search parameters sent through to the Java API
-
-    string language The language of the output
-    string searchType The search type.
-    string searchTerms The search terms.
-    double longitude The longitude.
-    double latitude The latitude.
-    double range The range.
-    boolean count Set to true to include a count.
-    string transportModeFilter The transport mode.
-    string transportOperatorFilter The transport operator.
-    string sortBy How to sort the results.
-    string sortOrder How to order the results (ASC or DESC).
-    int limit The number of values per page. Requires an offset to be provided.
-    int offset The offset (1 indexed). Requires a limit to be provided.
-    boolean bypassCache Set to true to bypass the cache.
-    int minSeverity Filter for incident severity
-    string significance Filter on national/non-national incidents
-
-Search parameters specific to the region search:
-
-    string incidentType Filter on the type of incident (planned/unplanned/all).
-    string messageType Filter on the type of message set (pti/rtm/all).
-    string catchment Filter on catchment (wide/narrow/all). Wide includes "Nearby" message sets.
-    string warning Filter on warning type (advanced/none/all). Advanced includes "Advanced warning" message sets.
-    boolean removeSets Set to true to remove message sets and return an array of messages (used for the original mobile site regions view).
-
-
-*/
-
-
-
 exports.find_incidents = function(req, res){
 
     var language = req.param('language', 'en');
     var searchType = req.param('searchType', 'free');
-    var searchTerms = req.param('searchTerms', 'fire');
-    var longitude = req.param('longitude');
-    var latitude = req.param('latitude');
-    var range = req.param('range');
+    var searchTerms = req.param('searchTerms', 'police');
+    var range = req.param('range', '50');
     var count = req.param('count', '0');
-    var transportModeFilter = req.param('transportModeFilter');
-    var transportOperatorFilter = req.param('transportOperatorFilter');
     var sortBy = req.param('sortBy', 'severity,road,time');
     var groupBySeverity = req.param('groupBySeverity', '1')
-    var sortOrder = req.param('sortOrder');
-    var limit = req.param('limit');
-    var offset = req.param('offset');
-    var bypassCache = req.param('bypassCache');
-    var minSeverity = req.param('minSeverity');
-    var significance = req.param('significance');
-
     var incidentType = req.param('incidentType','unplanned');
-    var messageType = req.param('messageType', 'rtm');
+    var messageType = req.param('messageType', 'all');
     var catchment = req.param('catchment', 'narrow');
     var warning = req.param('warning', 'none');
     var removeSets = req.param('removeSets', '1');
 
     var outputFormat = req.param('outputFormat', 'json')
 
-    /*console.log('TRAVEL API REQUEST: http://www.bbc.co.uk/travelnews/api/outputs?language=' + language + '&searchType=' + searchType + 
-        '&searchTerms=' + searchTerms + '&latitude=' + latitude + '&longitude=' + longitude + '&range=' + range + '&count=' + count +
-        '&transportModeFilter=' + transportModeFilter + '&transportOperatorFilter=' + transportOperatorFilter + '&sortBy=' + sortBy + 
-        '&sortOrder=' + sortOrder + '&limit=' + limit + '&offset=' + offset + '&bypassCache=' + bypassCache + '&minSeverity=' + minSeverity +
-        '&significance=' + significance + '&incidentType=' + incidentType + '&messageType=' + messageType + '&catchment=' + catchment +
-        '&warning=' + warning + '&removeSets=' + removeSets + '&groupBySeverity=' + groupBySeverity + '&outputFormat=' + outputFormat );*/
+    var latitude = req.params.lat;
+    var longitude = req.params.lng;
 
-    /*var travelRequest = restler.get('http://www.bbc.co.uk/travelnews/api/outputs?language=' + language + '&searchType=' + searchType + 
-        '&searchTerms=' + searchTerms + '&latiitude=' + latitude + '&longitude=' + longitude + '&range=' + range + '&count=' + count +
-        '&transportModeFilter=' + transportModeFilter + '&transportOperatorFilter=' + transportOperatorFilter + '&sortBy=' + sortBy + 
-        '&sortOrder=' + sortOrder + '&limit=' + limit + '&offset=' + offset + '&bypassCache=' + bypassCache + '&minSeverity=' + minSeverity +
-        '&significance=' + significance + '&incidentType=' + incidentType + '&messageType=' + messageType + '&catchment=' + catchment +
-        '&warning=' + warning + '&removeSets=' + removeSets + '&groupBySeverity=' + groupBySeverity + '&outputFormat=' + outputFormat );*/
+    var travelUrl = 'http://www.bbc.co.uk/travelnews/api/outputs?language=' + language + '&searchType=' + searchType + 
+        '&searchTerms=' + searchTerms + '&range=' + range + '&count=' + count + '&sortBy=' + sortBy + '&groupBySeverity=' + groupBySeverity +
+        '&incidentType=' + incidentType + '&messageType=' + messageType + '&catchment=' + catchment + '&warning=' + warning + 
+        '&removeSets=' + removeSets + '&outputFormat=' + outputFormat + '&latitude' + latitude + '&longitude=' + longitude;
 
-/*
-http://www.bbc.co.uk/travelnews/api/outputs?sortBy=severity,road,time&groupBySeverity=1&removeSets=1&catchment=narrow
-    &warning=none&language=en&outputFormat=xhtml&incidentType=unplanned&messageType=rtm&count=0&searchTerms=fire&searchType=free
-*/
+    console.log('TRAVEL API REQUEST: ' + travelUrl );
 
-    console.log('TRAVEL API REQUEST: http://www.bbc.co.uk/travelnews/api/outputs?language=' + language + '&searchType=' + searchType + 
-        '&searchTerms=' + searchTerms + '&count=' + count +
-        '&sortBy=' + sortBy + 
-        '&incidentType=' + incidentType + '&messageType=' + messageType +
-        '&warning=' + warning + '&removeSets=' + removeSets + '&groupBySeverity=' + groupBySeverity + '&outputFormat=' + outputFormat );
-
-    var travelRequest = restler.get('http://www.bbc.co.uk/travelnews/api/outputs?language=' + language + '&searchType=' + searchType + 
-        '&searchTerms=' + searchTerms + '&count=' + count +
-        '&sortBy=' + sortBy + 
-        '&incidentType=' + incidentType + '&messageType=' + messageType +
-        '&warning=' + warning + '&removeSets=' + removeSets + '&groupBySeverity=' + groupBySeverity + '&outputFormat=' + outputFormat );
+    var travelRequest = restler.get(travelUrl);
 
     travelRequest.on('complete', function(travelResult, response){
 
