@@ -10,6 +10,7 @@ var routes = require('./routes')
 routes.articles  = require('./routes/articles');
 routes.weather = require('./routes/weather');
 routes.travel = require('./routes/travel');
+routes.people = require('./routes/people');
 
 var app = express();
 
@@ -71,6 +72,10 @@ app.get('/weather/coordinates/:lat,:lng',routes.weather.find_by_coordinates);
 app.get('/travel/coordinates/:lat,:lng',routes.travel.find_by_coordinates);
 
 app.get('/travel/incidents/coordinates/:lat,:lng',routes.travel.find_incidents);
+
+app.get('/articles/localpeople/coordinates/:lat,:lng',routes.people.find_by_coordinates);
+
+app.get('/articles/localpeople/postcode/:postcode', routes.people.find_by_postcode);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
