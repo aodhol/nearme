@@ -1,0 +1,47 @@
+<%for(var i = 0; i < forecastContent.forecasts.length; i++){%>
+
+ <% var forecast = forecastContent.forecasts[i]; %>
+
+  <div class="location-summary" id="location-summary-<%=forecastContent.location.id%>">
+            <div class="now-summary">
+                <a href="/weather/<%=forecastContent.location.id%>">
+                    <h3 title="<%=forecastContent.location.locationName%>"><%=forecastContent.location.locationName%></h3>
+                    <div class="now-detail">
+
+        <span title="<%=forecast.weatherType%>" class="weather-type-image weather-type-image-<%=forecast.weatherCode%> weather-type-1">
+            <img src="<%=forecast.weatherSymbol.webSmall%>" alt="<%=forecast.weatherType%>"></span>
+
+        <span class="units-values temperature-units-values"><span data-unit="c" class="units-value temperature-value temperature-value-unit-c"><%=forecast.temperature.centigrade%><span class="unit">°C</span></span><span class="unit-types-separator"> </span><span data-unit="f" class="units-value temperature-value temperature-value-unit-f"><%=forecast.temperature.fahrenheit%><span class="unit">°F</span></span></span>    <span class="when">Now</span>
+                <span class="wind wind-speed windrose-icon windrose-icon-40 wind-direction-<%=forecast.wind.direction%>" title="<%=forecast.wind.windspeed.mph%> mph, <%=forecast.wind.directionDesc%>" data-tooltip-kph="<%=forecast.wind.windspeed.kph%> km/h, <%=forecast.wind.directionDesc%>" data-tooltip-mph="<%=forecast.wind.windspeed.mph%> mph, <%=forecast.wind.directionDesc%>">
+            <span class="speed"><span class="units-values windspeed-units-values"><span data-unit="kph" class="units-value windspeed-value windspeed-value-unit-kph"><%=forecast.wind.windspeed.kph%><span class="unit">km/h</span></span><span class="unit-types-separator"> </span><span data-unit="mph" class="units-value windspeed-value windspeed-value-unit-mph"><%=forecast.wind.windspeed.mph%><span class="unit">mph</span></span></span></span>
+            <span class="description blq-hide"><%=forecast.wind.directionDesc%></span>
+        </span>
+                    </div>
+                </a>
+    </div>
+
+<%}%>
+
+ <!--   <div class="daily-window">
+
+        <ul class="daily">
+            
+            <li class="day-20120727   last-child">
+                <a rel="nofollow" href="/weather/2643743?day=4" data-ajax-href="/weather/en/2643743/daily/2012-07-27?day=4">
+                            <h4>
+                <span class="day-name"><span class="abbrev">Fri</span><span class="blq-hide">day</span></span>
+                    </h4>
+                
+                <span title="Light Rain Shower" class="weather-type-image weather-type-image-56 weather-type-10"><img src="http://static.bbci.co.uk/weather/0.4.118/images/icons/weather_types/56_en.png" alt="Light Rain Shower"></span>
+                <span class="max-temp max-temp-value"><span class="units-values temperature-units-values"><span data-unit="c" class="units-value temperature-value temperature-value-unit-c">26<span class="unit">°C</span></span><span class="unit-types-separator"> </span><span data-unit="f" class="units-value temperature-value temperature-value-unit-f">79<span class="unit">°F</span></span></span></span>
+                <span class="min-temp min-temp-value"><span class="units-values temperature-units-values"><span data-unit="c" class="units-value temperature-value temperature-value-unit-c">16<span class="unit">°C</span></span><span class="unit-types-separator"> </span><span data-unit="f" class="units-value temperature-value temperature-value-unit-f">61<span class="unit">°F</span></span></span></span>
+                        <span class="wind wind-speed windrose-icon windrose-icon-40 wind-direction-ne" title="6mph, North Easterly" data-tooltip-kph="10km/h, North Easterly" data-tooltip-mph="6mph, North Easterly">
+                <span class="speed"><span class="units-values windspeed-units-values"><span data-unit="kph" class="units-value windspeed-value windspeed-value-unit-kph">10<span class="unit">km/h</span></span><span class="unit-types-separator"> </span><span data-unit="mph" class="units-value windspeed-value windspeed-value-unit-mph">6<span class="unit">mph</span></span></span></span>
+                <span class="description blq-hide">North Easterly</span>
+            </span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+     -->
