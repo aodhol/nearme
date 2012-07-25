@@ -70,6 +70,8 @@ app.get('/weather/coordinates/:lat,:lng',routes.weather.find_by_coordinates);
 
 app.get('/travel/coordinates/:lat,:lng',routes.travel.find_by_coordinates);
 
+app.get('/travel/incidents',routes.travel.find_incidents);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
