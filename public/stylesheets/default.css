@@ -141,7 +141,26 @@ h2 {
 	border-top: 1px solid #fff;
 }
 
+#local h3 {
+	margin: 0.5em 0;
+	font-size: 1.25em;
+}
+
 #local-map {
+	width: 100%;
+}
+
+#local-weather,
+#local-travel {
+	display: none;
+	float: left;
+	overflow: hidden;
+	height: 160px;
+	width: 31.9672131147541%; /* 312 / 976 */
+	margin-left: 2.0491803278689%; /* 20 / 976 */
+}
+
+#map-container {
 	float: left;
 	width: 90%;
 	height: 240px;
@@ -156,21 +175,18 @@ h2 {
 	background-color: #4d4d4d;
 }
 
-#local h3 {
-	margin: 0.5em 0;
-	font-size: 1.25em;
-}
-
-#local .module {
+.area-selected #map-container {
 	float: left;
-	overflow: hidden;
-	height: 220px;
 	width: 31.9672131147541%; /* 312 / 976 */
-	margin-right: 2.0491803278689%; /* 20 / 976 */
 }
 
-#local .local-travel {
-	margin: 0;
+.area-selected #add-area {
+	display: none;
+}
+
+.area-selected #local-weather,
+.area-selected #local-travel {
+	display: block;
 }
 
 /* News stories */
