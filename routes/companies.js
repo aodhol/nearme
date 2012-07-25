@@ -17,7 +17,7 @@ exports.find_by_coordinates = function(req, res){
 
     var juicerUrl = 'http://juicer.responsivenews.co.uk/api/articles.json?binding=url&limit=50';
     var juicerPostData = {'data':
-        '?thing omgeo:nearby(' + lat + ' ' + lng + ' \"' + distance + 'mi\") . { ?person <http://dbpedia.org/ontology/birthPlace> ?thing . } UNION { ?person <http://dbpedia.org/property/placeOfBirth> ?thing . } ?url <http://data.press.net/ontology/tag/about> ?person .'};
+        '?thing omgeo:nearby(' + lat + ' ' + lng + ' \"' + distance + 'mi\") . ?company <http://dbpedia.org/ontology/headquarter> ?place . ?url <http://data.press.net/ontology/tag/about> ?company .'};
 
     console.log('JUICER REQUEST - QUERY: ' + JSON.stringify(juicerUrl));
     console.log('JUICER REQUEST - POST DATA: ' + juicerPostData);
@@ -76,13 +76,14 @@ exports.find_by_postcode = function(req, res){
             });
 
             console.log('GEONAMES REQUEST DONE: la=' + xmlLat + ' lo=' + xmlLng);
-
+            
             if (xmlLat != 0.0 && xmlLng != 0.0)
             {
-                res.redirect('/articles/localpeople/coordinates/' + xmlLat + ',' + xmlLng);
+                res.redirect('/articles/localcompanies/coordinates/' + xmlLat + ',' + xmlLng);
             } else {
                 res.send(404);
             }
+
         }
     });
 };

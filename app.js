@@ -11,6 +11,7 @@ routes.articles  = require('./routes/articles');
 routes.weather = require('./routes/weather');
 routes.travel = require('./routes/travel');
 routes.people = require('./routes/people');
+routes.companies = require('./routes/companies');
 
 var app = express();
 
@@ -76,6 +77,10 @@ app.get('/travel/incidents/coordinates/:lat,:lng',routes.travel.find_incidents);
 app.get('/articles/localpeople/coordinates/:lat,:lng',routes.people.find_by_coordinates);
 
 app.get('/articles/localpeople/postcode/:postcode', routes.people.find_by_postcode);
+
+app.get('/articles/localcompanies/coordinates/:lat,:lng',routes.companies.find_by_coordinates);
+
+app.get('/articles/localcompanies/postcode/:postcode',routes.companies.find_by_postcode);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
