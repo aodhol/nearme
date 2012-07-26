@@ -10,15 +10,25 @@
 
 	<link rel="stylesheet" type="text/css" href="/stylesheets/reset.css">
 	<link rel="stylesheet" type="text/css" href="/stylesheets/default.css">
+
+	<link rel="stylesheet" type="text/css" href="/stylesheets/weather.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/colorPicker.css"/>
+
+	<script type="text/javascript" src="/javascripts/jquery-1.7.2.min.js"></script>
+
+    <script language="javascript" type="text/javascript" src="/javascripts/jquery.colorPicker.min.js"/></script>
+
+
 	<!-- <link rel="stylesheet" type="text/css" href="/stylesheets/weather.css"> -->
 
-	<script src="/javascripts/jquery-1.7.2.min.js"></script>
+
 
 	<link href="http://developers.google.com/maps/documentation/javascript/examples/default.css" rel="stylesheet"/>
 
 	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=drawing,geometry"></script>
-	
+	<script type="text/javascript" src="/javascripts/label.js"></script>	
 	<script src="/javascripts/util.js"></script>
+	<script src="/javascripts/location.js"></script>
 	<script src="/javascripts/map.js"></script>
 
 </head>
@@ -80,6 +90,7 @@
 		</footer>
 
 		<script>
+
 			function showLocalPanel() {
 				$('#local').animate({opacity: 'toggle', height: 'toggle'},function(){
 					if(mapLoaded == false) {
@@ -104,11 +115,14 @@
 							}
 						});
 
+
 					});
 				});
 			}
 
+
 			$(document).ready(function() {
+
 
 				$('#draw-location').on('click', function(e) {
 					e.preventDefault();

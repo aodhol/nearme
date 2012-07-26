@@ -48,7 +48,9 @@ exports.find_by_polygon_points = function(req,res){
                 //var results = JSON.parse(data); 
                // populateArticlesForSection(section,results.articles);
                 //callback(null,results.articles);
-                res.json(JSON.parse(data));
+                //res.json(JSON.parse(data));
+
+                res.render('story-list',{'articles':JSON.parse(data).articles});
             }
 
         });
