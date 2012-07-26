@@ -20,9 +20,11 @@ exports.find_by_postcode = function(req, res){
 
     console.log('Postcode: ' + postcode);
 
-    console.log('GEONAMES REQUEST: http://api.geonames.org/postalCodeSearch?postalcode=' + escape(postcode) + '&country='+ country +'&maxRows=' + maxRows + '&username='+ username);
+    var geonameUrl = 'http://api.geonames.org/postalCodeSearch?postalcode=' + escape(postcode) + '&country='+ country +'&maxRows=' + maxRows + '&username='+ username;
 
-    var geonameRequest = restler.get('http://api.geonames.org/postalCodeSearch?postalcode=' + escape(postcode) + '&country='+ country +'&maxRows=' + maxRows + '&username='+ username);
+    console.log('GEONAMES REQUEST: ' + geonameUrl);
+
+    var geonameRequest = restler.get(geonameUrl);
 
     geonameRequest.on('complete', function(geonameResult){
 
@@ -45,9 +47,11 @@ exports.find_by_postcode = function(req, res){
 
         }
 
-        console.log('LOCATION API REQUEST: JSON http://open.live.bbc.co.uk/locator/locations?la=' + xmlLat + '&lo=' + xmlLng);
+        var locationUrl = 'http://open.live.bbc.co.uk/locator/locations?la=' + xmlLat + '&lo=' + xmlLng + '&format=json';
 
-        var locatorRequest = restler.get('http://open.live.bbc.co.uk/locator/locations?la=' + xmlLat + '&lo=' + xmlLng + '&format=json');
+        console.log('LOCATION API REQUEST: JSON ' + locationUrl);
+
+        var locatorRequest = restler.get(locationUrl);
         
         locatorRequest.on('complete', function(locatorResult, response){
 
@@ -93,10 +97,12 @@ exports.find_by_postcode = function(req, res){
                     break;
                 }
                 
-                console.log('WEATHER API REQUEST (feed=' + feed + '):  http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId +'/' + feedname + '.json');
+                var weatherUrl = 'http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId + '/' + feedname + '.json';
+
+                console.log('WEATHER API REQUEST (feed=' + feed + '):  ' + weatherUrl);
                 //res.redirect('http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId + '/' + feedname + '.json');
 
-                var weatherRequest = restler.get('http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId + '/' + feedname + '.json');
+                var weatherRequest = restler.get(weatherUrl);
 
                 weatherRequest.on('complete', function(weatherResult, response){
 
