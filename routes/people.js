@@ -67,9 +67,8 @@ exports.find_by_postcode = function(req, res){
             console.log('result: ' + geonamesResult);
             var parser = new xml2js.Parser();
 
-            parser.parseString(geonamesResult, function (err, parseResult){
-                if (parseResult != undefined && parseResult.code != undefined)
-                {
+            parser.parseString(geonamesResult, function (err, parseResult) {
+                if (parseResult != undefined && parseResult.code != undefined) {
                     xmlLat = parseResult.code.lat;
                     xmlLng = parseResult.code.lng;
                 }
@@ -77,8 +76,7 @@ exports.find_by_postcode = function(req, res){
 
             console.log('GEONAMES REQUEST DONE: la=' + xmlLat + ' lo=' + xmlLng);
 
-            if (xmlLat != 0.0 && xmlLng != 0.0)
-            {
+            if (xmlLat != 0.0 && xmlLng != 0.0) {
                 res.redirect('/articles/localpeople/coordinates/' + xmlLat + ',' + xmlLng);
             } else {
                 res.send(404);

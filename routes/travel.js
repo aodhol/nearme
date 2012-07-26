@@ -144,6 +144,52 @@ exports.find_by_coordinates = function(req, res){
 
 };
 
+exports.find_by_postcode = function(req, res){
+
+    var country = req.param('country', 'GB');
+    var maxRows = parseInt(req.param('maxRows', '1'));
+    var username = req.param('username', 'mdgardiner');
+    var feed = req.param('feed', 'hour');
+
+    var postcode = req.params.postcode;
+
+    var xmlLat = 0.0;
+    var xmlLng = 0.0;
+
+    console.log('Postcode: ' + postcode);
+
+    var geonamesUrl = 'http://api.geonames.org/postalCodeSearch?postalcode=' + escape(postcode) + '&country='+ country +'&maxRows=' + maxRows + '&username='+ username;
+
+    console.log('GEONAMES REQUEST: ' + geonamesUrl);
+    var geonamesRequest = restler.get(geonamesUrl);
+
+    geonamesRequest.on('complete', function(geonamesResult, response){
+
+        if(geonamesResult instanceof Error) {
+            console.log('Error: ' + geonamesResult.message);
+        } else {
+            console.log('result: ' + geonamesResult);
+            var parser = new xml2js.Parser();
+
+            parser.parseString(geonamesResult, function(err, parseResult) {
+                if(parseResult != undefined && parseResult.code != undefined) {
+                    xmlLat = parseResult.code.lat;
+                    xmlLng = parseResult.code.lng;
+                }
+            });
+
+            console.log('GEONAMES REQUEST DONE: la=' + xmlLat + ' lo=' + xmlLng);
+
+            if (xmlLat != 0.0 && xmlLng != 0.0){
+                res.redirect('/travel/coordinates/' + xmlLat + ',' +xmlLng);
+            } else {
+                res.send(404);
+            }
+        }
+    });
+
+};
+
 exports.find_incidents = function(req, res){
 
     var language = req.param('language', 'en');
