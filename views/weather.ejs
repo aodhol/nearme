@@ -1,0 +1,29 @@
+<h3 class="blq-hide">
+	Local weather
+</h3>
+
+<ul>
+<%
+	var i, forecast, day, night;
+
+	for(i = 0; i < forecastContent.forecasts.length; i++) { 
+		forecast = forecastContent.forecasts[i];
+		day = forecast.day;
+		night = forecast.night; %>
+		<li> <%
+			if (i == 0) { %>
+				<h4>Now</h4>
+				<img src="<%= day.weatherSymbol.webMedium %>" alt="<%= day.weatherType %>" />
+				<p><%= day.maxTemperature.centigrade %>&deg;C</p>
+				<span class="windrose-icon wind-direction-<%= day.wind.direction %>">
+					<%= day.wind.windspeed.mph %>
+				</span>
+<%			} else { %>
+				<h4><%= forecast.dayNameAbbreviation %></h4>
+				<img src="<%= day.weatherSymbol.webSmall %>" alt="<%= day.weatherType %>" />
+				<p class="max"><%= day.maxTemperature.centigrade %>&deg;C</p>
+				<p><%= night.minTemperature.centigrade %>&deg;C</p>
+<%			} %>
+		</li>
+<%	}%>
+</ul>

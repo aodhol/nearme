@@ -8,7 +8,12 @@ a, a:hover {
 }
 
 p {
-	margin-bottom: 0.5em;
+	margin-bottom: 0.25em;
+}
+
+.blq-hide {
+	position: absolute;
+	left: -9999px;
 }
 
 #global-header, #local-header, #footer-content {
@@ -137,30 +142,19 @@ h2 {
 	display: none;
 	overflow: hidden;
 	color: #000;
-	background-color: #ccc;
+	background-color: #fff;
+	padding-bottom: 10px;
 	border-top: 1px solid #fff;
+	border-bottom: 1px solid #ccc;
 }
 
-#local h3 {
-	margin: 0.5em 0;
-	font-size: 1.25em;
+#local h3,
+#local h4 {
+	margin-bottom: 0.5em;
+	font-size: 1em;
 }
 
 #local-map {
-	width: 100%;
-}
-
-#local-weather,
-#local-travel {
-	display: none;
-	float: left;
-	overflow: hidden;
-	height: 160px;
-	width: 31.9672131147541%; /* 312 / 976 */
-	margin-left: 2.0491803278689%; /* 20 / 976 */
-}
-
-#map-container {
 	float: left;
 	width: 90%;
 	height: 240px;
@@ -175,9 +169,27 @@ h2 {
 	background-color: #4d4d4d;
 }
 
-.area-selected #map-container {
+#local-weather,
+#local-travel {
+	display: none;
 	float: left;
-	width: 31.9672131147541%; /* 312 / 976 */
+	overflow: hidden;
+	margin-left: 1.0245901639344%; /* 10 / 976 */
+}
+
+#local-travel p {
+	font-size: 0.8125em; /* 13 /16 */
+}
+
+#local.area-selected {
+	padding: 0.5em;
+}
+
+.area-selected #local-map {
+	float: left;
+	width: 15.3688524590164%; /* 150 / 976 */
+	/*height: 10.2459016393443%; /* 100 / 976 */
+	height: 100px;
 }
 
 .area-selected #add-area {
@@ -188,6 +200,69 @@ h2 {
 .area-selected #local-travel {
 	display: block;
 }
+
+/* Weather */
+
+#local-weather ul {
+	overflow: hidden;
+}
+
+#local-weather li {
+	float: left;
+	height: 120px;
+	margin-right: 10px;
+	padding-right: 10px;
+	border-right: 1px solid #ccc;
+}
+
+#local-weather li {
+	text-align: center;
+}
+
+#local-weather .max {
+	font-weight: bold;
+}
+
+#local-weather li:first-child {
+	text-align: left;
+}
+
+#local-weather li:first-child img {
+	float: left;
+	margin-right: 10px;
+}
+
+#local-weather li:first-child p {
+	float: left;
+	font-size: 1.5em;
+}
+
+.windrose-icon {
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	padding-top: 0px;
+	text-align: center;
+	background: url("/images/windrose-sprite.png") no-repeat 0 0;
+}
+
+.wind-direction-s { background-position:0px 0; }
+.wind-direction-ssw { background-position:-50px 0; }
+.wind-direction-sw { background-position:-100px 0; }
+.wind-direction-wsw { background-position:-150px 0; }
+.wind-direction-w { background-position:-200px 0; }
+.wind-direction-wnw { background-position:-250px 0; }
+.wind-direction-nw { background-position:-300px 0; }
+.wind-direction-nnw { background-position:-350px 0; }
+.wind-direction-n { background-position:-400px 0; }
+.wind-direction-nne { background-position:-450px 0; }
+.wind-direction-ne { background-position:-500px 0; }
+.wind-direction-ene { background-position:-550px 0; }
+.wind-direction-e { background-position:-600px 0; }
+.wind-direction-ese { background-position:-650px 0; }
+.wind-direction-se { background-position:-700px 0; }
+.wind-direction-sse { background-position:-750px 0; }
+.wind-direction-none { background-position:-800px 0; }
 
 /* News stories */
 
@@ -209,7 +284,7 @@ article p {
 article h3 {
 	color: #1f4f82;
 	font-size: 1.5em;
-	margin-bottom: 0.5em;
+	margin-bottom: 0.25em;
 }
 
 .lead-item h3 {

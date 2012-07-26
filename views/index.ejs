@@ -53,17 +53,13 @@
 			</section>
 
 			<section id="local">
-				<div id="local-map">
-					<div id="map-container"></div>
-					<a id="add-area" href="#">Go to area</a>
-				</div>
+				<div id="local-map"></div>
+				<a id="add-area" href="#">Go to area</a>
 
-				<div id="local-weather">
-					<h3>Local Weather</h3>
-				</div>
+				<div id="local-weather"></div>
 				
 				<div id="local-travel">
-					<h3>Local Travel News</h3>
+					<h3>Latest Travel News</h3>
 					<p>No reported incidents</p>
 				</div>
 			</section>
@@ -87,7 +83,7 @@
 			function showLocalPanel() {
 				$('#local').animate({opacity: 'toggle', height: 'toggle'},function(){
 					if(mapLoaded == false) {
-						initialiseMap('map-container');
+						initialiseMap('local-map');
 						mapLoaded = true;
 					}
 
@@ -100,14 +96,13 @@
 						map.setZoom(6);
 						map.setCenter(new google.maps.LatLng(centroid.y, centroid.x));
 
-						// getWeatherForCoordinates(centroid.y, centroid.x, function(err, data) {
-						// 	if(err === null){
-						// 		console.log("Setting data");
-						// 		$('#local-weather').append(data);
-						// 	} else {
-						// 		console.log("ERROR loading weather data:" + err.toString());
-						// 	}
-						// });
+						getWeatherForCoordinates(centroid.y, centroid.x, function(data) {
+							if(data) {
+								$('#local-weather').html(data);
+							} else {
+								console.log("ERROR loading weather data:" + err.toString());
+							}
+						});
 
 					});
 				});

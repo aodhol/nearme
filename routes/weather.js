@@ -136,7 +136,7 @@ exports.find_by_postcode = function(req, res){
 
 exports.find_by_coordinates = function(req, res){
     
-    var feed = req.param('feed', 'hour');
+    var feed = req.param('feed', 'day');
     
     var lat = req.params.lat;
     var lng = req.params.lng;
@@ -205,7 +205,7 @@ exports.find_by_coordinates = function(req, res){
 
                 } else {
 
-                    res.json(weatherResult);
+                    res.render('weather', weatherResult);
 
                 }
 

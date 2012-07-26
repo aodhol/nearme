@@ -137,6 +137,19 @@ function getArticlesWithinCoordinates(coordinates,callback) {
 	jqxhr.always(function() { console.log("complete"); });
 }
 
+function getWeatherForCoordinates(y, x, callback) {
+	var jqxhr = $.ajax( "/weather/coordinates/" + y + "," + x);
+
+	jqxhr.done(function(data) { 
+		callback(data);
+	});
+
+	jqxhr.fail(function(e) { console.log("weather error"); 
+		callback(null)
+	});
+	jqxhr.always(function() { console.log("weather complete"); });
+}
+
 function showArticles(path) {
 	if(path == null){
 		path = retrievePolygon();
