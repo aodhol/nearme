@@ -2,9 +2,15 @@ var mapLoaded = false;
 
 var centroid = null;
 
-    	var map;
+var map;
 
-      	function initialize() {
+var locations;
+
+var infowindow = new google.maps.InfoWindow({ 
+	content:  "<label>Name:</label><input class='location-name' type='text'/><div><label for='color1'>Color 1</label><input id='color1' name='color1' type='text' value='#333399'/></div><button id='location-button'>Set</button>"
+});
+
+function initialize() {
 
         var mapOptions = {
           center: new google.maps.LatLng(51.500152,-0.126236),
@@ -34,7 +40,7 @@ var centroid = null;
             fillOpacity: 0.5,
             strokeColor: '#ff0000',
             strokeWeight: 2,
-            clickable: false,
+            clickable: true,
             editable: true,
             zIndex: 1
           }
@@ -42,13 +48,8 @@ var centroid = null;
 
         drawingManager.setMap(map);
 
-        function addMarker(location) {
-  marker = new google.maps.Marker({
-    position: location,
-    map: map
-  });
- // markersArray.push(marker);
-}
+        locations = retrieveLocations(map);
+        drawLocations(locations,map);
 
 		google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
 			
@@ -59,101 +60,193 @@ var centroid = null;
 
 			if (event.type == google.maps.drawing.OverlayType.POLYGON) {
 
-				var path = event.overlay.getPath();
+				var overlay = event.overlay;
+
+				var path = overlay.getPath();
 
 				centroid = getCentroid(path);
  			
+				var centroidLatLng = new google.maps.LatLng(centroid.y,centroid.x);
 
-				//var centroidLatLng = new google.maps.LatLng(centroid.y,centroid.x)
+				var label = new Label({"map":map});
+				label.set('position',centroidLatLng);
+				label.set('text','');
 
-				//addMarker(centroidLatLng);
-				
-				savePolygon(path);
-				
-				addListenersToPolygon(path);	
+				var loc = new Location(new Date().getTime(),label,path);
+				loc.setPolygon(overlay);
+
+				locations.push(loc);
+
+				saveLocations();
+								
+				addListenersToLocation(loc);	
 		
 				showArticles(path,function(err,data){
 					if(err !== null){
 						$('section[role="main"]').html(data);
 					}else{
-						console.log("Error:" + err.toString());
+						console.log("Error:" + err);
 					}
 				});
+				
 			}
+
+		
 	
 		});
 
-		var path = retrievePolygon();
-
-		var location = new google.maps.Polygon({
-			path:path,
-			fillColor: '#ff0000',
-			fillOpacity: 0.5,
-			strokeColor: '#ff0000',
-			strokeWeight: 2,
-			clickable: false,
-			editable: true,
-			zIndex: 1
-		});
-
-		addListenersToPolygon(location.getPath());
-
-		if(centroid == null){
-			console.log("Setting centroid");
-			centroid = getCentroid(path);
-		}
-		
-		if(path !== "undefined"){
-			showArticles(path,function(err,data){
-				if(err !== null){
-					$('section[role="main"]').html(data);
-				}else{
-					console.log("Error:" + err);
-				}
-			});
-		}
-
-		location.setMap(map);
-
       }//Init.
 
+function handleOverlayClick(location){
+
+	var centroid = getCentroid(location.getPath());
+
+	var centroidLatLng = new google.maps.LatLng(centroid.y,centroid.x);
+
+	infowindow.position = centroidLatLng;
+
+	infowindow.open(map);
+
+	var currentColour = location.getPolygon().fillColor;
+
+	$('#color1').val(currentColour)
+		
+	$('#color1').colorPicker();
+    
+	$('#location-button').click(function(element){
+
+		var labelText = $('.location-name').val();
+		
+		var fillColour = $('.colorPicker-picker').css('background-color');
+
+		var label = location.getLabel();
+
+		location.getPolygon().setOptions({"fillColor":fillColour})
+
+      	label.set('text', labelText);
+
+    	label.set('position', new google.maps.LatLng(centroid.y,centroid.x));
+
+    	infowindow.close();
+
+    	saveLocations();
+
+    }); 
+}
+
+function drawLocations(locations,map){
+
+	for(var i = 0; i < locations.length; i++){
+
+		var location = locations[i];
+
+		var polygon = location.getPolygon();
+
+		var path = polygon.getPath();
+
+		console.log("PPPPPPPPP:",path)
+
+		polygon.setMap(map)
+
+		addListenersToLocation(location);
+
+		showArticles(path,function(err,data){
+			if(err !== null){
+				$('section[role="main"]').html(data);
+			}else{
+				console.log("Error:" + err);
+			}
+		});
+	}
+}
      // google.maps.event.addDomListener(window, 'load', initialize);
 
-	function addListenersToPolygon(path){
+function addListenersToLocation(location){
 
-		google.maps.event.addListener(path, "set_at", function(){
-			savePolygon(path);
-			centroid = getCentroid(path);
-			showArticles(path,function(err,data){
-				$('section[role="main"]').html(data);
-			});
-			
+	var path  = location.getPath();
+
+	var polygon = location.getPolygon();
+
+
+	google.maps.event.addListener(location.getPolygon().getPath(), "set_at", function(){
+
+		var path = location.getPath();
+
+		saveLocations();
+
+		var centroid = getCentroid(path);
+
+		showArticles(path,function(err,data){
+			$('section[role="main"]').html(data);
 		});
 
-		google.maps.event.addListener(path, "insert_at", function(){
-			console.log("Saving path");
-			savePolygon(path);
-			centroid = getCentroid(path);
-			showArticles(path,function(err,data){
-				$('section[role="main"]').html(data);
-			});
-		});	
-	}
+		var label = location.getLabel();
 
-function savePolygon(path){
+		label.set('position',new google.maps.LatLng(centroid.y,centroid.x));
+		
+	});
+
+
+	google.maps.event.addListener(location.getPolygon().getPath(), "insert_at", function(){
+
+		saveLocations();
+		var centroid = getCentroid(path);
+		showArticles(path,function(err,data){
+			$('section[role="main"]').html(data);
+		});
+
+		var label = location.getLabel();
+		label.set('position',new google.maps.LatLng(centroid.y,centroid.x));
+
+	});	
+
+    google.maps.event.addListener(polygon,'click', function(event) {
+		handleOverlayClick(location);
+	});
+
+}
+
+function saveLocations(){
+
 	if(typeof(Storage) !== "undefined"){
-		var encodedPath = google.maps.geometry.encoding.encodePath(path);
-		localStorage.polygon = encodedPath;
+		console.log('STRINGIFIED:'+ JSON.stringify(locations));
+		localStorage.setItem('locations',JSON.stringify(locations));		
 	}
 }
 
-function retrievePolygon(){
+function retrieveLocations(map){
+
+	var retrievedLocations;
 
 	if(typeof(Storage) !== "undefined"){
-		var encodedPath = localStorage.polygon;
-		var decodedPath = google.maps.geometry.encoding.decodePath(encodedPath);
-		return new google.maps.MVCArray(decodedPath);
+		
+		var retrievedLocations = JSON.parse(localStorage.getItem('locations')) || [];
+
+		for(var i = 0; i < retrievedLocations.length; i++){
+
+			var stringifiedLocation = retrievedLocations[i];
+			
+			var label = new Label({"map":map});
+
+			var location = new Location(stringifiedLocation._id,label);
+
+			location.setColour(stringifiedLocation.colour);
+
+			location.setEncodedPath(stringifiedLocation.encodedPath);	
+
+			var centroid = getCentroid(location.getPath());
+
+          	label.set('text', stringifiedLocation.labelText || '');
+
+        	label.set('position', new google.maps.LatLng(centroid.y,centroid.x));
+			
+			retrievedLocations[i] = location;//Replace stringified with real Location obj in ame array.
+		}
+
+		console.log("LOCS:",retrievedLocations)
 	}
+
+	return retrievedLocations;
 }
 
 function pathToCoordinateString(path){
@@ -207,13 +300,13 @@ function getWeatherForCoordinates(lat,lon,callback){
 
 function showArticles(path,callback){
 
-	if(path == null){
-		path = retrievePolygon();
-	}
+	 var coordStr = pathToCoordinateString(path);
 
-	var coordStr = pathToCoordinateString(path);
+	 getArticlesWithinCoordinates(coordStr,callback);
+}
 
-	getArticlesWithinCoordinates(coordStr,callback);
+function getCentroidLatLng(){
+	var centroidLatLng = new google.maps.LatLng(centroid.y,centroid.x);
 }
 
 /*function getWeather(lat,lon,callback){

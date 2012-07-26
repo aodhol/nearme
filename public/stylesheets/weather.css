@@ -1,0 +1,156 @@
+.location-summary {
+float: left;
+width: 736px;
+padding: 6px 8px;
+color: white;
+overflow: hidden;
+background: #226083;
+position: relative;
+min-height: 140px;
+_height: 140px;
+}
+
+.location-summary .daily-window {
+position: absolute;
+top: 8px;
+left: 285px;
+}
+
+ol, ul {
+list-style: none;
+}
+
+.location-summary .daily li {
+float: left;
+margin-right: 25px;
+width: 70px;
+}
+
+.location-summary a {
+color: white;
+display: block;
+}
+
+ .location-summary .daily h4 {
+font-size: 1.538em;
+font-weight: bold;
+letter-spacing: -1px;
+line-height: 24px;
+text-rendering: optimizelegibility;
+position: relative;
+display: -moz-inline-block;
+display: inline-block;
+padding: 5px 0 7px;
+width: auto;
+margin: 0;
+margin-bottom: 10px;
+padding: 0;
+display: block;
+line-height: 1;
+}
+
+.location-summary .daily .weather-type-icon, #forecast-carousel .location-summary .daily .weather-type-image {
+margin-bottom: 10px;
+}
+
+.weather-type-icon{background-position:left top;background-repeat:no-repeat;display:block;text-indent:-9999em;overflow:hidden;}
+.weather-type-image{display:block;overflow:hidden;position:relative;zoom:1;}.weather-type-image img{display:block;position:absolute;top:0;}
+.weather-type-image-40{height:40px;width:40px;}
+.weather-type-image-56{height:56px;width:56px;}
+.weather-type-image-80{height:80px;width:80px;}
+.weather-type-image-light{top:-200px;}
+.weather-type-image-medium-dark{top:0;}
+.weather-type-image-dark{top:-100px;}
+.weather-type-icon-80{width:80px;height:80px;background-image:url("/weather/0.4.118/images/icons/80.en.png");}
+.weather-type-icon-56{width:56px;height:56px;background-image:url("/weather/0.4.118/images/icons/56.en.png");}
+.weather-type-icon-40{width:40px;height:40px;background-image:url("/weather/0.4.118/images/icons/40.en.png");}
+
+.weather-type-icon.weather-type-0{background-position:0 0;}
+.weather-type-icon.weather-type-1{background-position:-100px 0;}
+.weather-type-icon.weather-type-2{background-position:-200px 0;}
+.weather-type-icon.weather-type-3{background-position:-300px 0;}
+.weather-type-icon.weather-type-4{background-position:-400px 0;}
+.weather-type-icon.weather-type-5{background-position:-500px 0;}
+.weather-type-icon.weather-type-6{background-position:-600px 0;}
+.weather-type-icon.weather-type-7{background-position:-700px 0;}
+.weather-type-icon.weather-type-8{background-position:-800px 0;}
+.weather-type-icon.weather-type-9{background-position:-900px 0;}
+.weather-type-icon.weather-type-10{background-position:-1000px 0;}
+.weather-type-icon.weather-type-11{background-position:-1100px 0;}
+.weather-type-icon.weather-type-12{background-position:-1200px 0;}
+.weather-type-icon.weather-type-13{background-position:-1300px 0;}
+.weather-type-icon.weather-type-14{background-position:-1400px 0;}
+.weather-type-icon.weather-type-15{background-position:-1500px 0;}
+.weather-type-icon.weather-type-16{background-position:-1600px 0;}
+.weather-type-icon.weather-type-17{background-position:-1700px 0;}
+.weather-type-icon.weather-type-18{background-position:-1800px 0;}
+.weather-type-icon.weather-type-19{background-position:-1900px 0;}
+.weather-type-icon.weather-type-20{background-position:-2000px 0;}
+.weather-type-icon.weather-type-21{background-position:-2100px 0;}
+.weather-type-icon.weather-type-22{background-position:-2200px 0;}
+.weather-type-icon.weather-type-23{background-position:-2300px 0;}
+.weather-type-icon.weather-type-24{background-position:-2400px 0;}
+.weather-type-icon.weather-type-25{background-position:-2500px 0;}
+.weather-type-icon.weather-type-26{background-position:-2600px 0;}
+.weather-type-icon.weather-type-27{background-position:-2700px 0;}
+.weather-type-icon.weather-type-28{background-position:-2800px 0;}
+.weather-type-icon.weather-type-29{background-position:-2900px 0;}
+.weather-type-icon.weather-type-30{background-position:-3000px 0;}
+.weather-type-icon.weather-type-31{background-position:-3100px 0;}
+.weather-type-icon.weather-type-32{background-position:-3200px 0;}
+.weather-type-icon.weather-type-na{background-position:-3300px 0;}
+.weather-type-0 img{left:0;}
+.weather-type-1 img{left:-100px;}
+.weather-type-2 img{left:-200px;}
+.weather-type-3 img{left:-300px;}
+.weather-type-4 img{left:-400px;}
+.weather-type-5 img{left:-500px;}
+.weather-type-6 img{left:-600px;}
+.weather-type-7 img{left:-700px;}
+.weather-type-8 img{left:-800px;}
+.weather-type-9 img{left:-900px;}
+.weather-type-10 img{left:-1000px;}
+.weather-type-11 img{left:-1100px;}
+.weather-type-12 img{left:-1200px;}
+.weather-type-13 img{left:-1300px;}
+.weather-type-14 img{left:-1400px;}
+.weather-type-15 img{left:-1500px;}
+.weather-type-16 img{left:-1600px;}
+.weather-type-17 img{left:-1700px;}
+.weather-type-18 img{left:-1800px;}
+.weather-type-19 img{left:-1900px;}
+.weather-type-20 img{left:-2000px;}
+.weather-type-21 img{left:-2100px;}
+.weather-type-22 img{left:-2200px;}
+.weather-type-23 img{left:-2300px;}
+.weather-type-24 img{left:-2400px;}
+.weather-type-25 img{left:-2500px;}
+.weather-type-26 img{left:-2600px;}
+.weather-type-27 img{left:-2700px;}
+.weather-type-28 img{left:-2800px;}
+.weather-type-29 img{left:-2900px;}
+.weather-type-30 img{left:-3000px;}
+.weather-type-31 img{left:-3100px;}
+.weather-type-32 img{left:-3200px;}
+.weather-type-na img{left:-3300px;}
+.windrose-icon{font-size:0.846em;font-weight:normal;letter-spacing:0;line-height:16px;text-transform:uppercase;text-rendering:optimizelegibility;display:block;font-weight:bold;color:#ffffff;}.windrose-icon .unit{position:absolute;left:-90000px;width:1px;overflow:hidden;}
+.windrose-icon-40{width:40px;height:40px;line-height:40px;padding-top:0px;text-align:center;background:transparent url("/weather/0.4.118/images/icons/windroses_40_lightbg.png") no-repeat left top;_background-image:url("/weather/0.4.118/images/icons/windroses_40_lightbg.gif");}.windrose-icon-40 .windspeed-value{position:relative;}
+.windrose-icon-40-darkbg{color:#333;background-image:url("/weather/0.4.118/images/icons/windroses_40_darkbg.png");_background-image:url("/weather/0.4.118/images/icons/windroses_40_darkbg.gif");}
+.windrose-icon-32{width:32px;height:22px;padding-top:8px;background:transparent url("/weather/0.4.118/images/icons/windroses_32_lightbg.png") no-repeat left top;_background-image:transparent url("/weather/0.4.118/images/icons/windroses_32_lightbg.gif") no-repeat left top;}
+.windrose-icon.wind-direction-s{background-position:0px 0;}
+.windrose-icon.wind-direction-ssw{background-position:-50px 0;}
+.windrose-icon.wind-direction-sw{background-position:-100px 0;}
+.windrose-icon.wind-direction-wsw{background-position:-150px 0;}
+.windrose-icon.wind-direction-w{background-position:-200px 0;}
+.windrose-icon.wind-direction-wnw{background-position:-250px 0;}
+.windrose-icon.wind-direction-nw{background-position:-300px 0;}
+.windrose-icon.wind-direction-nnw{background-position:-350px 0;}
+.windrose-icon.wind-direction-n{background-position:-400px 0;}
+.windrose-icon.wind-direction-nne{background-position:-450px 0;}
+.windrose-icon.wind-direction-ne{background-position:-500px 0;}
+.windrose-icon.wind-direction-ene{background-position:-550px 0;}
+.windrose-icon.wind-direction-e{background-position:-600px 0;}
+.windrose-icon.wind-direction-ese{background-position:-650px 0;}
+.windrose-icon.wind-direction-se{background-position:-700px 0;}
+.windrose-icon.wind-direction-sse{background-position:-750px 0;}
+.windrose-icon.wind-direction-none{background-position:-800px 0;}
