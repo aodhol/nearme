@@ -1,8 +1,4 @@
-var mapLoaded = false;
-
 var centroid = null;
-
-var map;
 
 var locations;
 
@@ -10,43 +6,45 @@ var infowindow = new google.maps.InfoWindow({
 	content:  "<label>Name:</label><input class='location-name' type='text'/><div><label for='color1'>Color 1</label><input id='color1' name='color1' type='text' value='#333399'/></div><button id='location-button'>Set</button>"
 });
 
-function initialize() {
+var map,
+	mapLoaded = false,
+	AREA_KEY = 'bbc-local-';
 
-        var mapOptions = {
-          center: new google.maps.LatLng(51.500152,-0.126236),
-          zoom: 8,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
+function initialiseMap(mapCanvas) {
 
-         map = new google.maps.Map(document.getElementById('map-canvas'),
-          mapOptions);
+	var mapOptions = {
+		center: new google.maps.LatLng(51.500152, -0.126236),
+		zoom: 8,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
 
-        var drawingManager = new google.maps.drawing.DrawingManager({
-          drawingMode: google.maps.drawing.OverlayType.POLYGON,
-          drawingControl: true,
-          drawingControlOptions: {
-            position: google.maps.ControlPosition.TOP_CENTER,
-            drawingModes: [
-              /*google.maps.drawing.OverlayType.MARKER,
-              google.maps.drawing.OverlayType.CIRCLE,*/
-              google.maps.drawing.OverlayType.POLYGON
-            ]
-          },
-          markerOptions: {
-            icon: 'images/beachflag.png'
-          },	
-          polygonOptions: {
-            fillColor: '#ff0000',
-            fillOpacity: 0.5,
-            strokeColor: '#ff0000',
-            strokeWeight: 2,
-            clickable: true,
-            editable: true,
-            zIndex: 1
-          }
-        });
+	map = new google.maps.Map(document.getElementById(mapCanvas), mapOptions);
 
-        drawingManager.setMap(map);
+	var drawingManager = new google.maps.drawing.DrawingManager({
+		drawingMode: google.maps.drawing.OverlayType.POLYGON,
+		drawingControl: true,
+		drawingControlOptions: {
+			position:
+				google.maps.ControlPosition.TOP_CENTER,
+				drawingModes: [
+					//google.maps.drawing.OverlayType.MARKER,
+					//google.maps.drawing.OverlayType.CIRCLE,
+					google.maps.drawing.OverlayType.POLYGON
+				]
+		}, markerOptions: {
+			icon: 'images/beachflag.png'
+		}, polygonOptions: {
+			fillColor: '#ff0000',
+			fillOpacity: 0.5,
+			strokeColor: '#ff0000',
+			strokeWeight: 2,
+			clickable: false,
+			editable: true,
+			zIndex: 1
+		}
+	});
+
+	drawingManager.setMap(map);
 
         locations = retrieveLocations(map);
         drawLocations(locations,map);
@@ -244,59 +242,37 @@ function retrieveLocations(map){
 		}
 
 		console.log("LOCS:",retrievedLocations)
+
 	}
 
 	return retrievedLocations;
 }
 
-function pathToCoordinateString(path){
- 	
+function pathToCoordinateString(path) {
 	var coords = [];
 
-  	for (var i = 0; i < path.length; i++) {
-  		var xy = path.getAt(i).toUrlValue();
-  		coords.push(xy);
-  	}
+	for (var i = 0; i < path.length; i++) {
+		var xy = path.getAt(i).toUrlValue();
+		coords.push(xy);
+	}
 
-  	var coordString = coords.join(' ');
-
-  	return coordString;
-
+	var coordString = coords.join(' ');
+	return coordString;
 }
 
-function getArticlesWithinCoordinates(coordinates,callback){
+function getArticlesWithinCoordinates(coordinates,callback) {
 	var jqxhr = $.ajax( "/articles/coordinates/points/" + coordinates);
 
-    jqxhr.done(function(data) { 
-    	//$('#results').text(JSON.stringify(data));
-    	callback(null,data);
-    });
-
-    jqxhr.fail(function(e) { console.log("error"); 
-    	callback(e,null)
+	jqxhr.done(function(data) { 
+		callback(data);
 	});
-    jqxhr.always(function() { console.log("complete"); });
+
+	jqxhr.fail(function(e) { console.log("error"); 
+		callback(null)
+	});
+	jqxhr.always(function() { console.log("complete"); });
 }
 
-
-function getWeatherForCoordinates(lat,lon,callback){
-	var jqxhr = $.ajax( "/weather/coordinates/" + lat + "," + lon);
-
-    jqxhr.done(function(data) { 
-    	//$('#results').text(JSON.stringify(data));
-
-
-    	callback(null,data);
-    });
-
-    jqxhr.error(function(e){'ERRRR' + e.toString();});
-
-    jqxhr.fail(function(e) { 
-    	console.log("WEATHER error:" + e.statusCode(),e); 
-    	callback(e,null)
-	});
-    jqxhr.always(function() { console.log("WEATHER complete"); });
-}
 
 function showArticles(path,callback){
 
@@ -332,3 +308,4 @@ function getCentroidLatLng(){
 	}
 
 }*/
+

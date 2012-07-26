@@ -9,6 +9,9 @@ var routes = require('./routes')
 
 routes.articles  = require('./routes/articles');
 routes.weather = require('./routes/weather');
+routes.travel = require('./routes/travel');
+routes.people = require('./routes/people');
+routes.companies = require('./routes/companies');
 
 var app = express();
 
@@ -42,7 +45,7 @@ app.configure(function(){
   app.use(express.session());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
-
+  app.use("/static", express.static(__dirname + '/static'));
 });
 
 app.configure('development', function(){
@@ -66,6 +69,20 @@ app.get('/articles/about/:subject',routes.articles.find_by_subject);
 app.get('/weather/postcode/:postcode',routes.weather.find_by_postcode);
 
 app.get('/weather/coordinates/:lat,:lng',routes.weather.find_by_coordinates);
+
+app.get('/travel/coordinates/:lat,:lng',routes.travel.find_by_coordinates);
+
+app.get('/travel/postcode/:postcode',routes.travel.find_by_postcode);
+
+app.get('/travel/incidents/coordinates/:lat,:lng',routes.travel.find_incidents);
+
+app.get('/articles/localpeople/coordinates/:lat,:lng',routes.people.find_by_coordinates);
+
+app.get('/articles/localpeople/postcode/:postcode', routes.people.find_by_postcode);
+
+app.get('/articles/localcompanies/coordinates/:lat,:lng',routes.companies.find_by_coordinates);
+
+app.get('/articles/localcompanies/postcode/:postcode',routes.companies.find_by_postcode);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

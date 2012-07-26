@@ -18,24 +18,12 @@ function swapPairs(array){
     return array;
 }
 
-
-function groupBySection(articles){
-
-    //for(var i = 0; i < )
-
-
-}
-
 exports.find_by_polygon_points = function(req,res){
     
     var points = req.params.points;
 
     points = points.split(/\s|,/);
 
-/*
-'Accept'
-'HTML' 
-*/
     //Swap lat / lon pairs if necessary as API may differ to Google ordering?
     //points = swapPairs(points);
 
@@ -60,10 +48,7 @@ exports.find_by_polygon_points = function(req,res){
                 //var results = JSON.parse(data); 
                // populateArticlesForSection(section,results.articles);
                 //callback(null,results.articles);
-                //res.json(JSON.parse(data));
-
-                res.render('story-list',{'articles':JSON.parse(data).articles});
-
+                res.json(JSON.parse(data));
             }
 
         });
@@ -73,9 +58,6 @@ exports.find_by_polygon_points = function(req,res){
         });
 
 }
-
-
-
 
 exports.find_by_coordinates = function(req, res){
 

@@ -15,14 +15,16 @@ exports.find_by_postcode = function(req, res){
     var postcode = req.params.postcode;
     
     var xmlLat = 0.0;
-    var xmllng = 0.0;
+    var xmlLng = 0.0;
     var geonameId = 0;
 
     console.log('Postcode: ' + postcode);
 
-    console.log('GEONAMES REQUEST: http://api.geonames.org/postalCodeSearch?postalcode=' + escape(postcode) + '&country='+ country +'&maxRows=' + maxRows + '&username='+ username);
+    var geonameUrl = 'http://api.geonames.org/postalCodeSearch?postalcode=' + escape(postcode) + '&country='+ country +'&maxRows=' + maxRows + '&username='+ username;
 
-    var geonameRequest = restler.get('http://api.geonames.org/postalCodeSearch?postalcode=' + escape(postcode) + '&country='+ country +'&maxRows=' + maxRows + '&username='+ username);
+    console.log('GEONAMES REQUEST: ' + geonameUrl);
+
+    var geonameRequest = restler.get(geonameUrl);
 
     geonameRequest.on('complete', function(geonameResult){
 
@@ -37,67 +39,96 @@ exports.find_by_postcode = function(req, res){
             var parser = new xml2js.Parser();
 
             parser.parseString(geonameResult, function (err, parseResult){
-                xmlLat = parseResult.code.lat;
-                xmlLng = parseResult.code.lng;
+                if (parseResult != undefined && parseResult.code != undefined) {
+                    xmlLat = parseResult.code.lat;
+                    xmlLng = parseResult.code.lng;
+                }
             });
 
             console.log('GEONAMES REQUEST DONE: la=' + xmlLat + ' lo=' + xmlLng);
 
         }
 
-        console.log('LOCATION API REQUEST: JSON http://open.live.bbc.co.uk/locator/locations?la=' + xmlLat + '&lo=' + xmlLng);
+        if (xmlLat != 0.0 && xmlLng != 0.0) {
 
-        var locatorRequest = restler.get('http://open.live.bbc.co.uk/locator/locations?la=' + xmlLat + '&lo=' + xmlLng + '&format=json');
-        
-        locatorRequest.on('complete', function(locatorResult, response){
+            var locationUrl = 'http://open.live.bbc.co.uk/locator/locations?la=' + xmlLat + '&lo=' + xmlLng + '&format=json';
 
-            console.log('Status Code: ' + response.statusCode);
+            console.log('LOCATION API REQUEST: JSON ' + locationUrl);
 
-            if (locatorResult instanceof Error) {
+            var locatorRequest = restler.get(locationUrl);
+            
+            locatorRequest.on('complete', function(locatorResult, response){
 
-                console.log('Error: ' + locatorResult.message);
+                console.log('Status Code: ' + response.statusCode);
 
-            } else {
+                if (locatorResult instanceof Error) {
 
-                console.log('result: ' + JSON.stringify(locatorResult));
+                    console.log('Error: ' + locatorResult.message);
 
-                /* Have tried using JSON.parse() but it raises 
-                    the error 'Error: Failed to parse 
-                    JSON body: Unexpected token o'
+                } else {
 
-                    Retrieving the data as XML, the xml2js parser also 
-                    errors saying that there is a non-whitespace character
-                    before the first tag and it fails to parse the data.
+                    console.log('result: ' + JSON.stringify(locatorResult));
 
-                    As a last resort the eval() call works...
-                */
+                    /* Have tried using JSON.parse() but it raises 
+                        the error 'Error: Failed to parse 
+                        JSON body: Unexpected token o'
 
-                //var resultJSON = JSON.parse(locatorResult); 
-                var resultJSON = eval(locatorResult);
+                        Retrieving the data as XML, the xml2js parser also 
+                        errors saying that there is a non-whitespace character
+                        before the first tag and it fails to parse the data.
 
-                geonameId = resultJSON.response.results.results[0].id;
-                
-                console.log('LOCATION REQUEST DONE: id=' + geonameId);
+                        As a last resort the eval() call works...
+                    */
 
-                var feedname = '3dayforecast';
+                    //var resultJSON = JSON.parse(locatorResult); 
+                    var resultJSON = eval(locatorResult);
 
-                switch(feed){
-                    case 'day':
-                        feedname = '3dayforecast';
-                    break;
-                    case 'hour':
-                        feedname = '3hourlyforecast';
-                    break;
-                    case 'obs':
-                        feedname = 'obs';
-                    break;
+                    geonameId = resultJSON.response.results.results[0].id;
+                    
+                    console.log('LOCATION REQUEST DONE: id=' + geonameId);
+
+                    var feedname = '3dayforecast';
+
+                    switch(feed){
+                        case 'day':
+                            feedname = '3dayforecast';
+                        break;
+                        case 'hour':
+                            feedname = '3hourlyforecast';
+                        break;
+                        case 'obs':
+                            feedname = 'obs';
+                        break;
+                    }
+                    
+                    var weatherUrl = 'http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId + '/' + feedname + '.json';
+
+                    console.log('WEATHER API REQUEST (feed=' + feed + '):  ' + weatherUrl);
+                    //res.redirect('http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId + '/' + feedname + '.json');
+
+                    var weatherRequest = restler.get(weatherUrl);
+
+                    weatherRequest.on('complete', function(weatherResult, response){
+
+                        console.log('Status Code: ' + response.StatusCode);
+
+                        if ( weatherResult instanceof Error) {
+
+                            console.log('Error: ' + weatherResult.message);
+
+                        } else {
+
+                            res.json(weatherResult);
+
+                        }
+
+                    });
                 }
-                
-                console.log('REDIRECTING TO WEATHER (feed=' + feed + '):  http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId +'/' + feedname + '.json');
-                res.redirect('http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId + '/' + feedname + '.json');
-            }
 
-        });
+            });
+        } else {
+            res.send(404);
+        }  
 
     });
 
@@ -159,21 +190,26 @@ exports.find_by_coordinates = function(req, res){
                 break;
             }
             
-            var locatorSecondaryRequest = restler.get('http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId + '/' + feedname + '.json');
+            console.log('WEATHER API REQUEST (feed=' + feed + '):  http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId +'/' + feedname + '.json');
+            //res.redirect('http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId + '/' + feedname + '.json');
 
-            locatorSecondaryRequest.on('complete', function(data, response){
+            var weatherRequest = restler.get('http://open.live.bbc.co.uk/weather/feeds/en/'+ geonameId + '/' + feedname + '.json');
 
-                console.log('Request on complete');
+            weatherRequest.on('complete', function(weatherResult, response){
 
-                if(response.statusCode !== 200){
-                    console.log("Non 200 response: " + response.statusCode);
+                console.log('Status Code: ' + response.StatusCode);
+
+                if ( weatherResult instanceof Error) {
+
+                    console.log('Error: ' + weatherResult.message);
+
                 } else {
-                    //res.json(data);
-console.log(data);
-                   res.render('weather',data);
-                }
-            });
 
+                    res.json(weatherResult);
+
+                }
+
+            });
         }
 
     });

@@ -10,12 +10,16 @@
 
 	<link rel="stylesheet" type="text/css" href="/stylesheets/reset.css">
 	<link rel="stylesheet" type="text/css" href="/stylesheets/default.css">
+
 	<link rel="stylesheet" type="text/css" href="/stylesheets/weather.css">
     <link rel="stylesheet" type="text/css" href="/stylesheets/colorPicker.css"/>
 
 	<script type="text/javascript" src="/javascripts/jquery-1.7.2.min.js"></script>
 
     <script language="javascript" type="text/javascript" src="/javascripts/jquery.colorPicker.min.js"/></script>
+
+
+	<!-- <link rel="stylesheet" type="text/css" href="/stylesheets/weather.css"> -->
 
 
 
@@ -42,7 +46,7 @@
 			<div id="local-header">
 				<h1>
 					<a href="http://www.bbc.co.uk/news">News</a>
-					<span class="location">England</span>
+					<span class="location"></span>
 				</h1>
 			</div>
 		</header>
@@ -55,42 +59,30 @@
 				<form action="/" method="get">
 					<input name="loc" type="text" placeholder="Enter a UK town, county or postcode" />
 				</form>
-				<a id="draw-location" href="#">Draw Location</a>
+				<a id="draw-location" href="#">Draw area</a>
 			</section>
 
 			<section id="local">
-				<div id="map-canvas" class="local-map module"></div>
-				<div class="local-weather module">
-					<h3>Local Weather</h3>
-					<img src="/images/weather-static.png" alt="" />
+				<div id="local-map">
+					<div id="map-container"></div>
+					<a id="add-area" href="#">Go to area</a>
 				</div>
-				<div class="local-travel module">
+
+				<div id="local-weather">
+					<h3>Local Weather</h3>
+				</div>
+				
+				<div id="local-travel">
 					<h3>Local Travel News</h3>
 					<p>No reported incidents</p>
 				</div>
 			</section>
 
-			<section role="main"></section>
-
-			<section role="complementary">
-				<section id="local-radio">
-					<h2>BBC Essex</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				</section>
-				<section id="things-to-do">
-					<h2>Things To Do</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				</section>
+			<section role="main">
+				<div id="story-list">
+					<p>No local area selected.</p>
+				</div>
+				<section role="complementary"></section>
 			</section>
 
 		</div>
@@ -102,42 +94,49 @@
 		</footer>
 
 		<script>
-			$(document).ready(function() {
 
-				$('#draw-location').on('click', function(e) {
+			function showLocalPanel() {
+				$('#local').animate({opacity: 'toggle', height: 'toggle'},function(){
+					if(mapLoaded == false) {
+						initialiseMap('map-container');
+						mapLoaded = true;
+					}
 
-					e.preventDefault();
-					$('#local').animate({opacity: 'toggle', height: 'toggle'},function(){
-						if(mapLoaded == false){
-							initialize();
-							mapLoaded = true;
-						}
-					
-					/*	getWeatherForCoordinates(centroid.y,centroid.x,function(err,data){
-							if(err === null){
-								console.log("Setting data");
-								$('.local-weather').append(data);
-							}else{
-								console.log("ERROR loading weather data:" + err.toString());
-							}
+					$('#add-area').on('click', function() {
+						var path = retrievePolygon(),
+							centroid = getCentroid(path);
+						
+						showArticles(path);
+						$('#local').addClass('area-selected');
+						map.setZoom(6);
+						map.setCenter(new google.maps.LatLng(centroid.y, centroid.x));
 
-						});
-					*/
-
-
+						// getWeatherForCoordinates(centroid.y, centroid.x, function(err, data) {
+						// 	if(err === null){
+						// 		console.log("Setting data");
+						// 		$('#local-weather').append(data);
+						// 	} else {
+						// 		console.log("ERROR loading weather data:" + err.toString());
+						// 	}
+						// });
 
 
 					});
-
-					/*showArticles(null,function(err,data){
-						if(err !== null){
-							$('section[role="main"]').html(data);
-						}
-					});*/
-
-			
-				
 				});
+			}
+
+
+			$(document).ready(function() {
+
+
+				$('#draw-location').on('click', function(e) {
+					e.preventDefault();
+					showLocalPanel();
+				});
+
+				// if (localStorage.polygon) {
+				// 	showLocalPanel();
+				// }
 			});
 		</script>
 	</body>

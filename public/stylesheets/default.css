@@ -8,7 +8,7 @@ a, a:hover {
 }
 
 p {
-	margin-bottom: 1em;
+	margin-bottom: 0.5em;
 }
 
 #global-header, #local-header, #footer-content {
@@ -62,15 +62,23 @@ section {
 
 [role="main"] {
 	float: left;
-	width: 65.983606557377%; /* 644 / 976 */
 	margin-top: 1em;
-	margin-right: 2.0491803278689%; /* 20 / 976 */
 }
 
 [role="complementary"] {
 	float: right;
 	width: 31.9672131147541%; /* 312 / 976 */
 	margin-top: 1em;
+}
+
+[role="main"] article {
+	width: 65.983606557377%; /* 644 / 976 */
+	margin-right: 2.0491803278689%; /* 20 / 976 */
+}
+
+[role="main"] .lead-item {
+	width: 100%;
+	margin-right: 0;
 }
 
 h2 {
@@ -87,8 +95,9 @@ h2 {
 
 #set-location h2 {
 	float: left;
-	color: #000;
-	font-size: 2em;
+	color: #4d4d4d;
+	font-size: 1.5em;
+	font-weight: bold;
 	margin: 0;
 }
 
@@ -98,7 +107,7 @@ h2 {
 	padding: 4px 40px 4px 8px;
 	margin: 0.4em 1em 0 0;
 	width: 19em;
-	font-size: 1em;
+	font-size: 0.8125em;
 	color: #000;
 	background: #fff url(/images/search-icon.png) no-repeat 100% 50%;
 }
@@ -108,6 +117,7 @@ h2 {
 	float: right;
 	padding: 4px 40px 4px 8px;
 	margin-top: 0.4em;
+	font-size: 0.8125em;
 	color: #fff;
 	background: #4d4d4d url(/images/target-icon.png) no-repeat 100% 50%;
 }
@@ -115,17 +125,20 @@ h2 {
 #draw-location {
 	float: right;
 	margin: 0.4em 1em 0 0;
-	padding: 4px 8px 4px 32px;
+	padding: 4px 26px 4px 4px;
+	font-size: 0.8125em;
 	color: #fff;
-	background: #4d4d4d url(/images/draw-icon.png) no-repeat 8px 4px;
+	background: #4d4d4d url(/images/draw-icon.png) no-repeat 96% 50%;
 }
 
 /* Local Info */
 
 #local {
 	display: none;
-	color: #fff;
-	background-color: #0f5474;
+	overflow: hidden;
+	color: #000;
+	background-color: #ccc;
+	border-top: 1px solid #fff;
 }
 
 #local h3 {
@@ -133,16 +146,47 @@ h2 {
 	font-size: 1.25em;
 }
 
-#local .module {
-	float: left;
-	overflow: hidden;
-	height: 220px;
-	width: 31.9672131147541%; /* 312 / 976 */
-	margin-right: 2.0491803278689%; /* 20 / 976 */
+#local-map {
+	width: 100%;
 }
 
-#local .local-travel {
-	margin: 0;
+#local-weather,
+#local-travel {
+	display: none;
+	float: left;
+	overflow: hidden;
+	height: 160px;
+	width: 31.9672131147541%; /* 312 / 976 */
+	margin-left: 2.0491803278689%; /* 20 / 976 */
+}
+
+#map-container {
+	float: left;
+	width: 90%;
+	height: 240px;
+}
+
+#add-area {
+	float: left;
+	margin: 1em 0 0 1em;
+	padding: 4px 8px;
+	font-size: 0.8125em;
+	color: #fff;
+	background-color: #4d4d4d;
+}
+
+.area-selected #map-container {
+	float: left;
+	width: 31.9672131147541%; /* 312 / 976 */
+}
+
+.area-selected #add-area {
+	display: none;
+}
+
+.area-selected #local-weather,
+.area-selected #local-travel {
+	display: block;
 }
 
 /* News stories */
@@ -164,8 +208,22 @@ article p {
 
 article h3 {
 	color: #1f4f82;
-	font-size: 1.25em;
-	margin-bottom: 1em;
+	font-size: 1.5em;
+	margin-bottom: 0.5em;
+}
+
+.lead-item h3 {
+	font-size: 2.25em;
+}
+
+article .published {
+	color: #6daa17;
+	font-style: italic;
+}
+
+article .new {
+	color: #c1272d;
+	text-transform: uppercase;
 }
 
 /* Fluid images */
