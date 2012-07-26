@@ -63,9 +63,17 @@
 			</section>
 
 			<section id="local">
-				<div id="local-map"></div>
-				<a id="add-area" href="#">Go to area</a>
+				<a id="favourite-locations" href="#">Favourite Locations (0)<span></span></a>
+				<div id="location-list">
+					<ul>
+						<li><a href="#">Location 1</a></li>
+						<li><a href="#">Location 2</a></li>
+						<li><a href="#">Location 3</a></li>
+						<li><a href="#">Location 4</a></li>
+					</ul>
+				</div>
 
+				<div id="local-map"></div>
 				<div id="local-weather"></div>
 				
 				<div id="local-travel">
@@ -97,23 +105,23 @@
 						initialiseMap('local-map');
 						mapLoaded = true;
 					}
+					
+					$('#favourite-locations').on('click', function(e) {
+						e.preventDefault();
+						$(this).toggleClass('open');
+						$('#location-list').animate({opacity: 'toggle', height: 'toggle'});
+					});
 
-					$('#add-area').on('click', function() {
+					$('#location-list').on('click', 'a', function(e) {
+						e.preventDefault();
 
-
-
-
-						var path = locations[0].getPolygon().getPath(),
+						var path = locations[$(this).data('index')].getPolygon().getPath(),
 							centroid = getCentroid(path);
 						
-						showArticles(path,function(err,data){
-						
-							console.log("ERR",err);
-							console.log("DAT",data);
-
-							if(data !== null){
+						showArticles(path,function(err,data) {
+							if(data !== null) {
 								$('section[role="main"]').html(data);
-							}else if(err !== null){
+							} else if(err !== null) {
 								console.log("Error:" + err);
 							}
 						});
@@ -130,23 +138,15 @@
 							}
 						});
 
-
 					});
 				});
 			}
 
-
 			$(document).ready(function() {
-
-
 				$('#draw-location').on('click', function(e) {
 					e.preventDefault();
 					showLocalPanel();
 				});
-
-				// if (localStorage.polygon) {
-				// 	showLocalPanel();
-				// }
 			});
 		</script>
 	</body>

@@ -75,6 +75,7 @@ function initialiseMap(mapCanvas) {
 				loc.setPolygon(overlay);
 
 				locations.push(loc);
+				updateLocationList(locations);
 
 				saveLocations();
 								
@@ -243,9 +244,8 @@ function retrieveLocations(map){
 		}
 
 		console.log("LOCS:",retrievedLocations)
-
+		updateLocationList(retrievedLocations);
 	}
-
 	return retrievedLocations;
 }
 
@@ -296,6 +296,16 @@ function showArticles(path,callback){
 
 function getCentroidLatLng(){
 	var centroidLatLng = new google.maps.LatLng(centroid.y,centroid.x);
+}
+
+function updateLocationList(locs) {
+	var i, list = '';
+
+	$('#favourite-locations').html('Favourite Locations (' + locs.length + ')<span></span>');
+	for (i = 0; i < locs.length; i++) {
+		list += '<li><a href="#" data-index="' + i + '">' + locs[i].getLabelText() + '</a></li>';
+	}
+	$('#location-list ul').html(list);
 }
 
 /*function getWeather(lat,lon,callback){
