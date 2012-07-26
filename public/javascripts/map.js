@@ -46,7 +46,6 @@ function initialiseMap(mapCanvas) {
 	});
 
 	drawingManager.setMap(map);
-
         locations = retrieveLocations(map);
         drawLocations(locations,map);
 
@@ -61,32 +60,7 @@ function initialiseMap(mapCanvas) {
 
 				var overlay = event.overlay;
 
-				var path = overlay.getPath();
-
-				centroid = getCentroid(path);
- 			
-				var centroidLatLng = new google.maps.LatLng(centroid.y,centroid.x);
-
-				var label = new Label({"map":map});
-				label.set('position',centroidLatLng);
-				label.set('text','');
-
-				var loc = new Location(new Date().getTime(),label,path);
-				loc.setPolygon(overlay);
-
-				locations.push(loc);
-
-				saveLocations();
-								
-				addListenersToLocation(loc);	
-		
-				showArticles(path,function(err,data){
-					if(err !== null){
-						$('section[role="main"]').html(data);
-					}else{
-						console.log("Error:" + err);
-					}
-				});
+				makeLocation(overlay);
 				
 			}
 
@@ -94,7 +68,40 @@ function initialiseMap(mapCanvas) {
 	
 		});
 
+		//console.log(locations[0].getPolygon().getPath());
+
       }//Init.
+
+
+function makeLocation(overlay){
+	
+	var path = overlay.getPath();
+
+	centroid = getCentroid(path);
+
+	var centroidLatLng = new google.maps.LatLng(centroid.y,centroid.x);
+
+	var label = new Label({"map":map});
+	label.set('position',centroidLatLng);
+	label.set('text','');
+
+	var loc = new Location(new Date().getTime(),label,path);
+	loc.setPolygon(overlay);
+
+	locations.push(loc);
+
+	saveLocations();
+					
+	addListenersToLocation(loc);	
+
+	showArticles(path,function(err,data){
+		if(err !== null){
+			$('section[role="main"]').html(data);
+		}else{
+			console.log("Error:" + err);
+		}
+	});
+}
 
 function handleOverlayClick(location){
 
@@ -133,6 +140,7 @@ function handleOverlayClick(location){
     }); 
 }
 
+
 function drawLocations(locations,map){
 
 	for(var i = 0; i < locations.length; i++){
@@ -143,7 +151,7 @@ function drawLocations(locations,map){
 
 		var path = polygon.getPath();
 
-		console.log("PPPPPPPPP:",path)
+		console.log("PPPPPPPPP:",path);
 
 		polygon.setMap(map)
 
@@ -296,6 +304,56 @@ function showArticles(path,callback){
 
 function getCentroidLatLng(){
 	var centroidLatLng = new google.maps.LatLng(centroid.y,centroid.x);
+}
+
+function createLatLng(coordString) {
+     var a = coordString.split(' ');
+     return new google.maps.LatLng(a[0],a[1]);
+}
+
+
+
+function findLocation(location,callback){
+
+	var jqxhr = $.ajax( "/data/postcodes/" + location + ".txt");
+
+	jqxhr.done(function(data) {
+
+		var parsed = data.split(/\n/);//data.split(/\n/g);
+		console.log(parsed[0]);
+		console.log(parsed[1]);
+
+		var cleansed = [];
+
+		for(var i = 0; i < parsed.length; i+=10){
+
+			console.log("LOOPING");
+
+			if(parsed[i].indexOf(".") > 1){
+
+				var latLng = createLatLng(parsed[i]);
+
+
+				cleansed.push(latLng);
+			}
+		}
+
+		callback(null,cleansed);
+
+var re=/^-?\d+$/;
+var num="51.5175559871421 -0.0395448306677343";
+console.log("IS INT:" + re.test(num));
+
+	});
+
+	jqxhr.fail(function(e) { 
+		console.log("error"); 
+		callback(e,null)
+	});
+
+	jqxhr.always(function() { 
+		console.log("complete"); 
+	});
 }
 
 /*function getWeather(lat,lon,callback){

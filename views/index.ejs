@@ -56,8 +56,8 @@
 			<section id="set-location">
 				<h2>Local to me</h2>
 				<a id="get-location" href="#">Get current location</a>
-				<form action="/" method="get">
-					<input name="loc" type="text" placeholder="Enter a UK town, county or postcode" />
+				<form action="/" method="get" id="find-location">
+					<input name="loc" class="location-search" type="text" placeholder="Enter a UK town, county or postcode" />
 				</form>
 				<a id="draw-location" href="#">Draw area</a>
 			</section>
@@ -100,9 +100,6 @@
 
 					$('#add-area').on('click', function() {
 
-
-
-
 						var path = locations[0].getPolygon().getPath(),
 							centroid = getCentroid(path);
 						
@@ -138,11 +135,30 @@
 
 			$(document).ready(function() {
 
-
 				$('#draw-location').on('click', function(e) {
 					e.preventDefault();
 					showLocalPanel();
 				});
+
+				$('#find-location').on('submit', function(e) {
+					e.preventDefault();
+
+					var location = $('.location-search').val();
+
+					findLocation(location,function(err,data){
+						if(data != null){
+
+							var path = new google.maps.MVCArray(data);
+
+							var polygon = new Location(new Date().getTime(),'',path,null).makePolygon(path)
+							polygon.setMap(map);
+							makeLocation(polygon);
+						}
+					});
+
+					return false;
+				});
+
 
 				// if (localStorage.polygon) {
 				// 	showLocalPanel();
