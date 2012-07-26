@@ -81,6 +81,10 @@
 				<section role="complementary"></section>
 			</section>
 
+			<div id="local-people"></div>
+
+			<div id="local-companies>"></div>
+
 		</div>
 
 		<footer>
@@ -127,6 +131,22 @@
 								$('#local-weather').html(data);
 							} else {
 								console.log("ERROR loading weather data:" + err.toString());
+							}
+						});
+
+						getPeopleForCoordinates(centroid.y, centroid.x, function(data) {
+							if(data) {
+								$('#local-people').html(data);
+							} else {
+								console.log("ERROR loading local people data:" + err.toString());
+							}
+						});
+
+						getCompaniesForCoordinates(centroid.y, centroid.x, function(data) {
+							if(data) {
+								$('#local-companies').html(data);
+							} else {
+								console.log("ERROR loading local company data:" + err.toString());
 							}
 						});
 
