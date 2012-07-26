@@ -99,10 +99,25 @@
 					}
 
 					$('#add-area').on('click', function() {
-						var path = retrievePolygon(),
+
+
+
+
+						var path = locations[0].getPolygon().getPath(),
 							centroid = getCentroid(path);
 						
-						showArticles(path);
+						showArticles(path,function(err,data){
+						
+							console.log("ERR",err);
+							console.log("DAT",data);
+
+							if(data !== null){
+								$('section[role="main"]').html(data);
+							}else if(err !== null){
+								console.log("Error:" + err);
+							}
+						});
+
 						$('#local').addClass('area-selected');
 						map.setZoom(6);
 						map.setCenter(new google.maps.LatLng(centroid.y, centroid.x));

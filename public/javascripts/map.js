@@ -10,6 +10,7 @@ var map,
 	mapLoaded = false,
 	AREA_KEY = 'bbc-local-';
 
+
 function initialiseMap(mapCanvas) {
 
 	var mapOptions = {
@@ -264,11 +265,11 @@ function getArticlesWithinCoordinates(coordinates,callback) {
 	var jqxhr = $.ajax( "/articles/coordinates/points/" + coordinates);
 
 	jqxhr.done(function(data) { 
-		callback(data);
+		callback(null,data);
 	});
 
 	jqxhr.fail(function(e) { console.log("error"); 
-		callback(null)
+		callback(e,null)
 	});
 	jqxhr.always(function() { console.log("complete"); });
 }
