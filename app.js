@@ -72,6 +72,8 @@ app.get('/weather/coordinates/:lat,:lng',routes.weather.find_by_coordinates);
 
 app.get('/travel/coordinates/:lat,:lng',routes.travel.find_by_coordinates);
 
+app.get('/travel/postcode/:postcode',routes.travel.find_by_postcode);
+
 app.get('/travel/incidents/coordinates/:lat,:lng',routes.travel.find_incidents);
 
 app.get('/articles/localpeople/coordinates/:lat,:lng',routes.people.find_by_coordinates);
