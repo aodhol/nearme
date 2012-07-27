@@ -67,6 +67,7 @@ section {
 
 [role="main"] {
 	float: left;
+	width: 65.983606557377%; /* 644 / 976 */
 	margin-top: 1em;
 }
 
@@ -77,13 +78,11 @@ section {
 }
 
 [role="main"] article {
-	width: 65.983606557377%; /* 644 / 976 */
 	margin-right: 2.0491803278689%; /* 20 / 976 */
 }
 
 [role="main"] .lead-item {
-	width: 100%;
-	margin-right: 0;
+	/*margin-right: 0;*/
 }
 
 h2 {
