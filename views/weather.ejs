@@ -13,11 +13,16 @@
 		<li> <%
 			if (i == 0) { %>
 				<h4>Now</h4>
-				<img src="<%= day.weatherSymbol.webMedium %>" alt="<%= day.weatherType %>" />
-				<p><%= day.maxTemperature.centigrade %>&deg;C</p>
-				<span class="windrose-icon wind-direction-<%= day.wind.direction %>">
+				<% if (day.weatherType) { %>
+					<img src="<%= day.weatherSymbol.webMedium %>" alt="<%= day.weatherType %>" />
+					<p><%= day.maxTemperature.centigrade %>&deg;C</p>
+<%				} else { %>
+					<img src="<%= night.weatherSymbol.webMedium %>" alt="<%= night.weatherType %>" />
+					<p><%= night.minTemperature.centigrade %>&deg;C</p>
+<%				} %>
+				<!-- <span class="windrose-icon wind-direction-<%= day.wind.direction %>">
 					<%= day.wind.windspeed.mph %>
-				</span>
+				</span> -->
 <%			} else { %>
 				<h4><%= forecast.dayNameAbbreviation %></h4>
 				<img src="<%= day.weatherSymbol.webSmall %>" alt="<%= day.weatherType %>" />

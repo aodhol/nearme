@@ -62,20 +62,20 @@
 				<a id="draw-location" href="#">Draw area</a>
 			</section>
 
-			<section id="local">
-				<a id="favourite-locations" href="#">Favourite Locations (0)<span></span></a>
-				<div id="location-list">
-					<ul>
-						<li><a href="#">Location 1</a></li>
-						<li><a href="#">Location 2</a></li>
-						<li><a href="#">Location 3</a></li>
-						<li><a href="#">Location 4</a></li>
-					</ul>
-				</div>
+			<section id="favourite-locations">
+				<a href="#">Favourite Locations (0)<span></span></a>
+				<ul>
+					<li>No locations saved.</li>
+				</ul>
+			</section>
 
+			<section id="location-map">
 				<div id="local-map"></div>
+			</section>
+
+			<section id="local">
+				<div id="local-area"></div>
 				<div id="local-weather"></div>
-				
 				<div id="local-travel">
 					<h3>Latest Travel News</h3>
 					<p>No reported incidents</p>
@@ -102,74 +102,25 @@
 		</footer>
 `
 		<script>
-
-			function showLocalPanel() {
-				$('#local').animate({opacity: 'toggle', height: 'toggle'},function(){
-					if(mapLoaded == false) {
-						initialiseMap('local-map');
-						mapLoaded = true;
-					}
-					
-					$('#favourite-locations').on('click', function(e) {
-						e.preventDefault();
-						$(this).toggleClass('open');
-						$('#location-list').animate({opacity: 'toggle', height: 'toggle'});
-					});
-
-
-					$('#location-list').on('click', 'a', function(e) {
-						e.preventDefault();
-
-						var path = locations[$(this).data('index')].getPolygon().getPath(),
-
-							centroid = getCentroid(path);
-						
-						showArticles(path,function(err,data) {
-							if(data !== null) {
-								$('section[role="main"]').html(data);
-							} else if(err !== null) {
-								console.log("Error:" + err);
-							}
-						});
-
-						$('#local').addClass('area-selected');
-						map.setZoom(6);
-						map.setCenter(new google.maps.LatLng(centroid.y, centroid.x));
-
-						getWeatherForCoordinates(centroid.y, centroid.x, function(data) {
-							if(data) {
-								$('#local-weather').html(data);
-							} else {
-								console.log("ERROR loading weather data");
-							}
-						});
-
-						getPeopleForCoordinates(centroid.y, centroid.x, function(data) {
-							if(data) {
-								$('#local-people').html(data);
-							} else {
-								console.log("ERROR loading local people data");
-							}
-						});
-
-						getCompaniesForCoordinates(centroid.y, centroid.x, function(data) {
-							if(data) {
-								$('#local-companies').html(data);
-							} else {
-								console.log("ERROR loading local company data");
-							}
-						});
-					});
-				});
-			}
-
 			$(document).ready(function() {
+				/* load location map - hide container when loaded */
+				initialiseMap('local-map');
+				google.maps.event.addListener(map, 'idle', function() {
+					$('#location-map').css('display', 'none').css('visibility', 'visible');
+				});
 
+				/* toggle location map */
 				$('#draw-location').on('click', function(e) {
 					e.preventDefault();
-					showLocalPanel();
+					$('#location-map').animate({opacity: 'toggle', height: 'toggle'});
 				});
 
+				/* toggle favourite location list */
+				$('#favourite-locations > a').on('click', function(e) {
+					e.preventDefault();
+					$('#favourite-locations > a').toggleClass('open');
+					$('#favourite-locations ul').animate({opacity: 'toggle', height: 'toggle'});
+				});
 
 				$('#find-location').on('submit', function(e) {
 					e.preventDefault();
@@ -191,11 +142,50 @@
 					return false;
 				});
 
+				$('#favourite-locations').on('click', 'ul a', function(e) {
+					e.preventDefault();
+					$('#favourite-locations > a').toggleClass('open');
+					$('#favourite-locations ul').animate({opacity: 'toggle', height: 'toggle'});
 
-				// if (localStorage.polygon) {
-				// 	showLocalPanel();
-				// }
+					var location = locations[$(this).data('index')],
+						path = location.getPolygon().getPath(),
+						centroid = getCentroid(path);
+					
+					showArticles(path,function(err,data) {
+						if(err !== null) {
+							$('section[role="main"]').html(data);
+						} else if(err !== null) {
+							console.log("Error:" + err);
+						}
+					});
 
+					getWeatherForCoordinates(centroid.y, centroid.x, function(data) {
+						if(data) {
+							$('#local-weather').html(data);
+						} else {
+							console.log("ERROR loading weather data:" + err.toString());
+						}
+					});
+
+					// getPeopleForCoordinates(centroid.y, centroid.x, function(data) {
+					// 	if(data) {
+					// 		$('#local-people').html(data);
+					// 	} else {
+					// 		console.log("ERROR loading local people data:" + err.toString());
+					// 	}
+					// });
+
+					// getCompaniesForCoordinates(centroid.y, centroid.x, function(data) {
+					// 	if(data) {
+					// 		$('#local-companies').html(data);
+					// 	} else {
+					// 		console.log("ERROR loading local company data:" + err.toString());
+					// 	}
+					// });
+
+					$('#local-area').html('<p><span style="background-color:' + '#f80' + '"></span>'+ location.getLabelText() + '</p>');
+					$('#local').animate({opacity: 'show', height: 'show'});
+				});
 			});
 		</script>
 	</body>
