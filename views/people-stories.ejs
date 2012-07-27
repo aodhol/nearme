@@ -1,0 +1,30 @@
+
+	<h2>Stories About Local People</h2>
+	
+	<%for(var i = 0; i < articles.length; i++){%>
+	<% var article = articles[i]; %>
+	<article class="<%= (i == 0 ? 'lead-item' : '') %>">
+		<a href="<%= article.url %>">
+			<div class="image">
+				<% 
+				var origin = '';
+
+				if(article.full_data.image){
+					origin = article.full_data.image.origin;
+				}
+
+				%>
+				<img src="<%= origin %>" alt="" />
+			</div>
+			<h3><%= article.full_data.title %></h3>
+		</a>
+		<% var 	now = new Date(),
+				published = new Date(article.published),
+				hours = Math.floor((now.getTime() - published.getTime()) / (1000 * 60 * 60)),
+				publishedClass = hours < 1 ? 'new' : 'published',
+				publishedText = hours < 1 ? 'New' : hours + ' ' + (hours == 1 ? 'hour ago' : 'hours ago');
+		%>
+		<p class="<%= publishedClass %>"><%= publishedText %></p>
+		<p><%= article.full_data.intro %></p>
+	</article>
+	<%}%>

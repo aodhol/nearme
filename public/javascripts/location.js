@@ -18,7 +18,8 @@ Location.prototype = {
 			strokeWeight: 1,
 			clickable: true,
 			editable: true,
-			zIndex: 1
+			zIndex: 1,
+			geodesic: true
 		});
 
 		return polygon;
@@ -66,6 +67,6 @@ Location.prototype = {
 		return this.label;
 	},
 	toJSON: function(){
-		return {"_id":this._id, "labelText":this.getLabelText(),"encodedPath":this.getEncodedPath(),"colour":this.getPolygon().fillColor.toString()};
+		return {"_id":this._id, "labelText":this.getLabelText(),"encodedPath":this.getEncodedPath(),"colour":this.getPolygon().fillColor.toString(),"selected":this.selected || false};
 	}
 }
