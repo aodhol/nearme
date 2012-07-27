@@ -10,6 +10,7 @@ var map,
 	mapLoaded = false,
 	AREA_KEY = 'bbc-local-';
 
+var selectedLocation;
 
 function initialiseMap(mapCanvas) {
 
@@ -32,14 +33,12 @@ function initialiseMap(mapCanvas) {
 					//google.maps.drawing.OverlayType.CIRCLE,
 					google.maps.drawing.OverlayType.POLYGON
 				]
-		}, markerOptions: {
-			icon: 'images/beachflag.png'
 		}, polygonOptions: {
-			fillColor: '#ff0000',
+
 			fillOpacity: 0.5,
-			strokeColor: '#ff0000',
+			strokeColor: '#00FF00',
 			strokeWeight: 2,
-			clickable: false,
+			clickable: true,
 			editable: true,
 			zIndex: 1
 		}
@@ -60,7 +59,6 @@ function initialiseMap(mapCanvas) {
 
 				var overlay = event.overlay;
 
-
 				makeLocation(overlay);
 
 				var path = overlay.getPath();
@@ -69,17 +67,17 @@ function initialiseMap(mapCanvas) {
  			
 				var centroidLatLng = new google.maps.LatLng(centroid.y,centroid.x);
 
-				var label = new Label({"map":map});
+				/*var label = new Label({"map":map});
 				label.set('position',centroidLatLng);
 				label.set('text','');
 
 				var loc = new Location(new Date().getTime(),label,path);
 				loc.setPolygon(overlay);
 
-				locations.push(loc);
+				locations.push(loc);*/
 				updateLocationList(locations);
 
-				saveLocations();
+			/*	saveLocations();
 								
 				addListenersToLocation(loc);	
 		
@@ -89,7 +87,7 @@ function initialiseMap(mapCanvas) {
 					}else{
 						console.log("Error:" + err);
 					}
-				});
+				});*/
 
 				
 			}
@@ -103,7 +101,7 @@ function initialiseMap(mapCanvas) {
       }//Init.
 
 
-function makeLocation(overlay){
+function makeLocation(overlay,labelText){
 	
 	var path = overlay.getPath();
 
@@ -113,7 +111,7 @@ function makeLocation(overlay){
 
 	var label = new Label({"map":map});
 	label.set('position',centroidLatLng);
-	label.set('text','');
+	label.set('text',labelText || 'Place ' + locations.length+1);
 
 	var loc = new Location(new Date().getTime(),label,path);
 	loc.setPolygon(overlay);
@@ -131,6 +129,8 @@ function makeLocation(overlay){
 			console.log("Error:" + err);
 		}
 	});
+
+	return location;
 }
 
 function handleOverlayClick(location){
@@ -144,6 +144,10 @@ function handleOverlayClick(location){
 	infowindow.open(map);
 
 	var currentColour = location.getPolygon().fillColor;
+
+	var labelText = location.getLabelText();
+
+	$('input.location-name').val(labelText);
 
 	$('#color1').val(currentColour)
 		
@@ -238,9 +242,24 @@ function addListenersToLocation(location){
 	});	
 
     google.maps.event.addListener(polygon,'click', function(event) {
+    	setSelected(location);
+
 		handleOverlayClick(location);
 	});
 
+}
+
+function setSelected(location){
+	if(selectedLocation != undefined){
+		selectedLocation.selected = false;
+		selectedLocation.getPolygon().fillOpacity = 0.5;
+	}
+	selectedLocation = location;
+	selectedLocation.selected = true;
+
+	selectedLocation.getPolygon().fillColor = '#0000FF';
+
+	console.log("location selected:" + selectedLocation.getLabelText());
 }
 
 function saveLocations(){
@@ -270,6 +289,8 @@ function retrieveLocations(map){
 			location.setColour(stringifiedLocation.colour);
 
 			location.setEncodedPath(stringifiedLocation.encodedPath);	
+
+			location.selected = stringifiedLocation.selected;
 
 			var centroid = getCentroid(location.getPath());
 
@@ -361,13 +382,10 @@ function getCentroidLatLng(){
 	var centroidLatLng = new google.maps.LatLng(centroid.y,centroid.x);
 }
 
-
 function createLatLng(coordString) {
      var a = coordString.split(' ');
      return new google.maps.LatLng(a[0],a[1]);
 }
-
-
 
 function findLocation(location,callback){
 
@@ -381,7 +399,7 @@ function findLocation(location,callback){
 
 		var cleansed = [];
 
-		for(var i = 0; i < parsed.length; i+=10){
+		for(var i = 0; i < parsed.length; i+=16){
 
 			console.log("LOOPING");
 

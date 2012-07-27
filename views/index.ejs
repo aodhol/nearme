@@ -174,16 +174,17 @@
 				$('#find-location').on('submit', function(e) {
 					e.preventDefault();
 
-					var location = $('.location-search').val();
+					var locationName = $('.location-search').val();
 
-					findLocation(location,function(err,data){
+					findLocation(locationName,function(err,data){
 						if(data != null){
 
 							var path = new google.maps.MVCArray(data);
 
 							var polygon = new Location(new Date().getTime(),'',path,null).makePolygon(path)
 							polygon.setMap(map);
-							makeLocation(polygon);
+							var location = makeLocation(polygon,locationName);
+							//location.getLabel().set('text', locationName);
 						}
 					});
 
