@@ -304,7 +304,12 @@ function setSelected(location){
 	});
 
 	$('#local').show();
-	$('#local-area').html('<p><span style="background-color:' + '#f80' + '"></span>'+ location.getLabelText() + '</p>');
+	$('#local-area').html('<p><span class="area-colour" style="background-color:' +  location.getPolygon().fillColor + '"></span>'+ location.getLabelText() + '</p>');
+
+
+$('#set-location h2').text('Local to me - ' + (location.getLabelText() || ''));
+
+
 }
 
 function saveLocations(){
@@ -502,9 +507,13 @@ console.log("IS INT:" + re.test(num));
 function updateLocationList(locs) {
 	var i, list = '';
 
-	$('#favourite-locations > a').html('Favourite Locations (' + locs.length + ')<span></span>');
+	$('#favourite-locations > a').html('Favourite Locations (' + locs.length + ')<span class="expand-icon"></span>');
 	for (i = 0; i < locs.length; i++) {
-		list += '<li><a href="#" data-index="' + i + '">' + locs[i].getLabelText() + '</a></li>';
+
+
+//				list += '<li><a href="#" data-index="' + i + '">' + locs[i].getLabelText() + '</a></li>';
+
+		list += '<li><a href="#" data-index="' + i + '">' + locs[i].getLabelText() + '</a><span class="area-colour" style="background-color:' + locs[i].getPolygon().fillColor+ '"></span></li>';
 	}
 	$('#favourite-locations ul').html(list);
 

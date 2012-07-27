@@ -148,7 +148,15 @@ h2 {
 	color: #000;
 }
 
-#favourite-locations span {
+#favourite-locations ul li a:hover{
+	text-decoration:underline;
+}
+
+#favourite-locations ul li a.selected-location{
+	text-decoration:underline;
+}
+
+#favourite-locations span.expand-icon {
 	display: inline-block;
 	width: 12px;
 	height: 12px;
@@ -227,13 +235,14 @@ h2 {
 	border-right: 1px solid #ccc;
 }
 
-#local-area span {
+span.area-colour {
 	display: inline-block;
 	position: relative;
 	width: 15px;
 	height: 15px;
 	top: 0.1em;
 	margin-right: 0.5em;
+	margin-left: 4px;
 }
 
 
