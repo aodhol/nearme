@@ -17,7 +17,7 @@ exports.find_by_coordinates = function(req, res){
 
     var juicerUrl = 'http://juicer.responsivenews.co.uk/api/articles.json?binding=url&limit=' + limit;
     var juicerPostData = {'data':
-        '?thing omgeo:nearby(' + lat + ' ' + lng + ' \"' + distance + 'mi\") . ?company <http://dbpedia.org/ontology/headquarter> ?place . ?url <http://data.press.net/ontology/tag/about> ?company . ?url <http://purl.org/dc/terms/publisher> <http://www.bbc.co.uk/news/> .'};
+        '?place omgeo:nearby(' + lat + ' ' + lng + ' \"' + distance + 'mi\") . ?company <http://dbpedia.org/ontology/headquarter> ?place . ?url <http://data.press.net/ontology/tag/about> ?company . ?url <http://purl.org/dc/terms/publisher> <http://www.bbc.co.uk/news/> .'};
 
     console.log('JUICER REQUEST - QUERY: ' + JSON.stringify(juicerUrl));
     console.log('JUICER REQUEST - POST DATA: ' + juicerPostData);
