@@ -507,7 +507,7 @@ console.log("IS INT:" + re.test(num));
 function updateLocationList(locs) {
 	var i, list = '';
 
-	$('#favourite-locations > a').html('Favourite Locations (' + locs.length + ')<span class="expand-icon"></span>');
+	$('#favourite-locations > a').html('My Locations (' + locs.length + ')<span class="expand-icon"></span>');
 	for (i = 0; i < locs.length; i++) {
 
 
