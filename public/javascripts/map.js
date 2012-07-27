@@ -60,7 +60,37 @@ function initialiseMap(mapCanvas) {
 
 				var overlay = event.overlay;
 
+
 				makeLocation(overlay);
+
+				var path = overlay.getPath();
+
+				centroid = getCentroid(path);
+ 			
+				var centroidLatLng = new google.maps.LatLng(centroid.y,centroid.x);
+
+				var label = new Label({"map":map});
+				label.set('position',centroidLatLng);
+				label.set('text','');
+
+				var loc = new Location(new Date().getTime(),label,path);
+				loc.setPolygon(overlay);
+
+				locations.push(loc);
+				updateLocationList(locations);
+
+				saveLocations();
+								
+				addListenersToLocation(loc);	
+		
+				showArticles(path,function(err,data){
+					if(err !== null){
+						$('section[role="main"]').html(data);
+					}else{
+						console.log("Error:" + err);
+					}
+				});
+
 				
 			}
 
@@ -251,9 +281,8 @@ function retrieveLocations(map){
 		}
 
 		console.log("LOCS:",retrievedLocations)
-
+		updateLocationList(retrievedLocations);
 	}
-
 	return retrievedLocations;
 }
 
@@ -306,6 +335,7 @@ function getCentroidLatLng(){
 	var centroidLatLng = new google.maps.LatLng(centroid.y,centroid.x);
 }
 
+
 function createLatLng(coordString) {
      var a = coordString.split(' ');
      return new google.maps.LatLng(a[0],a[1]);
@@ -354,6 +384,18 @@ console.log("IS INT:" + re.test(num));
 	jqxhr.always(function() { 
 		console.log("complete"); 
 	});
+
+}
+
+function updateLocationList(locs) {
+	var i, list = '';
+
+	$('#favourite-locations').html('Favourite Locations (' + locs.length + ')<span></span>');
+	for (i = 0; i < locs.length; i++) {
+		list += '<li><a href="#" data-index="' + i + '">' + locs[i].getLabelText() + '</a></li>';
+	}
+	$('#location-list ul').html(list);
+
 }
 
 /*function getWeather(lat,lon,callback){
