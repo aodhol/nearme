@@ -279,7 +279,7 @@ function setSelected(location){
 		}
 	});
 
-	getTravelForCoordinates(centroid.y, centroid.x, function(data) {
+	getTravelForCoordinates(centroid.y.toFixed(6), centroid.x.toFixed(6), function(data) {
 		if(data) {
 			$('#local-travel').html(data);
 		} else {
