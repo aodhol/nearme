@@ -344,7 +344,7 @@ function getCompaniesForCoordinates(y, x, callback) {
 		callback(data);
 	});
 
-	jqhxr.fail(function(e) { console.log("company articles error"); 
+	jqxhr.fail(function(e) { console.log("company articles error"); 
 		callback(null);
 	});
 	jqxhr.always(function() { console.log("company articles complete")});
