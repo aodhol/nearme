@@ -343,14 +343,37 @@ article .image {
 
 /* Sidebar */
 
+[role="complementary"] {
+	margin-bottom: 1em;
+}
+
 [role="complementary"] section {
 	padding: 0.5em;
-	margin-bottom: 1em;
 	background-color: #ededed;
 }
 
 [role="complementary"] h2 {
 	color: #1f4f82;
+}
+
+[role="complementary"] article {
+
+}
+
+[role="complementary"] h3 {
+	font-size: 1em;
+}
+
+[role="complementary"] .lead-item h3 {
+	font-size: 1.2em;
+}
+
+[role="complementary"] p {
+	color: #000;
+}
+
+[role="complementary"] .published {
+	color: #6daa17
 }
 
 /* Footer */
