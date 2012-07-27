@@ -345,6 +345,32 @@ function getWeatherForCoordinates(y, x, callback) {
 	jqxhr.always(function() { console.log("weather complete"); });
 }
 
+function getPeopleForCoordinates(y, x, callback) {
+	var jqxhr = $.ajax( "/articles/localpeople/coordinates/" + y + "," + x);
+
+	jqxhr.done(function(data) {
+		callback(data);
+	});
+
+	jqxhr.fail(function(e) { console.log("people articles error");
+		callback(null);
+	});
+	jqxhr.always(function() { console.log("people articles complete"); });
+}
+
+function getCompaniesForCoordinates(y, x, callback) {
+	var jqxhr = $.ajax( "/articles/localcompanies/coordinates/" + y + "," + x);
+
+	jqxhr.done(function(data) {
+		callback(data);
+	});
+
+	jqhxr.fail(function(e) { console.log("company articles error"); 
+		callback(null);
+	});
+	jqxhr.always(function() { console.log("company articles complete")});
+}
+
 function showArticles(path,callback){
 
 	 var coordStr = pathToCoordinateString(path);

@@ -31,7 +31,8 @@ exports.find_by_coordinates = function(req, res){
             console.log('Error: ' + data.message);
         } else {
             console.log('JUICER REQUEST DONE');
-            res.json(data);
+            //res.json(data);
+            res.render('company-stories',{'articles':JSON.parse(data).articles});
         }
 
     });
