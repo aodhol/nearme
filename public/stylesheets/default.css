@@ -219,10 +219,6 @@ h2 {
 	margin-left: 1.0245901639344%; /* 10 / 976 */
 }
 
-#local-travel {
-	max-width: 50%;
-}
-
 #local-area {	
 	float: left;
 	height: 120px;
@@ -238,6 +234,15 @@ h2 {
 	height: 15px;
 	top: 0.1em;
 	margin-right: 0.5em;
+}
+
+
+#local-travel {
+	max-width: 40%;
+}
+
+#local-travel li {
+	margin-bottom: 0.25em;
 }
 
 #local-travel p {

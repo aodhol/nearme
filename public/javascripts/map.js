@@ -269,17 +269,42 @@ function setSelected(location){
 		$('section[role="main"]').html(data);		
 	});
 
-	var centroid = getCentroid(selectedLocation.getPath());
+	var centroid = getCentroid(selectedLocation.getPolygon().getPath());
 
-		getWeatherForCoordinates(centroid.y, centroid.x, function(data) {
-						if(data) {
-							$('#local-weather').html(data);
-						} else {
-							console.log("ERROR loading weather data:" + err.toString());
-						}
-					});
+	getWeatherForCoordinates(centroid.y, centroid.x, function(data) {
+		if(data) {
+			$('#local-weather').html(data);
+		} else {
+			console.log("ERROR loading weather data:" + err.toString());
+		}
+	});
+	
+	getTravelForCoordinates(centroid.y, centroid.x, function(data) {
+		if(data) {
+			$('#local-travel').html(data);
+		} else {
+			console.log("ERROR loading travel data");
+		}
+	});
 
+	getPeopleForCoordinates(centroid.y, centroid.x, function(data) {
+		if(data) {
+			$('#local-people').html(data);
+		} else {
+			console.log("ERROR loading local people data");
+		}
+	});
 
+	getCompaniesForCoordinates(centroid.y, centroid.x, function(data) {
+		if(data) {
+			$('#local-companies').html(data);
+		} else {
+			console.log("ERROR loading local company data");
+		}
+	});
+
+	$('#local').show();
+	$('#local-area').html('<p><span style="background-color:' + '#f80' + '"></span>'+ location.getLabelText() + '</p>');
 }
 
 function saveLocations(){

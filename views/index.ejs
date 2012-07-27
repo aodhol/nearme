@@ -76,16 +76,11 @@
 			<section id="local">
 				<div id="local-area"></div>
 				<div id="local-weather"></div>
-				<div id="local-travel">
-					<h3>Latest Travel News</h3>
-					<p>No reported incidents</p>
-				</div>
+				<div id="local-travel"></div>
 			</section>
 
 			<section role="main">
-				<div id="story-list">
-					<p>No local area selected.</p>
-				</div>
+				<div id="story-list"></div>
 				<section role="complementary"></section>
 			</section>
 
@@ -152,45 +147,15 @@
 						//path = location.getPolygon().getPath(),
 						//centroid = getCentroid(path);
 
-						setSelected(location);
+					setSelected(location);
 
-					/*
-					showArticles(path,function(err,data) {
+					/*showArticles(path,function(err,data) {
 						if(err !== null) {
 							$('section[role="main"]').html(data);
 						} else if(err !== null) {
 							console.log("Error:" + err);
 						}
 					});*/
-
-				
-
-					getTravelForCoordinates(centroid.y, centroid.x, function(data) {
-						if(data) {
-							$('#local-travel').html(data);
-						} else {
-							console.log("ERROR loading travel data");
-						}
-					});
-
-					getPeopleForCoordinates(centroid.y, centroid.x, function(data) {
-						if(data) {
-							$('#local-people').html(data);
-						} else {
-							console.log("ERROR loading local people data");
-						}
-					});
-
-					getCompaniesForCoordinates(centroid.y, centroid.x, function(data) {
-						if(data) {
-							$('#local-companies').html(data);
-						} else {
-							console.log("ERROR loading local company data");
-						}
-					});
-
-					$('#local-area').html('<p><span style="background-color:' + '#f80' + '"></span>'+ location.getLabelText() + '</p>');
-					$('#local').animate({opacity: 'show', height: 'show'});
 				});
 			});
 		</script>
