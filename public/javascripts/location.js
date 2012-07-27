@@ -9,9 +9,9 @@ function Location(_id,label,path,encodedPath){
 
 Location.prototype = {
 
-	makePolygon: function(){
+	makePolygon: function(path){
 		var polygon = new google.maps.Polygon({
-			path:this.getPath(),
+			path:path,
 			fillColor: this.colour || '#ff0000',
 			fillOpacity: 0.5,
 			strokeColor: '#ff0000',
@@ -31,7 +31,7 @@ Location.prototype = {
 	},
 	getPolygon: function(){
 		if(undefined == this.polygon){
-			this.polygon = this.makePolygon();
+			this.polygon = this.makePolygon(this.getPath());
 		}
 		return this.polygon;
 	},
