@@ -16,7 +16,7 @@
 
 	<script type="text/javascript" src="/javascripts/jquery-1.7.2.min.js"></script>
 
-    <script language="javascript" type="text/javascript" src="/javascripts/jquery.colorPicker.min.js"/></script>
+    <script language="javascript" type="text/javascript" src="/javascripts/jquery.colorPicker.min.js"></script>
 
 
 	<!-- <link rel="stylesheet" type="text/css" href="/stylesheets/weather.css"> -->
@@ -100,7 +100,10 @@
 				/* load location map - hide container when loaded */
 				initialiseMap('local-map');
 				google.maps.event.addListener(map, 'idle', function() {
-					$('#location-map').css('display', 'none').css('visibility', 'visible');
+					if (!mapLoaded) {
+						$('#location-map').css('display', 'none').css('visibility', 'visible');
+						mapLoaded = true;
+					}
 				});
 
 				/* toggle location map */
