@@ -34,7 +34,7 @@ exports.find_by_postcode = function(req, res){
 
         } else {
 
-            console.log('result: ' + geonameResult);
+            //console.log('result: ' + geonameResult);
 
             var parser = new xml2js.Parser();
 
@@ -67,7 +67,7 @@ exports.find_by_postcode = function(req, res){
 
                 } else {
 
-                    console.log('result: ' + JSON.stringify(locatorResult));
+                 //   console.log('result: ' + JSON.stringify(locatorResult));
 
                     /* Have tried using JSON.parse() but it raises 
                         the error 'Error: Failed to parse 
@@ -152,11 +152,11 @@ exports.find_by_coordinates = function(req, res){
 
         if (locatorResult instanceof Error) {
 
-            console.log('Error: ' + locatorResult.message);
+           // console.log('Error: ' + locatorResult.message);
 
         } else {
 
-            console.log('result: ' + JSON.stringify(locatorResult));
+            //console.log('result: ' + JSON.stringify(locatorResult));
 
             /* Have tried using JSON.parse() but it raises 
                 the error 'Error: Failed to parse 
@@ -174,7 +174,7 @@ exports.find_by_coordinates = function(req, res){
 
             geonameId = resultJSON.response.results.results[0].id;
             
-            console.log('LOCATION REQUEST DONE: id=' + geonameId);
+           // console.log('LOCATION REQUEST DONE: id=' + geonameId);
 
             var feedname = '3dayforecast';
 

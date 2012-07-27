@@ -90,7 +90,7 @@ function initialiseMap(mapCanvas) {
 			handleOverlayClick(location);
 			setSelected(location);
 
-			updateLocationList(locations);
+
 	
 			// showArticles(overlay.getPath(),function(err,data){
 			// 	if(err !== null){
@@ -307,8 +307,7 @@ function setSelected(location){
 	$('#local-area').html('<p><span class="area-colour" style="background-color:' +  location.getPolygon().fillColor + '"></span>'+ location.getLabelText() + '</p>');
 
 
-$('#set-location h2').text('Local to me - ' + (location.getLabelText() || ''));
-
+	$('#set-location h2').text('Local to me - ' + (location.getLabelText() || ''));
 
 }
 
@@ -316,7 +315,8 @@ function saveLocations(){
 
 	if(typeof(Storage) !== "undefined"){
 		console.log('STRINGIFIED:'+ JSON.stringify(locations));
-		localStorage.setItem('locations',JSON.stringify(locations));		
+		localStorage.setItem('locations',JSON.stringify(locations));
+		updateLocationList(locations);		
 	}
 }
 
