@@ -91,7 +91,7 @@
 
 			<section role="complementary" id="local-people"></section>
 
-			<section role="complementary" id="local-companies>"></section>
+			<section role="complementary" id="local-companies"></section>
 
 		</div>
 
@@ -148,7 +148,7 @@
 							if(data) {
 								$('#local-people').html(data);
 							} else {
-								console.log("ERROR loading local people data:" + err.toString());
+								console.log("ERROR loading local people data");
 							}
 						});
 
@@ -156,7 +156,7 @@
 							if(data) {
 								$('#local-companies').html(data);
 							} else {
-								console.log("ERROR loading local company data:" + err.toString());
+								console.log("ERROR loading local company data");
 							}
 						});
 					});
