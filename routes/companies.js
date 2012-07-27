@@ -32,7 +32,12 @@ exports.find_by_coordinates = function(req, res){
         } else {
             console.log('JUICER REQUEST DONE');
             //res.json(data);
-            res.render('company-stories',{'articles':JSON.parse(data).articles});
+            if (response.statusCode !== 404) {
+                res.render('company-stories',{'articles':JSON.parse(data).articles});
+            } else {
+                res.send('');
+            }
+
         }
 
     });
