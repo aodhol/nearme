@@ -100,7 +100,7 @@
 				<p>BBC &copy; 2012</p>
 			</div>
 		</footer>
-`
+
 		<script>
 			$(document).ready(function() {
 				/* load location map - hide container when loaded */
@@ -147,25 +147,22 @@
 					$('#favourite-locations > a').toggleClass('open');
 					$('#favourite-locations ul').animate({opacity: 'toggle', height: 'toggle'});
 
-					var location = locations[$(this).data('index')],
-						path = location.getPolygon().getPath(),
-						centroid = getCentroid(path);
-					
+					var location = locations[$(this).data('index')];
+						//path = location.getPolygon().getPath(),
+						//centroid = getCentroid(path);
+
+						setSelected(location);
+
+					/*
 					showArticles(path,function(err,data) {
 						if(err !== null) {
 							$('section[role="main"]').html(data);
 						} else if(err !== null) {
 							console.log("Error:" + err);
 						}
-					});
+					});*/
 
-					getWeatherForCoordinates(centroid.y, centroid.x, function(data) {
-						if(data) {
-							$('#local-weather').html(data);
-						} else {
-							console.log("ERROR loading weather data:" + err.toString());
-						}
-					});
+				
 
 					// getPeopleForCoordinates(centroid.y, centroid.x, function(data) {
 					// 	if(data) {

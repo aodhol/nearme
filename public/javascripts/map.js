@@ -3,7 +3,7 @@ var centroid = null;
 var locations;
 
 var infowindow = new google.maps.InfoWindow({ 
-	content:  "<label>Name:</label><input class='location-name' type='text'/><div><label for='color1'>Color 1</label><input id='color1' name='color1' type='text' value='#333399'/></div><button id='location-button'>Set</button>"
+	content:  "<label>Name: </label><input class='location-name' type='text'/><div><label for='color1'>Color: </label><input id='color1' name='color1' type='text' value='#333399'/></div><a class='location-link' href=''>Link</a><button id='location-button'>Set</button>"
 });
 
 var map,
@@ -42,6 +42,37 @@ function initialiseMap(mapCanvas) {
 
     drawLocations(locations,map);
 
+    //Handle drawing poly from query string.
+	var qsPoly = location.search.replace(/^.*?\=/, '');
+
+    if(qsPoly != ''){
+    	console.log('QS POLY:' + decodeURIComponent(qsPoly));
+		qsPoly = decodeURIComponent(qsPoly);
+
+		var label = new Label({"map":map});
+
+    	var qsLocation = new Location(new Date().getTime(),label,undefined,qsPoly);
+
+		var path = qsLocation.getPath();
+		console.log("path:" + path)
+
+		var centroid = getCentroid(path);
+
+		var centroidLatLng = new google.maps.LatLng(centroid.y,centroid.x);
+
+		label.set('position',centroidLatLng);
+
+		label.set('text','Place ' + (locations.length+1));
+
+		drawLocation(qsLocation,map);
+
+		locations.push(qsLocation);
+
+		saveLocations();
+					
+    }
+
+
 	google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
 		
 		//This doesn't do anything at present.
@@ -61,13 +92,13 @@ function initialiseMap(mapCanvas) {
 
 			updateLocationList(locations);
 	
-			showArticles(overlay.getPath(),function(err,data){
-				if(err !== null){
-					$('section[role="main"]').html(data);
-				}else{
-					console.log("Error:" + err);
-				}
-			});			
+			// showArticles(overlay.getPath(),function(err,data){
+			// 	if(err !== null){
+			// 		$('section[role="main"]').html(data);
+			// 	}else{
+			// 		console.log("Error:" + err);
+			// 	}
+			// });			
 		}	
 
 	});
@@ -96,13 +127,13 @@ function makeLocation(overlay,labelText){
 					
 	addListenersToLocation(loc);	
 
-	showArticles(path,function(err,data){
-		if(err !== null){
-			$('section[role="main"]').html(data);
-		}else{
-			console.log("Error:" + err);
-		}
-	});
+	// showArticles(path,function(err,data){
+	// 	if(err !== null){
+	// 		$('section[role="main"]').html(data);
+	// 	}else{
+	// 		console.log("Error:" + err);
+	// 	}
+	// });
 
 	return loc;
 }
@@ -126,6 +157,8 @@ function handleOverlayClick(location){
 	$('#color1').val(currentColour)
 		
 	$('#color1').colorPicker();
+
+	$('a.location-link').attr('href','?polygon=' + encodeURIComponent(location.getEncodedPath()));
     
 	$('#location-button').click(function(element){
 
@@ -148,6 +181,15 @@ function handleOverlayClick(location){
     }); 
 }
 
+function drawLocation(location,map){
+	var polygon = location.getPolygon();
+
+	var path = polygon.getPath();
+
+	polygon.setMap(map)
+
+	addListenersToLocation(location);
+}
 
 function drawLocations(locations,map){
 
@@ -155,24 +197,15 @@ function drawLocations(locations,map){
 
 		var location = locations[i];
 
-		var polygon = location.getPolygon();
+		drawLocation(location,map);
 
-		var path = polygon.getPath();
-
-		polygon.setMap(map)
-
-		addListenersToLocation(location);
-
-		showArticles(path,function(err,data){
-			
-			$('section[role="main"]').html(data);
-			
-		});
 	}
 }
      // google.maps.event.addDomListener(window, 'load', initialize);
 
 function addListenersToLocation(location){
+
+	console.log("adding liosteners to poly");
 
 	var path  = location.getPath();
 
@@ -232,6 +265,21 @@ function setSelected(location){
 	selectedLocation.selected = true;
 	selectedLocation.getPolygon().setOptions({"strokeWeight":3});
 
+	showArticles(location.getPath(),function(err,data){
+		$('section[role="main"]').html(data);		
+	});
+
+	var centroid = getCentroid(selectedLocation.getPath());
+
+		getWeatherForCoordinates(centroid.y, centroid.x, function(data) {
+						if(data) {
+							$('#local-weather').html(data);
+						} else {
+							console.log("ERROR loading weather data:" + err.toString());
+						}
+					});
+
+
 }
 
 function saveLocations(){
@@ -254,8 +302,8 @@ function retrieveLocations(map){
 		if(localStorageValues === "undefined"){
 			localStorageValues = "[]";
 		}
-		console.log("localstorage val:", localStorageValues)
 
+		console.log("localstorage val:", localStorageValues);
 
 		var retrievedLocations = JSON.parse(localStorageValues) || [];
 
@@ -280,7 +328,6 @@ function retrieveLocations(map){
         	label.set('position', new google.maps.LatLng(centroid.y,centroid.x));
 			
 			retrievedLocations[i] = location;//Replace stringified with real Location obj in ame array.
-
 
 			if(location.selected == true){
 				setSelected(location);

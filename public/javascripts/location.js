@@ -71,6 +71,6 @@ Location.prototype = {
 		return this.label;
 	},
 	toJSON: function(){
-		return {"_id":this._id, "labelText":this.getLabelText(),"encodedPath":this.getEncodedPath(),"colour":this.getPolygon().fillColor.toString(),"selected":this.selected || false};
+		return {"_id":this._id, "labelText":this.getLabelText(),"encodedPath":this.getEncodedPath(),"colour":this.getPolygon().fillColor,"selected":this.selected || false};
 	}
 }
