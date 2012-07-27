@@ -36,69 +36,43 @@ function initialiseMap(mapCanvas) {
 		}, polygonOptions:Location.defaultPolygonOptions
 	});
 
-	console.log("DEFAULT OPTS:",Location.defaultPolygonOptions)
-
 	drawingManager.setMap(map);
-        locations = retrieveLocations(map);
-        drawLocations(locations,map);
+        
+    locations = retrieveLocations(map);
 
-		google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
+    drawLocations(locations,map);
 
-
-			
-			//This doesn't do anything at present.
-			if (event.type == google.maps.drawing.OverlayType.CIRCLE) {
-				var radius = event.overlay.getRadius();
-			}
-
-			if (event.type == google.maps.drawing.OverlayType.POLYGON) {
-
-				var overlay = event.overlay;
-
-				var location = makeLocation(overlay);
-
-				drawingManager.setDrawingMode(null);
-				handleOverlayClick(location);
-				setSelected(location);
-
-				/*var path = overlay.getPath();
-
-				centroid = getCentroid(path);
- 			
-				var centroidLatLng = new google.maps.LatLng(centroid.y,centroid.x);*/
-
-				/*var label = new Label({"map":map});
-				label.set('position',centroidLatLng);
-				label.set('text','');
-
-				var loc = new Location(new Date().getTime(),label,path);
-				loc.setPolygon(overlay);
-
-				locations.push(loc);*/
-				updateLocationList(locations);
-
-			/*	saveLocations();
-								
-				addListenersToLocation(loc);	
+	google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
 		
-				showArticles(path,function(err,data){
-					if(err !== null){
-						$('section[role="main"]').html(data);
-					}else{
-						console.log("Error:" + err);
-					}
-				});*/
+		//This doesn't do anything at present.
+		if (event.type == google.maps.drawing.OverlayType.CIRCLE) {
+			var radius = event.overlay.getRadius();
+		}
 
-				
-			}
+		if (event.type == google.maps.drawing.OverlayType.POLYGON) {
 
-		
+			var overlay = event.overlay;
+
+			var location = makeLocation(overlay);
+
+			drawingManager.setDrawingMode(null);
+			handleOverlayClick(location);
+			setSelected(location);
+
+			updateLocationList(locations);
 	
-		});
+			showArticles(overlay.getPath(),function(err,data){
+				if(err !== null){
+					$('section[role="main"]').html(data);
+				}else{
+					console.log("Error:" + err);
+				}
+			});			
+		}	
 
-		//console.log(locations[0].getPolygon().getPath());
+	});
 
-      }//Init.
+}//Init.
 
 
 function makeLocation(overlay,labelText){
@@ -185,18 +159,14 @@ function drawLocations(locations,map){
 
 		var path = polygon.getPath();
 
-		console.log("PPPPPPPPP:",path);
-
 		polygon.setMap(map)
 
 		addListenersToLocation(location);
 
 		showArticles(path,function(err,data){
-			if(err !== null){
-				$('section[role="main"]').html(data);
-			}else{
-				console.log("Error:" + err);
-			}
+			
+			$('section[role="main"]').html(data);
+			
 		});
 	}
 }
@@ -229,6 +199,7 @@ function addListenersToLocation(location){
 	google.maps.event.addListener(location.getPolygon().getPath(), "insert_at", function(){
 
 		saveLocations();
+
 		var centroid = getCentroid(path);
 		showArticles(path,function(err,data){
 			$('section[role="main"]').html(data);
@@ -240,9 +211,13 @@ function addListenersToLocation(location){
 	});	
 
     google.maps.event.addListener(polygon,'click', function(event) {
-    	setSelected(location);
-
+    
 		handleOverlayClick(location);
+
+		if(location.selected != true){
+			setSelected(location);
+			saveLocations();
+		}
 	});
 
 }
@@ -255,9 +230,7 @@ function setSelected(location){
 
 	selectedLocation = location;
 	selectedLocation.selected = true;
-	selectedLocation.getPolygon().setOptions({"strokeWeight":2});
-
-	saveLocations();
+	selectedLocation.getPolygon().setOptions({"strokeWeight":3});
 
 }
 
@@ -275,7 +248,16 @@ function retrieveLocations(map){
 
 	if(typeof(Storage) !== "undefined"){
 		
-		var retrievedLocations = JSON.parse(localStorage.getItem('locations')) || [];
+		var localStorageValues = localStorage.getItem('locations');
+
+
+		if(localStorageValues === "undefined"){
+			localStorageValues = "[]";
+		}
+		console.log("localstorage val:", localStorageValues)
+
+
+		var retrievedLocations = JSON.parse(localStorageValues) || [];
 
 		for(var i = 0; i < retrievedLocations.length; i++){
 
@@ -291,11 +273,6 @@ function retrieveLocations(map){
 
 			location.selected = stringifiedLocation.selected;
 
-			if(location.selected == true){
-				console.log("AREA IS SELECTED");
-				setSelected(location);
-			}
-
 			var centroid = getCentroid(location.getPath());
 
           	label.set('text', stringifiedLocation.labelText || '');
@@ -303,11 +280,17 @@ function retrieveLocations(map){
         	label.set('position', new google.maps.LatLng(centroid.y,centroid.x));
 			
 			retrievedLocations[i] = location;//Replace stringified with real Location obj in ame array.
+
+
+			if(location.selected == true){
+				setSelected(location);
+			}
+
 		}
 
-		console.log("LOCS:",retrievedLocations)
 		updateLocationList(retrievedLocations);
 	}
+
 	return retrievedLocations;
 }
 
@@ -398,14 +381,10 @@ function findLocation(location,callback){
 	jqxhr.done(function(data) {
 
 		var parsed = data.split(/\n/);//data.split(/\n/g);
-		console.log(parsed[0]);
-		console.log(parsed[1]);
 
 		var cleansed = [];
 
 		for(var i = 0; i < parsed.length; i+=16){
-
-			console.log("LOOPING");
 
 			if(parsed[i].indexOf(".") > 1){
 
