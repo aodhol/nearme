@@ -7,20 +7,24 @@ function Location(_id,label,path,encodedPath){
 	//this.polygon = this.makePolygon(path);
 }
 
+Location.defaultPolygonOptions = {
+	fillColor: '#ff0000',
+	fillOpacity: 0.5,
+	strokeColor: '#ff0000',
+	strokeWeight: 1,
+	clickable: true,
+	editable: true,
+	zIndex: 1,
+	geodesic: true
+};
+
 Location.prototype = {
 
 	makePolygon: function(path){
-		var polygon = new google.maps.Polygon({
-			path:path,
-			fillColor: this.colour || '#ff0000',
-			fillOpacity: 0.5,
-			strokeColor: '#ff0000',
-			strokeWeight: 1,
-			clickable: true,
-			editable: true,
-			zIndex: 1,
-			geodesic: true
-		});
+
+		var options = {"fillColor":this.colour,"path":this.getPath()};
+		options = mergeOptions(Location.defaultPolygonOptions,options);
+		var polygon = new google.maps.Polygon(options);
 
 		return polygon;
 	},
