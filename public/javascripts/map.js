@@ -278,7 +278,7 @@ function setSelected(location){
 			console.log("ERROR loading weather data:" + err.toString());
 		}
 	});
-	
+
 	getTravelForCoordinates(centroid.y, centroid.x, function(data) {
 		if(data) {
 			$('#local-travel').html(data);
