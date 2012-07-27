@@ -332,6 +332,19 @@ function getWeatherForCoordinates(y, x, callback) {
 	jqxhr.always(function() { console.log("weather complete"); });
 }
 
+function getTravelForCoordinates(y, x, callback) {
+	var jqxhr = $.ajax( "/travel/coordinates/" + y + "," + x);
+
+	jqxhr.done(function(data) {
+		callback(data);
+	});
+
+	jqxhr.fail(function(e) { console.log("travel error");
+		callback(null);
+	});
+	jqxhr.always(function() { console.log("travel complete"); });
+}
+
 function getPeopleForCoordinates(y, x, callback) {
 	var jqxhr = $.ajax( "/articles/localpeople/coordinates/" + y + "," + x);
 

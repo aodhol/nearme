@@ -102,6 +102,7 @@
 		</footer>
 `
 		<script>
+
 			$(document).ready(function() {
 				/* load location map - hide container when loaded */
 				initialiseMap('local-map');
@@ -167,21 +168,29 @@
 						}
 					});
 
-					// getPeopleForCoordinates(centroid.y, centroid.x, function(data) {
-					// 	if(data) {
-					// 		$('#local-people').html(data);
-					// 	} else {
-					// 		console.log("ERROR loading local people data:" + err.toString());
-					// 	}
-					// });
+					getTravelForCoordinates(centroid.y, centroid.x, function(data) {
+						if(data) {
+							$('#local-travel').html(data);
+						} else {
+							console.log("ERROR loading travel data");
+						}
+					});
 
-					// getCompaniesForCoordinates(centroid.y, centroid.x, function(data) {
-					// 	if(data) {
-					// 		$('#local-companies').html(data);
-					// 	} else {
-					// 		console.log("ERROR loading local company data:" + err.toString());
-					// 	}
-					// });
+					getPeopleForCoordinates(centroid.y, centroid.x, function(data) {
+						if(data) {
+							$('#local-people').html(data);
+						} else {
+							console.log("ERROR loading local people data");
+						}
+					});
+
+					getCompaniesForCoordinates(centroid.y, centroid.x, function(data) {
+						if(data) {
+							$('#local-companies').html(data);
+						} else {
+							console.log("ERROR loading local company data");
+						}
+					});
 
 					$('#local-area').html('<p><span style="background-color:' + '#f80' + '"></span>'+ location.getLabelText() + '</p>');
 					$('#local').animate({opacity: 'show', height: 'show'});

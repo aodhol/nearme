@@ -128,7 +128,8 @@ exports.find_by_coordinates = function(req, res){
 
                         console.log('result: ' + geonameResult);
 
-                        res.json(travelResult);
+                        //res.json(travelResult);
+                        res.render('travel', travelResult);
 
                     }
 
