@@ -434,11 +434,11 @@ console.log("IS INT:" + re.test(num));
 function updateLocationList(locs) {
 	var i, list = '';
 
-	$('#favourite-locations').html('Favourite Locations (' + locs.length + ')<span></span>');
+	$('#favourite-locations > a').html('Favourite Locations (' + locs.length + ')<span></span>');
 	for (i = 0; i < locs.length; i++) {
 		list += '<li><a href="#" data-index="' + i + '">' + locs[i].getLabelText() + '</a></li>';
 	}
-	$('#location-list ul').html(list);
+	$('#favourite-locations ul').html(list);
 
 }
 
