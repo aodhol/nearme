@@ -1,0 +1,19 @@
+<h3>
+	Local Travel
+</h3>
+
+<ul>
+
+	<%
+	var i, tpegMessage;
+
+	for(i = 0; i < items.features.length && i < 2; i++) {
+		tpegMessage = items.features[i].properties.tpegMessage; %>
+	
+		<li>
+			<p><%= tpegMessage.summary.$ %></p>
+		</li>
+
+	<% } %>
+
+</ul>

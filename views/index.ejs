@@ -144,6 +144,14 @@
 							}
 						});
 
+						getTravelForCoordinates(centroid.y, centroid.x, function(data) {
+							if(data) {
+								$('#local-travel').html(data);
+							} else {
+								console.log("ERROR loading travel data");
+							}
+						});
+
 						getPeopleForCoordinates(centroid.y, centroid.x, function(data) {
 							if(data) {
 								$('#local-people').html(data);
