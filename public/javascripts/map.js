@@ -55,13 +55,17 @@ function initialiseMap(mapCanvas) {
 
 				var overlay = event.overlay;
 
-				makeLocation(overlay);
+				var location = makeLocation(overlay);
 
-				var path = overlay.getPath();
+				drawingManager.setDrawingMode(null);
+				handleOverlayClick(location);
+				setSelected(location);
+
+				/*var path = overlay.getPath();
 
 				centroid = getCentroid(path);
  			
-				var centroidLatLng = new google.maps.LatLng(centroid.y,centroid.x);
+				var centroidLatLng = new google.maps.LatLng(centroid.y,centroid.x);*/
 
 				/*var label = new Label({"map":map});
 				label.set('position',centroidLatLng);
@@ -126,7 +130,7 @@ function makeLocation(overlay,labelText){
 		}
 	});
 
-	return location;
+	return loc;
 }
 
 function handleOverlayClick(location){
