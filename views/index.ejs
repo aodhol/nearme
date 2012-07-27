@@ -139,11 +139,16 @@
 				});
 
 				$('#favourite-locations').on('click', 'ul a', function(e) {
+					
 					e.preventDefault();
+
 					$('#favourite-locations > a').toggleClass('open');
+					
 					$('#favourite-locations ul').animate({opacity: 'toggle', height: 'toggle'});
 
 					var location = locations[$(this).data('index')];
+
+
 						//path = location.getPolygon().getPath(),
 						//centroid = getCentroid(path);
 
