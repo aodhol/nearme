@@ -33,22 +33,18 @@ function initialiseMap(mapCanvas) {
 					//google.maps.drawing.OverlayType.CIRCLE,
 					google.maps.drawing.OverlayType.POLYGON
 				]
-		}, polygonOptions: {
-
-			fillOpacity: 0.5,
-			strokeColor: '#00FF00',
-			strokeWeight: 2,
-			clickable: true,
-			editable: true,
-			zIndex: 1
-		}
+		}, polygonOptions:Location.defaultPolygonOptions
 	});
+
+	console.log("DEFAULT OPTS:",Location.defaultPolygonOptions)
 
 	drawingManager.setMap(map);
         locations = retrieveLocations(map);
         drawLocations(locations,map);
 
 		google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
+
+
 			
 			//This doesn't do anything at present.
 			if (event.type == google.maps.drawing.OverlayType.CIRCLE) {
@@ -111,7 +107,7 @@ function makeLocation(overlay,labelText){
 
 	var label = new Label({"map":map});
 	label.set('position',centroidLatLng);
-	label.set('text',labelText || 'Place ' + locations.length+1);
+	label.set('text',labelText || 'Place ' + (locations.length+1));
 
 	var loc = new Location(new Date().getTime(),label,path);
 	loc.setPolygon(overlay);
@@ -208,7 +204,6 @@ function addListenersToLocation(location){
 
 	var polygon = location.getPolygon();
 
-
 	google.maps.event.addListener(location.getPolygon().getPath(), "set_at", function(){
 
 		var path = location.getPath();
@@ -226,7 +221,6 @@ function addListenersToLocation(location){
 		label.set('position',new google.maps.LatLng(centroid.y,centroid.x));
 		
 	});
-
 
 	google.maps.event.addListener(location.getPolygon().getPath(), "insert_at", function(){
 
@@ -252,14 +246,15 @@ function addListenersToLocation(location){
 function setSelected(location){
 	if(selectedLocation != undefined){
 		selectedLocation.selected = false;
-		selectedLocation.getPolygon().fillOpacity = 0.5;
+		selectedLocation.getPolygon().setOptions({"strokeWeight":1});
 	}
+
 	selectedLocation = location;
 	selectedLocation.selected = true;
+	selectedLocation.getPolygon().setOptions({"strokeWeight":2});
 
-	selectedLocation.getPolygon().fillColor = '#0000FF';
+	saveLocations();
 
-	console.log("location selected:" + selectedLocation.getLabelText());
 }
 
 function saveLocations(){
@@ -291,6 +286,11 @@ function retrieveLocations(map){
 			location.setEncodedPath(stringifiedLocation.encodedPath);	
 
 			location.selected = stringifiedLocation.selected;
+
+			if(location.selected == true){
+				console.log("AREA IS SELECTED");
+				setSelected(location);
+			}
 
 			var centroid = getCentroid(location.getPath());
 
