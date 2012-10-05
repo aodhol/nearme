@@ -29,10 +29,11 @@ exports.find_by_polygon_points = function(req,res){
 
     points = points.join(' ');
 
-    console.log({
-        'data':
-        '?thing omgeo:within(' + points + ') . ?url <http://data.press.net/ontology/tag/about> ?thing . ?url <http://purl.org/dc/terms/publisher> <http://www.bbc.co.uk/news/> .'
-    });
+    //Uncomment to debug.
+    // console.log({
+    //     'data':
+    //     '?thing omgeo:within(' + points + ') . ?url <http://data.press.net/ontology/tag/about> ?thing . ?url <http://purl.org/dc/terms/publisher> <http://www.bbc.co.uk/news/> .'
+    // });
 
     var request = restler.post('http://juicer.responsivenews.co.uk/api/articles.json?binding=url&limit=50',{'data':
         '?thing omgeo:within(' + points + ') . ?url <http://data.press.net/ontology/tag/about> ?thing . ?url <http://purl.org/dc/terms/publisher> <http://www.bbc.co.uk/news/> .'
@@ -50,7 +51,7 @@ exports.find_by_polygon_points = function(req,res){
                 //callback(null,results.articles);
                 //res.json(JSON.parse(data));
 
-                res.render('story-list',{'articles':JSON.parse(data).articles});
+                res.render('story-list',{'articles':data.articles});
             }
 
         });

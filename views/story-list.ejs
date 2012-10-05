@@ -6,14 +6,14 @@
 				<% 
 				var origin = '';
 
-				if(article.full_data.image){
-					origin = article.full_data.image.origin;
+				if(article.image){
+					origin = article.image.origin;
 				}
 
 				%>
 				<img src="<%= origin %>" alt="" />
 			</div>
-			<h3><%= article.full_data.title %></h3>
+			<h3><%= article.title %></h3>
 		</a>
 		<% var 	now = new Date(),
 				published = new Date(article.published),
@@ -22,6 +22,6 @@
 				publishedText = hours < 1 ? 'New' : hours + ' ' + (hours == 1 ? 'hour ago' : 'hours ago');
 		%>
 		<p class="<%= publishedClass %>"><%= publishedText %></p>
-		<p><%= article.full_data.intro %></p>
+		<p><%= article.description %></p>
 	</article>
 <%}%>
