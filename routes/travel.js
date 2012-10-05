@@ -101,7 +101,7 @@ exports.find_by_coordinates = function(req, res){
             var countyName = '';
 
             parser.parseString(geonameResult, function (err, parseResult){
-                if(parseResult != null){
+                if(parseResult != null && parseResult.countrySubdivision != undefined){
                     countyName = parseResult.countrySubdivision.adminName2;
                 }
             });
