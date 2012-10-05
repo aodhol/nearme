@@ -111,7 +111,7 @@ exports.find_by_coordinates = function(req, res){
 
                 callback(null,null);
             }else{
-                var results = JSON.parse(data); 
+                var results = data; 
                 populateArticlesForSection(section,results.articles);
                 callback(null,results.articles);
             }
@@ -253,7 +253,7 @@ exports.find_by_subject = function(req, res){
         if(response.statusCode !== 200){
             console.log("Non 200 response: " + response.statusCode);
         } else {
-            res.json(JSON.parse(data));
+            res.json(data);
         }
     });
 

@@ -33,7 +33,7 @@ exports.find_by_coordinates = function(req, res){
             console.log('JUICER REQUEST DONE');
             //res.json(data);
             if (response.statusCode !== 404) {
-                res.render('people-stories',{'articles':JSON.parse(data).articles});
+                res.render('people-stories',{'articles':data.articles});
             } else {
                 res.send('');
             }
