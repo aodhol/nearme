@@ -86,7 +86,7 @@ exports.find_by_coordinates = function(req, res){
     
     geonamesRequest.on('complete', function(geonameResult, response){
 
-        console.log('Status Code: ' + response.statusCode);
+        console.log('GEONAMES REQUEST complete - Status Code: ' + response.statusCode);
 
         if (geonameResult instanceof Error) {
 
@@ -120,15 +120,16 @@ exports.find_by_coordinates = function(req, res){
 
                 travelRequest.on('complete', function(travelResult, response){
 
-                    console.log('Status Code: ' + response.statusCode);
+                    console.log('TRAVEL API REQUEST complete - Status Code: ' + response.statusCode);
 
                     if (travelResult instanceof Error) {
 
                         console.log('Error: ' + travelResult.message);
+                        res.render('no-travel');
 
                     } else {
 
-                        console.log('result: ' + geonameResult);
+                        console.log('result: ' + travelResult);
 
                         //res.json(travelResult);
                         res.render('travel', travelResult);
@@ -139,7 +140,8 @@ exports.find_by_coordinates = function(req, res){
 
             } else {
                 console.log('County (' + countyName + ') not mapped');
-                res.send(404);
+                res.render('no-travel');
+                
             }
         }
 
