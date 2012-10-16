@@ -7,6 +7,15 @@
 	<%
 	var i, tpegMessage;
 
+	if (items.features.length <= 0) {%>
+
+		<li>
+			<p>There are currently no incidents reported for this region</p>
+		</li>
+
+	<%} else {
+		
+
 	for(i = 0; i < items.features.length && i < 2; i++) {
 		tpegMessage = items.features[i].properties.tpegMessage; %>
 	
@@ -14,6 +23,8 @@
 			<p><%= tpegMessage.summary.$ %></p>
 		</li>
 
-	<% } %>
+	<% }
+	}
+	%>
 
 </ul>
