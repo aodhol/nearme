@@ -1,0 +1,29 @@
+{
+    "name": "WWW iPhone Application Bootstrap",
+    "version": "1.2.17",
+    "published": "2011-10-20T12:26:23+00:00",
+	"updated": "2012-12-11T14:58:07+00:00",
+    "ticker_url": "http://www.bbc.co.uk/news/10284448/iosapp.json?edition=int",
+    "live_feed_uri_template": "http://www.bbc.co.uk/worldservice/meta/mobile/iphone/%7Bbandwidth%7D",
+    "ugc_sms_number": "+447624800100",
+    "ugc_email": "talkingpoint@bbc.co.uk",
+    "ugc_images_email": "yourpics@bbc.co.uk", 
+    "faq_url": "http://www.bbc.co.uk/moira/html/%7bdevice%7d/news/faq/en",
+    "conditions_url": "http://www.bbc.co.uk/terms",
+    "privacy_url": "http://www.bbc.co.uk/privacy",
+    "copyright": "BBC \u00A9 2012",
+    "feeds": [
+    {
+        "type": "group",
+        "title": "More",
+        "feeds": [
+        {
+            "title": "Top Stories",
+            "feed_url": "http://www.bbc.co.uk/moira/feed/news_world/front_page",
+            "default": true,
+            "movable": 0
+        }
+        ]
+    }
+    ]
+}
