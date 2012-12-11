@@ -1,0 +1,144 @@
+{
+    "name": "WWW iPhone Application Bootstrap",
+    "version": "1.2.17",
+    "published": "2011-10-20T12:26:23+00:00",
+	"updated": "2012-12-11T14:58:07+00:00",
+    "ticker_url": "http://www.bbc.co.uk/news/10284448/iosapp.json?edition=int",
+    "live_feed_uri_template": "http://www.bbc.co.uk/worldservice/meta/mobile/iphone/%7Bbandwidth%7D",
+    "ugc_sms_number": "+447624800100",
+    "ugc_email": "talkingpoint@bbc.co.uk",
+    "ugc_images_email": "yourpics@bbc.co.uk", 
+    "faq_url": "http://www.bbc.co.uk/moira/html/%7bdevice%7d/news/faq/en",
+    "conditions_url": "http://www.bbc.co.uk/terms",
+    "privacy_url": "http://www.bbc.co.uk/privacy",
+    "copyright": "BBC \u00A9 2012",
+    "feeds": [
+    {
+        "type": "group",
+        "title": "More",
+        "feeds": [
+        {
+            "title": "Top Stories",
+            "feed_url": "http://www.bbc.co.uk/moira/feed/news_world/front_page",
+            "default": true,
+            "movable": 0
+        },
+        {
+            "title": "US & Canada",
+            "feed_url": "http://www.bbc.co.uk/moira/feed/news_world/americas",
+            "default": true
+        },
+        {
+            "title": "Technology",
+            "feed_url": "http://www.bbc.co.uk/moira/feed/news_world/technology",
+            "default": true
+        },
+        {
+            "title": "Features & Analysis",
+            "feed_url": "http://www.bbc.co.uk/moira/feed/news_world/front_page/features_mobile_feed",
+            "default": true
+        },
+        {
+            "title": "Business",
+            "feed_url": "http://www.bbc.co.uk/moira/feed/news_world/business",
+            "default": true
+        },
+        {
+            "title": "Science & Environment",
+            "feed_url": "http://www.bbc.co.uk/moira/feed/news_world/science/nature",
+            "default": true
+        },
+        {
+            "title": "Europe",
+            "feed_url": "http://www.bbc.co.uk/moira/feed/news_world/europe"
+        },
+		{
+            "title": "Latin America",
+            "feed_url": "http://www.bbc.co.uk/moira/feed/news_world/world/latin_america"
+        },
+        {
+            "title": "UK",
+            "feed_url": "http://www.bbc.co.uk/moira/feed/news_world/uk_news"
+        },
+        {
+            "title": "Asia",
+            "feed_url": "http://www.bbc.co.uk/moira/feed/news_world/world/asia"
+        },
+        {
+            "title": "Middle East",
+            "feed_url": "http://www.bbc.co.uk/moira/feed/news_world/middle_east"
+        },
+        {
+            "title": "Africa",
+            "feed_url": "http://www.bbc.co.uk/moira/feed/news_world/africa"
+        },
+        {
+            "title": "Entertainment & Arts",
+            "feed_url": "http://www.bbc.co.uk/moira/feed/news_world/entertainment"
+        },
+        {
+            "title": "Health",
+            "feed_url": "http://www.bbc.co.uk/moira/feed/news_world/health"
+        },
+        {
+            "title": "Also in the News",
+            "feed_url": "http://www.bbc.co.uk/moira/feed/news_world/also_in_the_news"
+        },
+        {
+            "title": "Sport",
+            "feed_url": "http://www.bbc.co.uk/moira/feed/sport_world/front_page"
+        },
+        {
+			"title": "WATCH/LISTEN",
+            "feed_url": "http://www.bbc.co.uk/moira/feed/avod/iphone/news/en/v1"
+        },
+        {
+            "type": "group",
+            "title": "News in Other Languages",
+            "feeds": [
+            {
+                "title": "Mundo",
+                "feed_url": "http://www.bbc.co.uk/worldservice/syndication/mobileiq/iphone/mundo/homepage/full.xml",
+                "logo_url": "bbcimage://logomundo/wsdownload.bbc.co.uk/worldservice/images/branding/languages/iphone/mundo_125x19.png"
+            },
+            {
+                "title": "Brasil",
+                "feed_url": "http://www.bbc.co.uk/worldservice/syndication/mobileiq/iphone/portuguese/homepage/full.atom",
+                "logo_url": "bbcimage://logoportuguese/wsdownload.bbc.co.uk/worldservice/images/branding/languages/iphone/brasil_117x19.png"
+            },
+            {
+                "title": "Chinese (Traditional)",
+                "feed_url": "http://www.bbc.co.uk/worldservice/syndication/mobileiq/iphone/zhongwen/trad/homepage/full.xml",
+                "logo_url": "bbcimage://logozhongwentrad/wsdownload.bbc.co.uk/worldservice/images/branding/languages/iphone/chinese_117x19.png"
+            },
+            {
+                "title": "Chinese (Simple)",
+                "feed_url": "http://www.bbc.co.uk/worldservice/syndication/mobileiq/iphone/zhongwen/simp/homepage/full.xml",
+                "logo_url": "bbcimage://logozhongwensimp/wsdownload.bbc.co.uk/worldservice/images/branding/languages/iphone/chinese_117x19.png"
+            },
+            {
+                "title": "Russian",
+                "feed_url": "http://www.bbc.co.uk/worldservice/syndication/mobileiq/iphone/russian/homepage/full.xml",
+                "logo_url": "bbcimage://logorussian/wsdownload.bbc.co.uk/worldservice/images/branding/languages/iphone/russian_220x19.png"
+            },
+            {
+                "title": "Arabic",
+                "feed_url": "http://www.bbc.co.uk/worldservice/syndication/mobileiq/iphone/arabic/homepage/full.xml",
+                "logo_url": "bbcimage://logoarabic/wsdownload.bbc.co.uk/worldservice/images/branding/languages/iphone/arabic_121x29.png"
+            },
+            {
+                "title": "Persian",
+                "feed_url": "http://www.bbc.co.uk/worldservice/syndication/mobileiq/iphone/persian/homepage/full.xml",
+                "logo_url": "bbcimage://logopersian/wsdownload.bbc.co.uk/worldservice/images/branding/languages/iphone/persian_117x24.png"
+            },
+            {
+                "title": "Urdu",
+                "feed_url": "http://www.bbc.co.uk/worldservice/syndication/mobileiq/iphone/urdu/homepage/full.atom",
+                "logo_url": "bbcimage://logourdu/wsdownload.bbc.co.uk/worldservice/images/branding/languages/iphone/urdu_117x28.png"
+            }
+            ]
+        }
+        ]
+    }
+    ]
+}

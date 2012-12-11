@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <title>BBC News | Home</title>
+  <updated>2012-12-11T15:54:49+00:00</updated>
+  <id>urn:news-bbc-co-uk:section:10263779</id>
+  <author>
+    <name>BBC</name>
+  </author>
+  <entry>
+    <title>Crowds gather for Cairo rallies</title>
+    <summary>Crowds are gathering in the Egyptian capital Cairo for rival demonstrations ahead of a referendum on a controversial new constitution.</summary>
+    <category term="World/Middle East" label="World/Middle East"/>
+    <updated>2012-12-11T15:39:12+00:00</updated>
+    <id>urn:news-bbc-co-uk:story:20671270</id>
+    <link href="http://www.bbc.co.uk/news/world-middle-east-20671270" type="text/html" rel="alternate" title="Crowds gather for Cairo rallies"/>
+    <media:thumbnail url="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20671270/ichef.bbci.co.uk/moira/img/%7bdevice%7d/thumbnail/64695000/jpg/_64695143_016719397-1.jpg"/>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml" class="body">
+        <div class="fullwidth_img">
+          <a href="bbcvideo://urn%3Anews-bbc-co-uk%3Astory%3A20671270/www.bbc.co.uk/moira/avod/%7bdevice%7d/av/news/world-middle-east-20675361/news/world/936000/936341/%7bbandwidth%7d">
+            <img class="fullwidth_640x360" src="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20671270/ichef.bbci.co.uk/moira/img/%7bdevice%7d/styfull/64687000/jpg/_64687348_64687347.jpg" alt="A wall protecting the presidential palace in Cairo"/>
+          </a>
+        </div>
+        <p>Crowds are gathering in the Egyptian capital Cairo for rival rallies as emotions run high ahead of a referendum due to take place on Saturday.</p>
+        <p>Largely secular opposition groups are converging on the presidential palace as Islamists gather in Tahrir Square.</p>
+        <p>Islamist President Mohammed Morsi, who called the vote to ratify a new constitution, has asked the army to maintain security. </p>
+        <p>Egypt has asked the IMF to delay a loan because of political turmoil.</p>
+        <div class="fullwidth_img">
+          <img class="fullwidth_464x261" alt="Protesters outside the presidential palace in Cairo" src="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20671270/ichef.bbci.co.uk/moira/img/%7bdevice%7d/styfull/64692000/jpg/_64692613_016719397-1.jpg" copyrightHolder="AFP" type="thumbnail"/>
+          <div class="fullwidth_img_caption">Anti-Morsi protesters tried to remove barriers outside the presidential palace</div>
+        </div>
+        <p>Egypt requested the delay to the $4.8bn (£3.6bn) loan after President Morsi suspended a programme to increase taxes, Prime Minister Hisham Qandil told a news conference. </p>
+        <p>The International Monetary Fund says it "stands ready to continue supporting Egypt during the ongoing transition and to consult with the authorities on the resumption of discussions regarding the [loan]. </p>
+        <p>The Egyptian economy has been hard hit by nearly two years of political upheaval since the protests which toppled ex-President Hosni Mubarak in February 2011. </p>
+        <p class="subtitle">Tanks and soldiers</p>
+        <p>Four separate opposition protest marches are due to converge on the presidential palace, which has been walled off with concrete blocks and ringed with tanks. </p>
+        <p>Hundreds of soldiers are guarding the palace perimeter. </p>
+        <p>At least nine people were hurt early on Tuesday when shots were fired at opposition protesters in central Cairo.</p>
+        <p>The opposition wants the referendum scrapped, arguing that the constitution was drafted by an Islamist-dominated assembly, weakens human rights and fails to guarantee women's rights.</p>
+        <p>The president has tried to calm public anger by annulling a 22 November decree boosting his powers, but has given the army powers to arrest civilians over the next few days.</p>
+        <p>However, some rulings of his controversial decree - which stripped the judiciary of any right to challenge his decisions - will stand.</p>
+        <p>The general prosecutor, who was dismissed, will not be reinstated, and the retrial of former regime officials will go ahead.</p>
+        <p>Petrol bombs were thrown and shots fired at opposition demonstrators camping in Tahrir Square in the early hours of Tuesday.</p>
+        <p>Nine people received limb injuries from the unidentified attackers, while another protester suffered a head injury, Al-Misri al-Yawm newspaper reported.</p>
+        <p>After the attack, police cars were deployed around the square for the first time this month.</p>
+        <p>Pro-Morsi demonstrators from an umbrella group calling itself the Alliance of Islamist Forces - made of Muslim Brotherhood and Salafist groups - were also said to be gathering at two mosques in Nasser City, a suburb of Cairo.</p>
+        <p>The Muslim Brotherhood was reportedly hoping for two "million-man" marches to converge in support of the referendum and the president, under the slogan: "Yes to legitimacy."</p>
+        <p>Although their route was unclear, spokesman Mahmoud Ghozlan told state-owned al-Ahram newspaper that there was no plan to head for the presidential palace. </p>
+        <p>Hundreds of Islamist demonstrators were also staging a sit-in outside a Cairo media complex that hosts the studios of several private TV channels, which pro-Morsi protesters accuse of bias.</p>
+        <p>Seven people died and hundreds more were wounded in clashes between rival protesters outside the palace last Wednesday night.</p>
+        <p>There are fears there could be more violence if rival groups of protesters come face to face, the BBC's Jon Leyne in Cairo reports.  </p>
+        <p>Because several anti-Morsi marches have been organised across Cairo, they could potentially cross paths with the main pro-Morsi demonstrations.</p>
+        <p>Protests have also been planned in the cities of Alexandria and Assiut.</p>
+        <p class="crosshead">Weakened force</p>
+        <p>The army presence on the capital's streets has also raised fears Egypt is moving back towards military rule, our correspondent says.</p>
+        <p>President Morsi granted the army powers of arrest on Sunday until the results of Saturday's referendum were announced, calling on the military to co-ordinate with the police in maintaining security.</p>
+        <p>The police, seen as a weakened force since the fall of ex-President Hosni Mubarak, failed to intervene when anti-Muslim Brotherhood protesters ransacked the Islamist movement's Cairo headquarters last week.</p>
+        <p>By pressing ahead with a referendum on the constitution, the president says he is trying to safeguard the revolution that overthrew the former president last year, but critics calling for large turnouts at Tuesday's protest accuse him of acting like a dictator.</p>
+        <p>The opposition National Salvation Front has said it will not recognise the draft constitution, as it was drafted by an assembly dominated by Mr Morsi's Islamist allies. </p>
+        <p>NSF chief co-ordinator Mohammed ElBaradei said the "sham" draft constitution defied Egyptians' "basic rights of freedom".</p>
+        <p>"It doesn't establish proper democratic systems, so at this stage at least we have decided that we are going to continue to fight tooth and nail against the referendum," the Nobel peace prize winner told the BBC.</p>
+        <p>Mr ElBaradei would not go so far as to call for a boycott of Saturday's vote, but said he hoped the turnout at Tuesday's protests would persuade Mr Morsi to postpone the referendum until consensus was reached through dialogue on a "proper, democratic" constitution.</p>
+        <p>Meanwhile, Mohamed Soudan, foreign relations secretary of the Muslim Brotherhood's Freedom and Justice Party, said Mr Morsi was constitutionally bound to go ahead with Saturday's vote because the date had been announced by the constituent assembly.</p>
+        <div class="fullwidth_img">
+          <img class="fullwidth_624x411" alt="map" src="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20671270/ichef.bbci.co.uk/moira/img/%7bdevice%7d/styfull/64692000/jpg/_64692050_egypt_cairo_protests_624.jpg" copyrightHolder="BBC" type="thumbnail"/>
+        </div>
+      </div>
+    </content>
+  </entry>
+  <entry>
+    <title>HSBC agrees $1.9bn US penalties</title>
+    <summary>HSBC is to pay US authorities record penalties of $1.9bn (£1.2bn) after failing to prevent money passing to "drug kingpins and rogue nations".</summary>
+    <category term="Business" label="Business"/>
+    <updated>2012-12-11T15:44:29+00:00</updated>
+    <id>urn:news-bbc-co-uk:story:20673466</id>
+    <link href="http://www.bbc.co.uk/news/business-20673466" type="text/html" rel="alternate" title="HSBC agrees $1.9bn US penalties"/>
+    <media:thumbnail url="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20673466/ichef.bbci.co.uk/moira/img/%7bdevice%7d/thumbnail/64687000/jpg/_64687137_t866fani.jpg"/>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml" class="body">
+        <div class="fullwidth_img">
+          <a href="bbcvideo://urn%3Anews-bbc-co-uk%3Astory%3A20673466/www.bbc.co.uk/moira/avod/%7bdevice%7d/av/news/business-18968996/news/business/895000/895645/%7bbandwidth%7d">
+            <img class="fullwidth_640x360" src="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20673466/ichef.bbci.co.uk/moira/img/%7bdevice%7d/styfull/61771000/jpg/_61771811_61771810.jpg" alt="Lord Green"/>
+          </a>
+        </div>
+        <p>HSBC has confirmed it is to pay US authorities $1.9bn (£1.2bn) in a settlement over money laundering, the largest paid in such a case.</p>
+        <p>A US Senate investigation said the UK-based bank had been a conduit for "drug kingpins and rogue nations".</p>
+        <p>Money laundering is the process of disguising the proceeds of crime so that the money cannot be linked to the wrongdoing.</p>
+        <p>HSBC admitted having poor money laundering controls and apologised.</p>
+        <div class="inline_img">
+          <img class="inline_304x171" alt="HSBC branch" src="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20673466/ichef.bbci.co.uk/moira/img/%7bdevice%7d/styhalf/64687000/jpg/_64687146_owjhc7qm.jpg" copyrightHolder="Reuters" type="thumbnail"/>
+          <div class="inline_img_caption">HSBC has admitted its money laundering controls have been too lax</div>
+        </div>
+        <p>"We accept responsibility for our past mistakes," said HSBC group chief executive Stuart Gulliver in a statement.</p>
+        <p>"We have said we are profoundly sorry for them, and we do so again."</p>
+        <p>The bank said it had spent $290m on improving its systems to prevent money laundering and clawed back some bonuses paid to senior executives in the past. </p>
+        <p>It also said it expected to reach an agreement with the UK's Financial Services Authority shortly.</p>
+        <p>Last month it announced it had set aside $1.5bn to cover the costs of any settlement or fines.</p>
+        <p>The news followed the announcement of a similar but much smaller settlement with UK-based Standard Chartered bank, which will pay $300m in fines for violating US sanctions.</p>
+        <p>The cases are seen as part of a crackdown on money laundering and sanctions violations being led by federal government agencies and New York state authorities.</p>
+        <p class="subtitle">Senate criticism</p>
+        <p>The settlement had been widely expected following a report by the US Senate, published earlier this year, that was heavily critical of HSBC's money laundering controls. </p>
+        <p>The report alleged that:</p>
+        <p>HSBC in the US had not treated its Mexican affiliate as high risk, despite the country's money laundering and drug trafficking challenges</p>
+        <p>The Mexican bank had transported $7bn in US bank notes to HSBC in the US, more than any other Mexican bank, but had not considered that to be suspicious</p>
+        <p>It had circumvented US safeguards designed to block transactions involving terrorists drug lords and rogue states, including allowing 25,000 transactions over seven years without disclosing their links to Iran</p>
+        <p>Providing US dollars and banking services to some banks in Saudi Arabia despite their links to terrorist financing</p>
+        <p>In less than four years it had cleared $290m in "obviously suspicious" US travellers' cheques for a Japanese bank, benefiting Russians who claimed to be in the used car business</p>
+        <p>The report suggested HSBC accounts in Mexico and the US were being used by drug barons to launder money.</p>
+        <p>"The banks became very overextended, not just in lending on property, which we all know about, but in this case, for example, buying businesses in Mexico about which, it turned out, they knew too little," Sir John Gieve, former deputy governor of the Bank of England told the BBC.</p>
+        <p>The Senate report also said HSBC regularly circumvented restrictions on dealings with Iran, North Korea, and other states subject to US sanctions.</p>
+        <p>BBC business editor Robert Peston said that as big as the $1.9bn penalty looks, it could have been much worse.</p>
+        <p>"HSBC has signed a Deferred Prosecution Agreement for breaches of the US Bank Secrecy Act, the Trading with the Enemy Act and assorted money laundering offences. This is in effect putting the bank on probation," he said. </p>
+        <p>"But if HSBC had been indicted for these offences, that would have meant that the US government and others could no longer have conducted business with it, which would have been humiliating and highly damaging."</p>
+        <p class="crosshead">'Failures'</p>
+        <p>The bank stressed that it had taken on new senior management since the time the problems happened.</p>
+        <p>Lord Green was chairman of HSBC from 2006 until late 2010 and is now Minister of State for Trade and Investment.</p>
+        <p>In a statement, his department said: "The report by the US Senate Sub-Committee sets out in detail the evidence submitted to it, and the action taken by HSBC to ensure compliance with US regulations at the time that Lord Green was group chairman. It is for HSBC to respond to this report.</p>
+        <p>"At the time of the report's publication HSBC expressed its regret that there were failures of implementation and Lord Green has said that he shares that regret."</p>
+        <p>HSBC has announced it has appointed a former US official to work as its head of financial crime compliance, which is a new position.</p>
+        <p>Bob Werner was previously the head of the US Treasury's Office of Foreign Assets Control (OFAC) - the agency responsible for enforcing the US sanctions on countries including Iran.</p>
+        <p>He will be responsible for beefing up HSBC's anti-money laundering and sanctions compliance systems.</p>
+        <p>It is unclear what impact the case will have on HSBC's business. The bank is the biggest in Europe by market capitalisation, and made pre-tax profits of $12.7bn for the first six months of 2012.</p>
+      </div>
+    </content>
+  </entry>
+  <entry>
+    <title>Nelson Mandela has lung infection</title>
+    <summary>Nelson Mandela is responding to treatment for a lung infection three days after he was rushed to hospital, South African officials say.</summary>
+    <category term="World/Africa" label="World/Africa"/>
+    <updated>2012-12-11T12:10:58+00:00</updated>
+    <id>urn:news-bbc-co-uk:story:20677168</id>
+    <link href="http://www.bbc.co.uk/news/world-africa-20677168" type="text/html" rel="alternate" title="Nelson Mandela has lung infection"/>
+    <media:thumbnail url="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20677168/ichef.bbci.co.uk/moira/img/%7bdevice%7d/thumbnail/64691000/jpg/_64691092_mandela.jpg"/>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml" class="body">
+        <div class="fullwidth_img">
+          <img class="fullwidth_464x261" alt="A man reads a newspaper with news about Nelson Mandela's health in Johannesburg (10 December 2012)" src="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20677168/ichef.bbci.co.uk/moira/img/%7bdevice%7d/styfull/64689000/jpg/_64689670_sowetan.jpg" copyrightHolder="AFP" type="thumbnail"/>
+          <div class="fullwidth_img_caption">Nelson Mandela's hospitalisation has caused huge concern in South Africa</div>
+        </div>
+        <p>South Africa's first black President Nelson Mandela is being treated for a lung infection, the president's office has said. </p>
+        <p>This is the first time officials have revealed why Mr Mandela, 94, was rushed to a military hospital in the capital, Pretoria, on Saturday.  </p>
+        <p>Tests showed a "recurrence of a previous lung infection", presidential spokesman Mac Maharaj said. </p>
+        <p>Mr Mandela is responding to his treatment, Mr Maharaj added. </p>
+        <p>News of the hospital stay has prompted much concern in South Africa. </p>
+        <p>The former president is regarded by most South Africans as the father of the nation, having inspired them to fight for democracy. </p>
+        <p>He led the struggle against white-minority rule before being elected the first black president in democratic elections in 1994.</p>
+        <p>Despite being imprisoned for 27 years by the apartheid government, after his release he forgave his former enemies and urged South Africans of all races to work together and seek reconciliation.</p>
+        <p>He was awarded the Nobel Peace Prize in 1993.</p>
+        <p>The BBC's Andrew Harding in Johannesburg says news that the frail Mr Mandela has another lung infection is likely to generate considerable anxiety.  </p>
+        <p>The officials who have visited Mr Mandela in hospital since Saturday have all said he is doing well.</p>
+        <p>He was flown to hospital on Saturday from his home in Qunu village in Eastern Cape province by the military, which is responsible for his healthcare.</p>
+        <p>Local media reported that the decision to move him was taken so quickly that some family members and his own foundation were initially unaware of it.</p>
+        <p>But Mr Maharaj has repeatedly said that Mr Mandela is doing well in hospital and there is no cause for alarm. </p>
+        <p>Mr Mandela was last admitted to hospital in February when he was treated for abdominal pain. </p>
+        <p>In January 2011, he was treated for a serious chest infection. </p>
+        <p>While in  prison in the 1980s, Mr Mandela was also diagnosed with tuberculosis.</p>
+        <p>Mr Mandela retired from public life in 2004 and has been rarely seen in public since.</p>
+      </div>
+    </content>
+  </entry>
+  <entry>
+    <title>Cayman Islands premier arrested</title>
+    <summary>Cayman Islands premier McKeeva Bush is arrested as part of a corruption investigation, local police announce.</summary>
+    <category term="World/Latin America" label="World/Latin America"/>
+    <updated>2012-12-11T15:53:01+00:00</updated>
+    <id>urn:news-bbc-co-uk:story:20679259</id>
+    <link href="http://www.bbc.co.uk/news/world-latin-america-20679259" type="text/html" rel="alternate" title="Cayman Islands premier arrested"/>
+    <media:thumbnail url="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20679259/ichef.bbci.co.uk/moira/img/%7bdevice%7d/thumbnail/64700000/jpg/_64700573_cayman_bush304_ap.jpg"/>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml" class="body">
+        <div class="inline_img">
+          <img class="inline_304x171" alt="Cayman Islands' leader McKeeva Bush" src="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20679259/ichef.bbci.co.uk/moira/img/%7bdevice%7d/styhalf/64343000/jpg/_64343787_cayman_bush304_ap.jpg" copyrightHolder="AP" type="thumbnail"/>
+          <div class="inline_img_caption">McKeeva Bush was sworn in as leader of the islands' government in May 2009</div>
+        </div>
+        <p>The premier of the Cayman Islands has been arrested as part of a corruption investigation, local police say.</p>
+        <p>The charges against McKeeva Bush, 57, include misuse of a government credit card and importing explosive materials.</p>
+        <p>Mr Bush had been in power since his United Democratic Party (UDP) won general elections in 2009.</p>
+        <p>The British overseas territory is one of the world's largest financial centres and a well-known tax haven.</p>
+        <p>On its website, the Royal Cayman Islands Police Force said: "The Premier of the Cayman Islands, McKeeva Bush (57), has been arrested and is currently detained in police custody in connection with a number of ongoing police investigations."</p>
+        <p>Mr Bush previously held the post of leader of the islands' government between November 2001 and May 2005. </p>
+        <p>A member of the legislative assembly representing West Bay, he also holds the post of minister of finance, tourism and development. </p>
+      </div>
+    </content>
+  </entry>
+  <entry>
+    <title>Honey bees' genetic code unlocked</title>
+    <summary>Researchers believe they have unlocked the genetic secrets as to why honey bees are so sensitive to environmental change.</summary>
+    <category term="Science and Environment" label="Science and Environment"/>
+    <updated>2012-12-11T09:30:01+00:00</updated>
+    <id>urn:news-bbc-co-uk:story:20667948</id>
+    <link href="http://www.bbc.co.uk/news/science-environment-20667948" type="text/html" rel="alternate" title="Honey bees' genetic code unlocked"/>
+    <media:thumbnail url="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20667948/ichef.bbci.co.uk/moira/img/%7bdevice%7d/thumbnail/64682000/jpg/_64682679_beeonflower4.jpg"/>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml" class="body">
+        <p class="author">By Mark Kinver</p>
+        <p class="description">Environment reporter, BBC News</p>
+        <div class="inline_img">
+          <img class="inline_304x400" alt="honey bee" src="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20667948/ichef.bbci.co.uk/moira/img/%7bdevice%7d/styhalf/64682000/jpg/_64682607_beeonflower3.jpg" copyrightHolder="other" type="thumbnail"/>
+          <div class="inline_img_caption">Researchers hope the findings will shed light on how honey bees develop</div>
+        </div>
+        <p>Researchers say they have unlocked the genetic secrets of honey bees' high sensitivity to environmental change.</p>
+        <p>Scientists from the UK and Australia think their findings could help show links between nutrition, environment and the insects' development.</p>
+        <p>It could, they suggest, offer an insight into problems like Colony Collapse Disorder, a mysterious cause of mass bee deaths globally.</p>
+        <p>The findings appear in Insect Biochemistry and Molecular Biology. </p>
+        <p>"Honey bees live in complex societies comprising tens of thousands of individuals,"  explained study co-author Paul Hurd from Queen Mary, University of London.</p>
+        <p>"Most of these are female 'worker' honeybees that are unable to reproduce and instead devote their short lives to finding food in flowers... and other tasks such as nursing larvae inside the hive." </p>
+        <p>But the hive has a queen as well - the much longer-lived, reproductive head of the hive, </p>
+        <p>"When the queen bee lays her eggs, worker bees can determine whether the resulting larvae are to become an adult worker bee or an adult queen bee," Dr Hurd said. </p>
+        <p>"The type of food the larvae is fed dictates the developmental outcome - larvae destined to become workers are fed a pollen and nectar diet, and those destined to become queens are fed royal jelly. </p>
+        <p>"This difference in feeding is maintained over the entire lifetime of the worker or queen bee."</p>
+        <p>The change is suggested to be the result of a "histone code" - a process that sees genetic changes made to proteins called histones within cells' nuclei. Rather than "genetic" changes that are locked into DNA, these are known as "epigenetic" changes.</p>
+        <p>The report marks the first time such effects had been recorded in honey bees.</p>
+        <p>"The development of different bees from the same DNA in the larvae is one of the clearest examples of epigenetics in action - mechanisms that go beyond the basic DNA sequence," said co-author Mark Dickman from the University of Sheffield.</p>
+        <p>"From our knowledge of how the histone code works with in other organisms, we think the marks on the histone proteins might act as one of the switches that control how the larvae develop."</p>
+      </div>
+    </content>
+  </entry>
+  <entry>
+    <title>Delta buys into Virgin Atlantic</title>
+    <summary>Delta Airlines agrees to buy Singapore Airlines' 49% stake in Virgin Atlantic, in a deal which was the subject of a high-profile spat between Sir Richard Branson and BA's Willie Walsh.</summary>
+    <category term="Business" label="Business"/>
+    <updated>2012-12-11T15:24:46+00:00</updated>
+    <id>urn:news-bbc-co-uk:story:20680680</id>
+    <link href="http://www.bbc.co.uk/news/business-20680680" type="text/html" rel="alternate" title="Delta buys into Virgin Atlantic"/>
+    <media:thumbnail url="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20680680/ichef.bbci.co.uk/moira/img/%7bdevice%7d/thumbnail/64696000/jpg/_64696917_64696855.jpg"/>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml" class="body">
+        <div class="inline_img">
+          <img class="inline_304x171" alt="Virgin plane" src="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20680680/ichef.bbci.co.uk/moira/img/%7bdevice%7d/styhalf/64696000/jpg/_64696854_64696853.jpg" copyrightHolder="Reuters" type="thumbnail"/>
+          <div class="inline_img_caption">The new partners said the tie-up would allow them to overcome slot constraints at Heathrow</div>
+        </div>
+        <p>Delta Air Lines has agreed a deal to buy Singapore Airlines' 49% stake in Virgin Atlantic for $360m (£224m).</p>
+        <p>Virgin Group and Sir Richard Branson will retain a 51% shareholding, and the Virgin brand will remain in place, the new partners said in a joint statement.</p>
+        <p>The deal is subject to regulatory approval in the US and Europe.</p>
+        <p>It follows a spat between Sir Richard and Willie Walsh, boss of BA-owner International Airlines Group over the future of Virgin Atlantic.</p>
+        <p>Earlier, Mr Walsh offered to wager a "knee in the groin" in a bet with Sir Richard over whether the Virgin brand would still be around in five years.</p>
+        <p>He was responding to a £1m bet offered by Sir Richard on Monday.</p>
+        <p class="subtitle">'Exciting day'</p>
+        <p>Virgin and Delta said the deal would allow allow them to "overcome slot constraints" and offer more flights from Heathrow.</p>
+        <p>The carriers will operate 31 peak-day round trips between the UK and North America.</p>
+        <p>"Our new partnership with Virgin Atlantic will strengthen both airlines and provide a more effective competitor between North America and the UK, particularly on the New York-London route," said Delta boss Richard Anderson.</p>
+        <p>Sir Richard said it was an "exciting day" in Virgin's history.</p>
+        <p>"It signals the start of a new era of expansion, financial growth and many opportunities for our customers and our business."</p>
+        <p>Singapore Airlines is selling its stake, which it has owned since 1999, because of increased competition in its local market. </p>
+        <p>Low-cost airlines in particular have mushroomed, threatening more traditional carriers like Singapore Airlines. </p>
+        <p>Singapore Airlines has itself launched a low-cost carrier, called Scoot, and has been putting money into its regional service, SilkAir. </p>
+      </div>
+    </content>
+  </entry>
+  <entry>
+    <title>Michigan in right-to-work protest</title>
+    <summary>Thousands of protesters gather in the state of Michigan as lawmakers are poised to approve a "right-to-work" law limiting union powers.</summary>
+    <category term="World/US and Canada" label="World/US and Canada"/>
+    <updated>2012-12-11T15:34:04+00:00</updated>
+    <id>urn:news-bbc-co-uk:story:20682190</id>
+    <link href="http://www.bbc.co.uk/news/world-us-canada-20682190" type="text/html" rel="alternate" title="Michigan in right-to-work protest"/>
+    <media:thumbnail url="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20682190/ichef.bbci.co.uk/moira/img/%7bdevice%7d/thumbnail/64697000/jpg/_64697886_64697681.jpg"/>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml" class="body">
+        <div class="fullwidth_img">
+          <img class="fullwidth_464x261" alt="Demonstrators outside the state Capitol in Lansing, Michigan 11 December 2012" src="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20682190/ichef.bbci.co.uk/moira/img/%7bdevice%7d/styfull/64697000/jpg/_64697892_64697891.jpg" copyrightHolder="AP" type="thumbnail"/>
+          <div class="fullwidth_img_caption">The protest was expected to be one of the biggest in Michigan's history</div>
+        </div>
+        <p>A mass protest is under way at the statehouse in Michigan as lawmakers seemed set to pass a measure limiting labour union powers.</p>
+        <p>Republicans, who control the state legislature, plan to ban a requirement that workers pay union fees as a condition of employment.</p>
+        <p>The so-called "right-to-work" bill could be signed into law by Michigan Governor Rick Snyder later this week.</p>
+        <p>If the measure succeeds, Michigan would become the 24th right-to-work state.</p>
+        <p>Thousands of protesters gathered outside the state Capitol in Lansing on Tuesday morning, ahead of what could be final votes on the bill.</p>
+        <p class="subtitle">'Sacrifices'</p>
+        <p>One demonstrator, Sharon Mowers, who is a member of United Auto Workers and has worked at General Motors for 13 years, said she was worried that passage of the bill would mean lower wages.</p>
+        <p>"People don't understand the labour movement," she told the Associated Press. "They don't understand the sacrifices people made to get us to this point."</p>
+        <p>Inside, on the third floor of the capitol, dozens of people circled the rotunda and chanted: "This is our house!" as they waited to get into the public gallery, the Detroit Free Press reported.</p>
+        <p>The newspaper added the demonstrations were expected to be one of the largest in history of Michigan, a union bastion.</p>
+        <p>Wrangles over right-to-work laws have played out over weeks in some states, but the bill under consideration in Lansing was introduced only last week.</p>
+        <p>Proponents say the measure would bring more jobs and economic benefits to Michigan, while opponents say the laws are designed to weaken unions and would lead to lower wages.</p>
+        <p>In an interview with a local news outlet on Tuesday, Governor Snyder called the measure "good legislation", adding that the law was designed to give workers a choice.</p>
+        <p>"This is about being pro-worker," Gov Snyder said.</p>
+        <p>But on Monday, President Barack Obama spoke out against the law during an appearance in Michigan to discuss a separate matter, his plan to avoid nationwide tax rises and deep spending cuts due to take effect next year.</p>
+        <p>"These so-called right-to-work laws, they don't have anything to do with economics; they have everything to do with politics," President Obama said.</p>
+        <p>"What they're really talking about is giving you the right to work for less money."</p>
+        <p>Opponents of the bill fear that if the legislation passes in Michigan, where the US car industry is based, it could give the right-to-work movement its biggest boost yet, correspondents say.</p>
+        <p>Although nearly half of US state have right-to-work laws, Michigan would be only the second state to pass such a law in the last decade, following Indiana earlier this year.</p>
+      </div>
+    </content>
+  </entry>
+  <entry>
+    <title>Russia backtracks on net proposal</title>
+    <summary>Russia, China and other countries are revising proposals demanding "equal rights to manage the internet" after the US said it would block them.</summary>
+    <category term="Technology" label="Technology"/>
+    <updated>2012-12-11T14:09:51+00:00</updated>
+    <id>urn:news-bbc-co-uk:story:20676293</id>
+    <link href="http://www.bbc.co.uk/news/20676293" type="text/html" rel="alternate" title="Russia backtracks on net proposal"/>
+    <media:thumbnail url="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20676293/ichef.bbci.co.uk/moira/img/%7bdevice%7d/thumbnail/64692000/png/_64692195_wcit.png"/>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml" class="body">
+        <div class="inline_img">
+          <img class="inline_304x171" alt="Terry Kramer" src="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20676293/ichef.bbci.co.uk/moira/img/%7bdevice%7d/styhalf/64692000/jpg/_64692201_kramer.jpg" copyrightHolder="Getty Images" type="thumbnail"/>
+          <div class="inline_img_caption">The US ambassador to the conference had said he was "disappointed" by the Russian-backed proposals</div>
+        </div>
+        <p>Russian-backed proposals calling for 193 countries to be given "equal rights to manage the internet" have been pulled at a UN conference in Dubai.</p>
+        <p>The US had threatened to block the suggested additions to an international communications treaty.</p>
+        <p>It wants the treaty to make minimal reference to the internet, warning to do otherwise risks state interference.</p>
+        <p>Russia and its partners are now redrafting their document and are expected to submit it later.</p>
+        <p>Attendees at the World Conference on International Telecommunications (Wcit) have until Friday to renegotiate the 24-year-old treaty. </p>
+        <p>The UN agency hosting the event - the International Telecommunication Union (ITU) - had earlier pledged not to put any disputed changes to a majority vote, saying there had to be full consensus.</p>
+        <p class="subtitle">Internet addresses</p>
+        <p>Russia had first put forward its net governance proposal ahead of the conference, but it emerged on Friday that it had found support from other countries.</p>
+        <p>The United Arab Emirates announced the details would be submitted to the ITU at the beginning of this week. But before that could happen a draft of the proposals was published by website Wcitleaks.</p>
+        <p>It revealed that the UAE, China, Saudi Arabia, Algeria and Sudan were the other countries signed up to the so-called "compromise document".</p>
+        <p>Wcitleaks also named Egypt, but it issued a statement to say that it did not support the proposals.</p>
+        <p>One of the most controversial suggestions was a call for member states to be given equal rights to manage "internet numbering, naming, addressing and identification resources".</p>
+        <p>This would mark potentially mark a shift from the current system in which the US government decides who runs the Internet Assigned Numbers Authority (Iana) - the body responsible for regulating the net's address system.</p>
+        <p>It has this power as a legacy of its funding for Arpanet - a precursor to the internet which helped form its technical core.</p>
+        <p>While some other countries see this as an anachronism, the US says it allows it to ensure that technical experts can make "agile, rapid-fire decisions" about the net's development as part of multi-stakeholder organisations, and to change this would risk the process getting slowed down by bureaucracy.</p>
+        <div class="inline_img">
+          <img class="inline_224x299" alt="Exterior of conference" src="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20676293/ichef.bbci.co.uk/moira/img/%7bdevice%7d/stysmall/64691000/png/_64691943_dubao.png" copyrightHolder="Itu" type="thumbnail"/>
+          <div class="inline_img_caption">The UN's conference is being held in Dubai</div>
+        </div>
+        <p>It also makes a wider point that attempts to add sections to the treaty about the internet could later by used by governments to legitimise interference into the operations of internet service providers (ISPs) and cloud-based operations such as Google or Facebook, "opening the door to censorship".</p>
+        <p>However, others says the references are needed to help countries co-ordinate cybersecurity and anti-spam efforts.</p>
+        <p class="crosshead">Revised proposals</p>
+        <p>After the US made clear that it would oppose the document's proposals its backers subsequently decided not to file it in its current state.</p>
+        <p>The ITU says it expects an amended version will be delivered later, but adds that it will not released it for public view until it has been translated into a range of other languages.</p>
+        <p>The US gave a guarded response to the news.</p>
+        <p>"While this is a welcome development, these issues will continue to be on the table for discussion in other forms during the remainder of the conference," said the US ambassador to Wcit, Terry Kramer.</p>
+        <div class="inline_img">
+          <img class="inline_304x171" alt="Wcit conference" src="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20676293/ichef.bbci.co.uk/moira/img/%7bdevice%7d/styhalf/64691000/png/_64691945_algeria.png" copyrightHolder="ITU" type="thumbnail"/>
+          <div class="inline_img_caption">Delegates at the conference have until Friday to agree the text of the revised treaty</div>
+        </div>
+        <p>"The United States will continue to make the case that Wcit should maintain the scope of the  international telecommunication regulations and resist proposals to extent that scope into internet governance or content." </p>
+        <p>The Russia-backed group has not issued a statement at this time, however the ITU stresses that if the revised document is still opposed by the US, it will not be adopted.</p>
+        <p>"If it contains text that doesn't have majority support it won't be acceptable to the conference," a spokeswoman told the BBC.</p>
+        <p>"So they're trying to remove the bits that people won't agree to and see where people might be prepared to bend a little bit."</p>
+      </div>
+    </content>
+  </entry>
+  <entry>
+    <title>El Salvador killing probe ordered</title>
+    <summary>El Salvador should investigate a civil war-era massacre that left some 1,000 people dead and bring those responsible to justice, the Inter-American Court of Human Rights rules.</summary>
+    <category term="World/Latin America" label="World/Latin America"/>
+    <updated>2012-12-11T10:13:54+00:00</updated>
+    <id>urn:news-bbc-co-uk:story:20675619</id>
+    <link href="http://www.bbc.co.uk/news/world-latin-america-20675619" type="text/html" rel="alternate" title="El Salvador killing probe ordered"/>
+    <media:thumbnail url="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20675619/ichef.bbci.co.uk/moira/img/%7bdevice%7d/thumbnail/64688000/jpg/_64688832_57926857.jpg"/>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml" class="body">
+        <div class="inline_img">
+          <img class="inline_304x171" alt="President Mauricio Funes wipes a tear while apologising for the massacre of El Mozote on 16 January 2012" src="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20675619/ichef.bbci.co.uk/moira/img/%7bdevice%7d/styhalf/57927000/jpg/_57927078_57926926.jpg" copyrightHolder="AP" type="thumbnail"/>
+          <div class="inline_img_caption">President Mauricio Funes made a public apology in January for the massacre</div>
+        </div>
+        <p>El Salvador has been ordered to investigate the single worst massacre committed during its civil war in a bid to bring those responsible to justice.</p>
+        <p>The Inter-American Human Rights Court ruled that an amnesty law did not cover the El Mozote massacre in 1981, when soldiers killed some 1,000 people.  </p>
+        <p>A year ago, the current government asked for forgiveness for the state's violence.</p>
+        <p>El Salvador's 12-year civil war from 1980 to 1992 left some 75,000 dead. </p>
+        <p>The Inter-American Human Rights Court, based in Costa Rica, on Monday made its ruling on the massacre public.</p>
+        <p>The killings in and around El Mozote were part of a "systematic plan of repression" by the military during the civil war, the court said.</p>
+        <p>Between 11 and 13 December, 1981, soldiers from a now-banned battalion, the Atlacatl, shot dead residents of El Mozote suspected of sympathising with left-wing rebels.  </p>
+        <p>Nearly half of the victims were children.</p>
+        <div class="inline_img">
+          <img class="inline_304x171" alt="map" src="bbcimage://urn%3Anews-bbc-co-uk%3Astory%3A20675619/ichef.bbci.co.uk/moira/img/%7bdevice%7d/styhalf/57927000/gif/_57927081_elsalvador_elmozote_0112.gif" copyrightHolder="BBC" type="thumbnail"/>
+        </div>
+        <p>The court's statement said that 440 victims had been confirmed, but that evidence indicated the actual number was much higher.</p>
+        <p>The killings in El Mozote, some 200km (120 miles) from the capital, San Salvador, were the bloodiest single episode in the conflict.</p>
+        <p>Those responsible were not put on trial as the authorities agreed a general amnesty in 1992, as part of negotiations to end the civil war.</p>
+        <p>However, the obligation on the state of El Salvador to investigate, prosecute and punish those remained, the court said.</p>
+        <p>Among its findings, the court ordered El Salvador to:</p>
+        <p>continue compiling the register of the victims and their families</p>
+        <p>conduct investigations into the massacre</p>
+        <p>ensure that the amnesty law is not an obstacle to the investigation</p>
+        <p>conduct the necessary exhumations and identification of bodies, and where applicable return the remains to family members</p>
+        <p>pay compensation for the victims, to survivors and to victims' families totalling some $17m. </p>
+        <p>The Office of the Human Rights Ombudsman in El Salvador welcomed the court's ruling but urged the state to make sure it was implemented. </p>
+        <p>In January, President Mauricio Funes wept as he asked for forgiveness from the families on behalf of the Salvadoran state. </p>
+      </div>
+    </content>
+  </entry>
+</feed>
