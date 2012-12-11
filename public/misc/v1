@@ -19,7 +19,7 @@
         "feeds": [
         {
             "title": "Top Stories",
-            "feed_url": "http://www.bbc.co.uk/moira/feed/news_world/front_page",
+            "feed_url": "http://newsnearme2.herokuapp.com/misc/front_page",
             "default": true,
             "movable": 0
         }
