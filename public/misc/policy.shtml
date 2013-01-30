@@ -1,0 +1,33 @@
+<!--#set var="app-kill" value="0" -->
+<!--#set var="app-update" value="0" -->
+<!--#set var="network-uk" value="0" -->
+<!--#set var="network-type" value="0" -->
+<!--#set var="permissions-stream" value="0" -->
+<!--#set var="permissions-download" value="0" -->
+<!--#set var="permissions-simulcast" value="0" -->
+<!--#set var="permissions-stream-audio" value="0" -->
+<!--#set var="permissions-stream-video" value="0" -->
+<!--#set var="permissions-simulcast-audio" value="0" -->
+<!--#set var="permissions-simulcast-video" value="0" -->
+
+<!--#if expr="${HTTP_IP_IS_UK_COMBINED} = 'yes'" -->
+	<!--#set var="network-uk" value="1" -->
+<!--#endif -->
+
+<!--#if expr="${HTTP_IP_CONNTYPE} != 'mobile wireless'" -->
+	<!--#set var="network-type" value="1" -->
+	<!--#set var="permissions-stream" value="1" -->
+	<!--#set var="permissions-download" value="0" -->
+	<!--#set var="permissions-simulcast" value="1" -->
+	<!--#set var="permissions-stream-audio" value="1" -->
+	<!--#set var="permissions-stream-video" value="1" -->
+	<!--#set var="permissions-simulcast-audio" value="1" -->
+	<!--#set var="permissions-simulcast-video" value="1" -->
+<!--#endif -->
+
+<!--#if expr="${HTTP_USER_AGENT} = /iOS/ && ${HTTP_USER_AGENT} = /1.0/ && ${HTTP_USER_AGENT} = /10A100A/" -->
+	<!--#set var="app-kill" value="1" -->
+	<!--#set var="app-update" value="1" -->
+<!--#endif -->
+
+{"k":<!--#echo var="app-kill" -->,"p":<!--#echo var="app-update" -->,"u":<!--#echo var="network-uk" -->,"n":<!--#echo var="network-type" -->,"s":<!--#echo var="permissions-stream" -->,"d":<!--#echo var="permissions-download" -->,"l":<!--#echo var="permissions-simulcast" -->,"v":<!--#echo var="permissions-stream-video" -->,"a":<!--#echo var="permissions-stream-audio" -->,"t":<!--#echo var="permissions-simulcast-video" -->,"r":<!--#echo var="permissions-simulcast-audio" -->}
